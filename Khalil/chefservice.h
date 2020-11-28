@@ -13,11 +13,12 @@ class Chefservice
 public:
     Chefservice();
     Chefservice(int,QString,QString);
-    int getId(){return id;};
-    QString getNom(){return nom;};
-    QString getPrenom(){return prenom;};
+    int getId(){return id;}
+    QString getNom(){return nom;}
+    QString getPrenom(){return prenom;}
     bool ajouterChefSv();
     bool supprimerChefSv(int);
+    bool modifierChefSv(int);
     QSqlQueryModel * afficher();
     QSqlQueryModel * rechercheChefSv(int);
 

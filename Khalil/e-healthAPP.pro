@@ -18,17 +18,23 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     Connection.cpp \
+    addwidget.cpp \
     chefservice.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    modifwidget.cpp
 
 HEADERS += \
     Connection.h \
+    addwidget.h \
     chefservice.h \
-    mainwindow.h
+    mainwindow.h \
+    modifwidget.h
 
 FORMS += \
-    mainwindow.ui
+    addwidget.ui \
+    mainwindow.ui \
+    modifwidget.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

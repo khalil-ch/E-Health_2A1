@@ -18,10 +18,21 @@ bool Chefservice::ajouterChefSv()
 {
     QSqlQuery query;
      //QSqlQuery *query = new QSqlQuery(db);
-    query.prepare("INSERT into Chefservice (id,nom,prenom)""values(:id,:nom,:prenom)");
+
+    query.prepare("INSERT into Chefservice (id,nom,prenom) ""values(:id,:nom,:prenom)");
     query.bindValue(":id",id);
     query.bindValue(":nom",nom);
     query.bindValue(":prenom",prenom);
+    return query.exec();
+}
+bool Chefservice::modifierChefSv(int idd)
+{
+    QString res= QString::number(idd);
+    QString nom="khalillooo";
+    QString prenom="kh";
+    QSqlQuery query;
+    //query.prepare("UPDATE Chefservice SET nom ="+nom+",prenom = "+prenom+ " WHERE ID = 457");
+    query.prepare("UPDATE Chefservice SET nom = 'san pedro' ,prenom = 'lucio' WHERE ID = 457");
     return query.exec();
 }
 QSqlQueryModel * Chefservice::afficher()
