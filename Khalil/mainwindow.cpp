@@ -21,37 +21,6 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::on_pushButton_13_clicked()//ajout
-{
-    int id=ui->lineEdit_ID->text().toInt();
-    QString nom=ui->lineEdit_Nom->text();
-    QString prenom=ui->lineEdit_Prenom->text();/*
-    Chefservice c(id,nom,prenom);
-    bool test=c.ajouterChefSv();
-    if(test)
-    {
-        ui->tableView->setModel(chefservicetmp.afficher());
-    QMessageBox::information(nullptr,QObject::tr("chefservice ajoute"),QObject::tr("connection successful\n""click cancel"),QMessageBox::Cancel);
-    }
-    else
-    {
-    QMessageBox::information(nullptr,QObject::tr("database error"),QObject::tr("connection unsuccessful\n""click cancel"),QMessageBox::Cancel);
-    }*/
-    Chefservice c(id,nom,prenom);
-    bool test = c.modifierChefSv(748);
-    if(test)
-    {
-        ui->tableView->setModel(chefservicetmp.afficher());
-    QMessageBox::information(nullptr,QObject::tr("chefservice ajoute"),QObject::tr("connection successful\n""click cancel"),QMessageBox::Cancel);
-    }
-    else
-    {
-    QMessageBox::information(nullptr,QObject::tr("database error"),QObject::tr("connection unsuccessful\n""click cancel"),QMessageBox::Cancel);
-    }
-
-}
-
-
 void MainWindow::on_pushButton_clicked()//supression
 {
 int id = ui->lineEdit->text().toInt();
@@ -89,6 +58,7 @@ void MainWindow::on_pushButton_4_clicked()
     AddWidget addw;
     addw.setModal(true);
     addw.exec();
+    ui->tableView->setModel(chefservicetmp.afficher());
 }
 
 void MainWindow::on_pushButton_2_clicked()//widget modifier
@@ -96,4 +66,15 @@ void MainWindow::on_pushButton_2_clicked()//widget modifier
     ModifWidget modw;
     modw.setModal(true);
     modw.exec();
+    ui->tableView->setModel(chefservicetmp.afficher());
+}
+
+void MainWindow::on_pushButton_4_released()
+{
+    ui->tableView->setModel(chefservicetmp.afficher());
+}
+
+void MainWindow::on_pushButton_13_clicked()
+{
+    ui->tableView->setModel(chefservicetmp.afficher());
 }

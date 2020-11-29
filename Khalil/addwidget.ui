@@ -212,10 +212,10 @@
      <string>Retour</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_13">
+   <widget class="QPushButton" name="Enregistrer">
     <property name="geometry">
      <rect>
-      <x>370</x>
+      <x>340</x>
       <y>30</y>
       <width>93</width>
       <height>28</height>

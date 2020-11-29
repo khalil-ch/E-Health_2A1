@@ -29,6 +29,8 @@ private slots:
 
     void on_pushButton_4_clicked();
 
+    void on_pushButton_4_released();
+
 private:
     Ui::MainWindow *ui;
     Chefservice chefservicetmp;

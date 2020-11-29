@@ -15,6 +15,13 @@ public:
     explicit AddWidget(QWidget *parent = nullptr);
     ~AddWidget();
 
+private slots:
+    void on_pushButton_13_clicked();
+
+    void on_EnregistrerR_clicked();
+
+    void on_Enregistrer_clicked();
+
 private:
     Ui::AddWidget *ui;
 };

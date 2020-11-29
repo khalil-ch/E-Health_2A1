@@ -18,7 +18,7 @@ public:
     QString getPrenom(){return prenom;}
     bool ajouterChefSv();
     bool supprimerChefSv(int);
-    bool modifierChefSv(int);
+    bool modifierChefSv(QString,QString);
     QSqlQueryModel * afficher();
     QSqlQueryModel * rechercheChefSv(int);
 
