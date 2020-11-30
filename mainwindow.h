@@ -36,6 +36,8 @@ private slots:
 
     void on_checkBox_clicked();
 
+    void on_pushButton_13_clicked();
+
 private:
     Ui::MainWindow *ui;
     patient tmpPatient;

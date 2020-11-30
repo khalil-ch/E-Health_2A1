@@ -3,6 +3,15 @@
 #include "patient.h"
 #include "chambre.h"
 #include <QMessageBox>
+#include <QTextDocument>
+#include <QtPrintSupport/QPrintDialog>
+#include <QtPrintSupport/QPrinter>
+#include<QTextStream>
+#include <QtWidgets>
+#include <QItemSelectionModel>
+#include <QModelIndexList>
+#include <QStringList>
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -257,3 +266,38 @@ void MainWindow::on_checkBox_clicked()
         ui->tableView_chambre->setModel(tmpChambre.trier("numero_chambre"));
     }
 }
+
+void MainWindow::on_pushButton_13_clicked()
+
+    {
+        QString strStream;
+            QTextStream out(&strStream);
+            const int rowCount = ui->tableView_chambre->model()->rowCount();
+            const int columnCount = ui->tableView_chambre->model()->columnCount();
+            for(int column = 0;column < columnCount; column++)
+                if(!ui->tableView_chambre->isColumnHidden(column))
+                    out <<QString("<td>%1</td>").arg(ui->tableView_chambre->model()->headerData(column, Qt::Horizontal).toString());
+            for(int row = 0;row < rowCount; row++)
+            {
+                out <<"<tr>";
+                for(int column = 0 ;column < columnCount ; column++)
+                {
+                    if(!ui->tableView_chambre->isColumnHidden(column))
+                    {
+                        QString data =ui->tableView_chambre->model()->data(ui->tableView_chambre->model()->index(row, column)).toString().simplified();
+                        out << QString("<td bkcolor=0>%1</td>").arg((!data.isEmpty()) ? data : QString("&nbsp;"));
+                    }
+                }
+            }
+            QTextDocument *document = new QTextDocument();
+            document->setHtml(strStream);
+            QPrinter printer;
+            QPrintDialog *daddy = new QPrintDialog(&printer , NULL);
+            if(daddy->exec() == QDialog::Accepted){
+                document->print(&printer);
+            }
+            delete document;
+
+    }
+
+
