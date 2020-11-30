@@ -4,7 +4,12 @@
 #include <QSqlQueryModel>
 #include <QDate>
 #include<QSqlRecord>
-
+#include<QTableView>
+#include <QFile>
+#include <QTextStream>
+#include <QFileDialog>
+#include <QDir>
+#include <QApplication>
 
 class patient
 {
@@ -24,6 +29,7 @@ bool supprimer(QString);
 bool update(QString ,QString,int,int, QDate  ,QString ,QString);
 QSqlQueryModel *rechercher_patient(QString,QString,QString);
 QSqlQueryModel *trier(QString crit);
+void exporter(QTableView *table);
 
 private:
     QString cin ;

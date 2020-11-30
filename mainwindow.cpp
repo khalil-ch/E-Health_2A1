@@ -19,7 +19,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     ui->tableView_Patient->setModel(tmpPatient.afficher());
     ui->tableView_chambre->setModel(tmpChambre.afficher());
-   this->setStyleSheet("background-color: rgb(0, 0, 100);");
+   //this->setStyleSheet("background-color: rgb(0, 0, 100);");
     ui->lineEdit_CIN->setMaxLength(8);
     ui->lineEdit_cinp->setMaxLength(8);
     ui->lineEdit_cin_supp->setMaxLength(8);
@@ -337,4 +337,16 @@ void MainWindow::on_pushButton_6_clicked()
                 }
                 delete document;
 
+}
+
+void MainWindow::on_pushButton_18_clicked()
+{
+
+    tmpChambre.exporter(ui->tableView_chambre);
+
+}
+
+void MainWindow::on_pushButton_19_clicked()
+{
+     tmpPatient.exporter(ui->tableView_Patient);
 }
