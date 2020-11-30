@@ -89,13 +89,13 @@ bool patient::update(QString cin ,QString id,int age, int duree,QDate Date_entre
     return query.exec();
 }
 
-QSqlQueryModel * patient::rechercher_patient(QString cin,QString nom,QDate Date_entrer)
+QSqlQueryModel * patient::rechercher_patient(QString cin,QString nom,QString prenom)
 {
     QSqlQuery *query=new QSqlQuery();
-    query->prepare("select * from patient where cin=:cin or nom=:nom or Date_entrer=:Date_entrer");
+    query->prepare("select * from patient where cin=:cin or nom=:nom or prenom=:prenom");
     query->bindValue(":cin",cin);
     query->bindValue(":nom",nom);
-    query->bindValue(":Date_entrer",Date_entrer);
+    query->bindValue(":prenom",prenom);
 
     query->exec();
 

@@ -19,8 +19,13 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     ui->tableView_Patient->setModel(tmpPatient.afficher());
     ui->tableView_chambre->setModel(tmpChambre.afficher());
-  //  this->setStyleSheet("background-color: rgb(0, 0, 100);");
+   this->setStyleSheet("background-color: rgb(0, 0, 100);");
     ui->lineEdit_CIN->setMaxLength(8);
+    ui->lineEdit_cinp->setMaxLength(8);
+    ui->lineEdit_cin_supp->setMaxLength(8);
+    ui->lineEdit_recherchecin->setMaxLength(8);
+
+
 
 }
 
@@ -40,7 +45,7 @@ void MainWindow::on_pushButton_clicked()
     QString nom= ui->lineEdit_nom->text();
     QString prenom= ui->lineEdit_prenom->text();
     patient p(cin,id,age,duree,Date_entrer,nom,prenom);
-      if ((age!=0)&&(cin>'0')&&(cin!=NULL)&&(duree!=0)&&(nom!="")&&(prenom!="")&&(id!=""))
+      if ((age!=0)&&(cin!=NULL) &&(duree!=0)&&(nom!="")&&(prenom!="")&&(id!=""))
       {
           bool test=p.ajouter();
 
@@ -212,9 +217,9 @@ void MainWindow::on_pushButton_5_clicked()
 {
     QString cin= ui->lineEdit_recherchecin->text();
     QString nom= ui->lineEdit_3->text();
-    QDate Date_entrer= ui->dateEdit_2->date();
+    QString prenom= ui->lineEdit_4->text();
 
-    QSqlQueryModel *test=tmpPatient.rechercher_patient(cin,nom,Date_entrer);
+    QSqlQueryModel *test=tmpPatient.rechercher_patient(cin,nom,prenom);
 if (test)
 {
    ui->tableView_Patient->setModel(test);
