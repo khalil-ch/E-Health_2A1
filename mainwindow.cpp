@@ -301,3 +301,35 @@ void MainWindow::on_pushButton_13_clicked()
     }
 
 
+
+void MainWindow::on_pushButton_6_clicked()
+{
+    QString strStream;
+                QTextStream out(&strStream);
+                const int rowCount = ui->tableView_Patient->model()->rowCount();
+                const int columnCount = ui->tableView_Patient->model()->columnCount();
+                for(int column = 0;column < columnCount; column++)
+                    if(!ui->tableView_Patient->isColumnHidden(column))
+                        out <<QString("<td>%1</td>").arg(ui->tableView_Patient->model()->headerData(column, Qt::Horizontal).toString());
+                for(int row = 0;row < rowCount; row++)
+                {
+                    out <<"<tr>";
+                    for(int column = 0 ;column < columnCount ; column++)
+                    {
+                        if(!ui->tableView_Patient->isColumnHidden(column))
+                        {
+                            QString data =ui->tableView_Patient->model()->data(ui->tableView_Patient->model()->index(row, column)).toString().simplified();
+                            out << QString("<td bkcolor=0>%1</td>").arg((!data.isEmpty()) ? data : QString("&nbsp;"));
+                        }
+                    }
+                }
+                QTextDocument *document = new QTextDocument();
+                document->setHtml(strStream);
+                QPrinter printer;
+                QPrintDialog *daddy = new QPrintDialog(&printer , NULL);
+                if(daddy->exec() == QDialog::Accepted){
+                    document->print(&printer);
+                }
+                delete document;
+
+}
