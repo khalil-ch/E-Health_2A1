@@ -1,0 +1,16 @@
+INPUT(
+./debug\addw.o
+./debug\connection.o
+./debug\equipemaintenance.o
+./debug\main.o
+./debug\mainwindow.o
+./debug\modw.o
+./debug\requette.o
+./debug\widadd2.o
+./debug\widmod2.o
+./debug\moc_addw.o
+./debug\moc_mainwindow.o
+./debug\moc_modw.o
+./debug\moc_widadd2.o
+./debug\moc_widmod2.o
+);

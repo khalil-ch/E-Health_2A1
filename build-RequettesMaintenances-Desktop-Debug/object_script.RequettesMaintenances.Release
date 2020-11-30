@@ -1,0 +1,16 @@
+INPUT(
+./release\addw.o
+./release\connection.o
+./release\equipemaintenance.o
+./release\main.o
+./release\mainwindow.o
+./release\modw.o
+./release\requette.o
+./release\widadd2.o
+./release\widmod2.o
+./release\moc_addw.o
+./release\moc_mainwindow.o
+./release\moc_modw.o
+./release\moc_widadd2.o
+./release\moc_widmod2.o
+);
