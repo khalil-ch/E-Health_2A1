@@ -60,11 +60,11 @@ QTabBar::tab {
 QWidget:hover {
   padding: 15px;
 
-background: lightblue;
+    background-color: #FF17365D;
 }</string>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -73,20 +73,36 @@ background: lightblue;
      <widget class="QGroupBox" name="groupBox">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>10</y>
+        <x>0</x>
+        <y>0</y>
         <width>241</width>
-        <height>301</height>
+        <height>311</height>
        </rect>
       </property>
       <property name="styleSheet">
        <string notr="true">QGroupBox {
-    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                      stop: 0 #E0E0E0, stop: 1 #FFFFFF);
-    border: 2px solid gray;
-    border-radius: 5px;
-    margin-top: 1ex; /* leave space at the top for the title */
-}</string>
+    border: 1px solid gray;
+    border-color: #FF17365D;
+    margin-top: 27px;
+    font-size: 14px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    subcontrol-position: top center;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    padding: 5px 150px;
+    background-color: #FF17365D;
+    color: rgb(250, 250, 250);
+}
+QGroupBox {
+    background-color: gray;
+    border: 3px dashed black;
+}
+</string>
       </property>
       <property name="title">
        <string>Ajouter Patient</string>
@@ -95,7 +111,7 @@ background: lightblue;
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>20</y>
+         <y>40</y>
          <width>47</width>
          <height>13</height>
         </rect>
@@ -108,7 +124,7 @@ background: lightblue;
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>40</y>
+         <y>70</y>
          <width>47</width>
          <height>13</height>
         </rect>
@@ -121,7 +137,7 @@ background: lightblue;
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>70</y>
+         <y>100</y>
          <width>47</width>
          <height>13</height>
         </rect>
@@ -134,7 +150,7 @@ background: lightblue;
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>110</y>
+         <y>140</y>
          <width>47</width>
          <height>13</height>
         </rect>
@@ -147,7 +163,7 @@ background: lightblue;
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>140</y>
+         <y>160</y>
          <width>47</width>
          <height>13</height>
         </rect>
@@ -160,7 +176,7 @@ background: lightblue;
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>170</y>
+         <y>190</y>
          <width>71</width>
          <height>16</height>
         </rect>
@@ -173,7 +189,7 @@ background: lightblue;
        <property name="geometry">
         <rect>
          <x>160</x>
-         <y>230</y>
+         <y>260</y>
          <width>71</width>
          <height>23</height>
         </rect>
@@ -185,7 +201,9 @@ background: lightblue;
   border-radius: 10px;
   padding: 0 8px;
   background: white;
-}</string>
+}
+QPushButton:hover:!pressed { color: blue; }
+</string>
        </property>
        <property name="text">
         <string>Ajouter</string>
@@ -195,13 +213,20 @@ background: lightblue;
        <property name="geometry">
         <rect>
          <x>80</x>
-         <y>230</y>
+         <y>260</y>
          <width>75</width>
          <height>23</height>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">QPushButton { color: red }
+        <string notr="true">QPushButton
+{
+  border: 2px solid blue;
+  border-radius: 10px;
+  padding: 0 8px;
+  background: white;
+}
+QPushButton:hover:!pressed { color: blue; }
 </string>
        </property>
        <property name="text">
@@ -212,7 +237,7 @@ background: lightblue;
        <property name="geometry">
         <rect>
          <x>70</x>
-         <y>20</y>
+         <y>40</y>
          <width>113</width>
          <height>20</height>
         </rect>
@@ -231,7 +256,7 @@ background: lightblue;
        <property name="geometry">
         <rect>
          <x>70</x>
-         <y>50</y>
+         <y>70</y>
          <width>111</width>
          <height>20</height>
         </rect>
@@ -249,8 +274,8 @@ background: lightblue;
       <widget class="QLineEdit" name="lineEdit_age">
        <property name="geometry">
         <rect>
-         <x>60</x>
-         <y>110</y>
+         <x>100</x>
+         <y>130</y>
          <width>51</width>
          <height>21</height>
         </rect>
@@ -268,8 +293,8 @@ background: lightblue;
       <widget class="QLineEdit" name="lineEdit_duree">
        <property name="geometry">
         <rect>
-         <x>60</x>
-         <y>140</y>
+         <x>90</x>
+         <y>160</y>
          <width>71</width>
          <height>20</height>
         </rect>
@@ -287,21 +312,32 @@ background: lightblue;
       <widget class="QDateEdit" name="dateEdit">
        <property name="geometry">
         <rect>
-         <x>80</x>
-         <y>170</y>
+         <x>90</x>
+         <y>190</y>
          <width>110</width>
          <height>22</height>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true"/>
+        <string notr="true">
+
+QDateEdit
+{
+    background-color: white;
+    border-style: solid;
+    border-width: 4px;
+    border-color: rgb(0,0,0);
+    spacing: 5px; 
+}
+
+</string>
        </property>
       </widget>
       <widget class="QLineEdit" name="lineEdit_prenom">
        <property name="geometry">
         <rect>
          <x>70</x>
-         <y>80</y>
+         <y>100</y>
          <width>111</width>
          <height>20</height>
         </rect>
@@ -319,8 +355,8 @@ background: lightblue;
       <widget class="QLabel" name="label_23">
        <property name="geometry">
         <rect>
-         <x>10</x>
-         <y>200</y>
+         <x>20</x>
+         <y>220</y>
          <width>47</width>
          <height>13</height>
         </rect>
@@ -332,8 +368,8 @@ background: lightblue;
       <widget class="QLineEdit" name="lineEdit">
        <property name="geometry">
         <rect>
-         <x>70</x>
-         <y>200</y>
+         <x>80</x>
+         <y>220</y>
          <width>113</width>
          <height>20</height>
         </rect>
@@ -352,19 +388,24 @@ background: lightblue;
      <widget class="QGroupBox" name="groupBox_3">
       <property name="geometry">
        <rect>
-        <x>10</x>
+        <x>0</x>
         <y>310</y>
-        <width>731</width>
-        <height>461</height>
+        <width>741</width>
+        <height>501</height>
        </rect>
       </property>
       <property name="styleSheet">
        <string notr="true">QGroupBox {
     background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
                                       stop: 0 #E0E0E0, stop: 1 #FFFFFF);
-    border: 2px solid black;
+    border: 2px solid gray;
     border-radius: 5px;
     margin-top: 1ex; /* leave space at the top for the title */
+
+}
+QGroupBox {
+    background-color: gray;
+    border: 3px dashed black;
 }</string>
       </property>
       <property name="title">
@@ -380,8 +421,14 @@ background: lightblue;
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">QPushButton:hover:!pressed { color: red; }
-</string>
+        <string notr="true">QPushButton
+{
+  border: 2px solid blue;
+  border-radius: 10px;
+  padding: 0 8px;
+  background: white;
+}
+QPushButton:hover:!pressed { color: blue; }</string>
        </property>
        <property name="text">
         <string>Exporter PDF</string>
@@ -397,8 +444,14 @@ background: lightblue;
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">QPushButton:hover:!pressed { color: red; }
-</string>
+        <string notr="true">QPushButton
+{
+  border: 2px solid blue;
+  border-radius: 10px;
+  padding: 0 8px;
+  background: white;
+}
+QPushButton:hover:!pressed { color: blue; }</string>
        </property>
        <property name="text">
         <string>Stats</string>
@@ -434,6 +487,12 @@ QTableView{
          <height>17</height>
         </rect>
        </property>
+       <property name="styleSheet">
+        <string notr="true">QCheckBox::indicator {
+    border: 3px solid #5A5A5A;
+    background: none;
+}</string>
+       </property>
        <property name="text">
         <string>Age</string>
        </property>
@@ -441,11 +500,14 @@ QTableView{
       <widget class="QGroupBox" name="groupBox_9">
        <property name="geometry">
         <rect>
-         <x>50</x>
+         <x>30</x>
          <y>20</y>
          <width>641</width>
          <height>71</height>
         </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"/>
        </property>
        <property name="title">
         <string>Recherche</string>
@@ -458,6 +520,15 @@ QTableView{
           <width>91</width>
           <height>20</height>
          </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLineEdit {
+    border: 2px solid gray;
+    border-radius: 10px;
+    padding: 0 8px;
+    background: white;
+    selection-background-color: darkgray;
+}</string>
         </property>
        </widget>
        <widget class="QLabel" name="label_25">
@@ -483,8 +554,14 @@ QTableView{
          </rect>
         </property>
         <property name="styleSheet">
-         <string notr="true">QPushButton:hover:!pressed { color: red; }
-</string>
+         <string notr="true">QPushButton
+{
+  border: 2px solid blue;
+  border-radius: 10px;
+  padding: 0 8px;
+  background: white;
+}
+QPushButton:hover:!pressed { color: blue; }</string>
         </property>
         <property name="text">
          <string>Rechercher</string>
@@ -547,33 +624,16 @@ QTableView{
           <height>20</height>
          </rect>
         </property>
+        <property name="styleSheet">
+         <string notr="true">QLineEdit {
+    border: 2px solid gray;
+    border-radius: 10px;
+    padding: 0 8px;
+    background: white;
+    selection-background-color: darkgray;
+}</string>
+        </property>
        </widget>
-      </widget>
-      <widget class="QCheckBox" name="checkBox_2">
-       <property name="geometry">
-        <rect>
-         <x>190</x>
-         <y>120</y>
-         <width>70</width>
-         <height>17</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Date</string>
-       </property>
-      </widget>
-      <widget class="QCheckBox" name="checkBox_4">
-       <property name="geometry">
-        <rect>
-         <x>260</x>
-         <y>120</y>
-         <width>70</width>
-         <height>17</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Duree</string>
-       </property>
       </widget>
       <widget class="QLabel" name="label_30">
        <property name="geometry">
@@ -597,6 +657,16 @@ QTableView{
          <height>23</height>
         </rect>
        </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton
+{
+  border: 2px solid blue;
+  border-radius: 10px;
+  padding: 0 8px;
+  background: white;
+}
+QPushButton:hover:!pressed { color: blue; }</string>
+       </property>
        <property name="text">
         <string>Excel</string>
        </property>
@@ -605,20 +675,36 @@ QTableView{
      <widget class="QGroupBox" name="groupBox_2">
       <property name="geometry">
        <rect>
-        <x>250</x>
-        <y>10</y>
-        <width>241</width>
-        <height>301</height>
+        <x>240</x>
+        <y>0</y>
+        <width>251</width>
+        <height>311</height>
        </rect>
       </property>
       <property name="styleSheet">
        <string notr="true">QGroupBox {
-    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                      stop: 0 #E0E0E0, stop: 1 #FFFFFF);
-    border: 2px solid pink;
-    border-radius: 5px;
-    margin-top: 1ex; /* leave space at the top for the title */
-}</string>
+    border: 1px solid gray;
+    border-color: #FF17365D;
+    margin-top: 27px;
+    font-size: 14px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    subcontrol-position: top center;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    padding: 5px 150px;
+    background-color: #FF17365D;
+    color: rgb(250, 250, 250);
+}
+QGroupBox {
+    background-color: gray;
+    border: 3px dashed black;
+}
+</string>
       </property>
       <property name="title">
        <string>Modifier Patient</string>
@@ -627,7 +713,7 @@ QTableView{
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>40</y>
+         <y>60</y>
          <width>47</width>
          <height>13</height>
         </rect>
@@ -640,7 +726,7 @@ QTableView{
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>70</y>
+         <y>90</y>
          <width>47</width>
          <height>13</height>
         </rect>
@@ -653,7 +739,7 @@ QTableView{
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>90</y>
+         <y>120</y>
          <width>47</width>
          <height>13</height>
         </rect>
@@ -666,7 +752,7 @@ QTableView{
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>120</y>
+         <y>150</y>
          <width>47</width>
          <height>13</height>
         </rect>
@@ -679,7 +765,7 @@ QTableView{
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>150</y>
+         <y>180</y>
          <width>47</width>
          <height>13</height>
         </rect>
@@ -692,7 +778,7 @@ QTableView{
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>190</y>
+         <y>220</y>
          <width>71</width>
          <height>16</height>
         </rect>
@@ -705,7 +791,7 @@ QTableView{
        <property name="geometry">
         <rect>
          <x>140</x>
-         <y>260</y>
+         <y>280</y>
          <width>91</width>
          <height>23</height>
         </rect>
@@ -717,7 +803,9 @@ QTableView{
   border-radius: 10px;
   padding: 0 8px;
   background: white;
-}</string>
+}
+QPushButton:hover:!pressed { color: blue; }
+</string>
        </property>
        <property name="text">
         <string>Mettre à jour</string>
@@ -727,7 +815,7 @@ QTableView{
        <property name="geometry">
         <rect>
          <x>60</x>
-         <y>260</y>
+         <y>280</y>
          <width>75</width>
          <height>23</height>
         </rect>
@@ -736,8 +824,14 @@ QTableView{
         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;QPushButton { color: red }&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
        <property name="styleSheet">
-        <string notr="true">QPushButton { color: red }
-</string>
+        <string notr="true">QPushButton
+{
+  border: 2px solid blue;
+  border-radius: 10px;
+  padding: 0 8px;
+  background: white;
+}
+QPushButton:hover:!pressed { color: blue; }</string>
        </property>
        <property name="text">
         <string>Annuler</string>
@@ -746,8 +840,8 @@ QTableView{
       <widget class="QLineEdit" name="lineEdit_cinp">
        <property name="geometry">
         <rect>
-         <x>70</x>
-         <y>30</y>
+         <x>100</x>
+         <y>50</y>
          <width>111</width>
          <height>20</height>
         </rect>
@@ -765,8 +859,8 @@ QTableView{
       <widget class="QLineEdit" name="lineEdit_nomp">
        <property name="geometry">
         <rect>
-         <x>70</x>
-         <y>60</y>
+         <x>100</x>
+         <y>80</y>
          <width>113</width>
          <height>20</height>
         </rect>
@@ -784,8 +878,8 @@ QTableView{
       <widget class="QLineEdit" name="lineEdit_prenomp">
        <property name="geometry">
         <rect>
-         <x>70</x>
-         <y>90</y>
+         <x>100</x>
+         <y>110</y>
          <width>113</width>
          <height>20</height>
         </rect>
@@ -803,8 +897,8 @@ QTableView{
       <widget class="QLineEdit" name="lineEdit_agep">
        <property name="geometry">
         <rect>
-         <x>100</x>
-         <y>120</y>
+         <x>110</x>
+         <y>140</y>
          <width>51</width>
          <height>20</height>
         </rect>
@@ -822,8 +916,8 @@ QTableView{
       <widget class="QLineEdit" name="lineEdit_dureep">
        <property name="geometry">
         <rect>
-         <x>100</x>
-         <y>150</y>
+         <x>110</x>
+         <y>180</y>
          <width>81</width>
          <height>20</height>
         </rect>
@@ -842,17 +936,31 @@ QTableView{
        <property name="geometry">
         <rect>
          <x>100</x>
-         <y>190</y>
+         <y>210</y>
          <width>110</width>
          <height>22</height>
         </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">
+
+QDateEdit
+{
+    background-color: white;
+    border-style: solid;
+    border-width: 4px;
+    border-color: rgb(0,0,0);
+    spacing: 5px; 
+}
+
+</string>
        </property>
       </widget>
       <widget class="QLabel" name="label_24">
        <property name="geometry">
         <rect>
-         <x>30</x>
-         <y>220</y>
+         <x>40</x>
+         <y>250</y>
          <width>47</width>
          <height>16</height>
         </rect>
@@ -864,8 +972,8 @@ QTableView{
       <widget class="QLineEdit" name="lineEdit_2">
        <property name="geometry">
         <rect>
-         <x>90</x>
-         <y>220</y>
+         <x>110</x>
+         <y>240</y>
          <width>113</width>
          <height>20</height>
         </rect>
@@ -885,18 +993,33 @@ QTableView{
       <property name="geometry">
        <rect>
         <x>490</x>
-        <y>10</y>
+        <y>0</y>
         <width>251</width>
-        <height>301</height>
+        <height>311</height>
        </rect>
       </property>
       <property name="styleSheet">
        <string notr="true">QGroupBox {
-    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                      stop: 0 #E0E0E0, stop: 1 #FFFFFF);
-    border: 2px solid blue;
-    border-radius: 5px;
-    margin-top: 1ex; /* leave space at the top for the title */
+    border: 1px solid gray;
+    border-color: #FF17365D;
+    margin-top: 27px;
+    font-size: 14px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    subcontrol-position: top center;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    padding: 5px 150px;
+    background-color: #FF17365D;
+    color: rgb(250, 250, 250);
+}
+QGroupBox {
+    background-color: gray;
+    border: 3px dashed black;
 }</string>
       </property>
       <property name="title">
@@ -918,7 +1041,9 @@ QTableView{
   border-radius: 10px;
   padding: 0 8px;
   background: white;
-}</string>
+}
+QPushButton:hover:!pressed { color: blue; }
+</string>
        </property>
        <property name="text">
         <string>Supprimer</string>
@@ -974,11 +1099,26 @@ QTableView{
       </property>
       <property name="styleSheet">
        <string notr="true">QGroupBox {
-    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                      stop: 0 #E0E0E0, stop: 1 #FFFFFF);
-    border: 2px solid gray;
-    border-radius: 5px;
-    margin-top: 1ex; /* leave space at the top for the title */
+    border: 1px solid gray;
+    border-color: #FF17365D;
+    margin-top: 27px;
+    font-size: 14px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    subcontrol-position: top center;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    padding: 5px 150px;
+    background-color: #FF17365D;
+    color: rgb(255, 255, 255);
+}
+QGroupBox {
+    background-color: gray;
+    border: 3px dashed black;
 }</string>
       </property>
       <property name="title">
@@ -1032,15 +1172,21 @@ QTableView{
       <widget class="QPushButton" name="pushButton_8">
        <property name="geometry">
         <rect>
-         <x>40</x>
-         <y>220</y>
+         <x>50</x>
+         <y>210</y>
          <width>75</width>
          <height>23</height>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">QPushButton { color: red }
-</string>
+        <string notr="true">QPushButton
+{
+  border: 2px solid blue;
+  border-radius: 10px;
+  padding: 0 8px;
+  background: white;
+}
+QPushButton:hover:!pressed { color: blue; }</string>
        </property>
        <property name="text">
         <string>Annuler</string>
@@ -1049,8 +1195,8 @@ QTableView{
       <widget class="QPushButton" name="pushButton_9">
        <property name="geometry">
         <rect>
-         <x>120</x>
-         <y>220</y>
+         <x>130</x>
+         <y>210</y>
          <width>75</width>
          <height>23</height>
         </rect>
@@ -1065,7 +1211,9 @@ QTableView{
   border-radius: 10px;
   padding: 0 8px;
   background: white;
-}</string>
+}
+QPushButton:hover:!pressed { color: blue; }
+</string>
        </property>
        <property name="text">
         <string>Ajouter</string>
@@ -1132,7 +1280,20 @@ QTableView{
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true"/>
+        <string notr="true">QComboBox
+{
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    selection-background-color: #111;
+    selection-color: yellow;
+    color: white;
+    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #565656, stop: 0.1 #525252, stop: 0.5 #4e4e4e, stop: 0.9 #4a4a4a, stop: 1 #464646);
+    border-style: solid;
+    border: 1px solid #1e1e1e;
+    border-radius: 5;
+    padding: 1px 0px 1px 20px;
+}
+</string>
        </property>
        <item>
         <property name="text">
@@ -1170,11 +1331,26 @@ QTableView{
       </property>
       <property name="styleSheet">
        <string notr="true">QGroupBox {
-    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                      stop: 0 #E0E0E0, stop: 1 #FFFFFF);
-    border: 2px solid gray;
-    border-radius: 5px;
-    margin-top: 1ex; /* leave space at the top for the title */
+    border: 1px solid gray;
+    border-color: #FF17365D;
+    margin-top: 27px;
+    font-size: 14px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    subcontrol-position: top center;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    padding: 5px 150px;
+    background-color: #FF17365D;
+    color: rgb(250, 250, 250);
+}
+QGroupBox {
+    background-color: gray;
+    border: 3px dashed black;
 }</string>
       </property>
       <property name="title">
@@ -1241,7 +1417,9 @@ QTableView{
   border-radius: 10px;
   padding: 0 8px;
   background: white;
-}</string>
+}
+QPushButton:hover:!pressed { color: blue; }
+</string>
        </property>
        <property name="text">
         <string>Mettre à jour</string>
@@ -1257,8 +1435,14 @@ QTableView{
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">QPushButton { color: red }
-</string>
+        <string notr="true">QPushButton
+{
+  border: 2px solid blue;
+  border-radius: 10px;
+  padding: 0 8px;
+  background: white;
+}
+QPushButton:hover:!pressed { color: blue; }</string>
        </property>
        <property name="text">
         <string>Annuler</string>
@@ -1281,7 +1465,7 @@ QTableView{
        <property name="geometry">
         <rect>
          <x>60</x>
-         <y>30</y>
+         <y>40</y>
          <width>113</width>
          <height>20</height>
         </rect>
@@ -1337,6 +1521,21 @@ QTableView{
          <height>22</height>
         </rect>
        </property>
+       <property name="styleSheet">
+        <string notr="true">QComboBox
+{
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    selection-background-color: #111;
+    selection-color: yellow;
+    color: white;
+    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #565656, stop: 0.1 #525252, stop: 0.5 #4e4e4e, stop: 0.9 #4a4a4a, stop: 1 #464646);
+    border-style: solid;
+    border: 1px solid #1e1e1e;
+    border-radius: 5;
+    padding: 1px 0px 1px 20px;
+}</string>
+       </property>
        <item>
         <property name="text">
          <string>individuelle</string>
@@ -1348,24 +1547,11 @@ QTableView{
         </property>
        </item>
       </widget>
-      <widget class="QPushButton" name="pushButton_17">
-       <property name="geometry">
-        <rect>
-         <x>130</x>
-         <y>140</y>
-         <width>75</width>
-         <height>23</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>PushButton</string>
-       </property>
-      </widget>
      </widget>
      <widget class="QGroupBox" name="groupBox_6">
       <property name="geometry">
        <rect>
-        <x>20</x>
+        <x>10</x>
         <y>260</y>
         <width>691</width>
         <height>351</height>
@@ -1378,6 +1564,10 @@ QTableView{
     border: 2px solid gray;
     border-radius: 5px;
     margin-top: 1ex; /* leave space at the top for the title */
+}
+QGroupBox {
+    background-color: gray;
+    border: 3px dashed black;
 }</string>
       </property>
       <property name="title">
@@ -1393,8 +1583,14 @@ QTableView{
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">QPushButton:hover:!pressed { color: red; }
-</string>
+        <string notr="true">QPushButton
+{
+  border: 2px solid blue;
+  border-radius: 10px;
+  padding: 0 8px;
+  background: white;
+}
+QPushButton:hover:!pressed { color: blue; }</string>
        </property>
        <property name="text">
         <string>Exporter PDF</string>
@@ -1410,8 +1606,14 @@ QTableView{
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">QPushButton:hover:!pressed { color: red; }
-</string>
+        <string notr="true">QPushButton
+{
+  border: 2px solid blue;
+  border-radius: 10px;
+  padding: 0 8px;
+  background: white;
+}
+QPushButton:hover:!pressed { color: blue; }</string>
        </property>
        <property name="text">
         <string>Stat</string>
@@ -1443,6 +1645,12 @@ QTableView{
          <width>111</width>
          <height>17</height>
         </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QCheckBox::indicator {
+    border: 3px solid #5A5A5A;
+    background: none;
+}</string>
        </property>
        <property name="text">
         <string>numero_chambre</string>
@@ -1530,6 +1738,15 @@ QTableView{
           <height>20</height>
          </rect>
         </property>
+        <property name="styleSheet">
+         <string notr="true">QLineEdit {
+    border: 2px solid gray;
+    border-radius: 10px;
+    padding: 0 8px;
+    background: white;
+    selection-background-color: darkgray;
+}</string>
+        </property>
        </widget>
        <widget class="QLineEdit" name="lineEdit_numrech">
         <property name="geometry">
@@ -1539,6 +1756,15 @@ QTableView{
           <width>101</width>
           <height>20</height>
          </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLineEdit {
+    border: 2px solid gray;
+    border-radius: 10px;
+    padding: 0 8px;
+    background: white;
+    selection-background-color: darkgray;
+}</string>
         </property>
        </widget>
        <widget class="QLabel" name="label_28">
@@ -1564,7 +1790,14 @@ QTableView{
          </rect>
         </property>
         <property name="styleSheet">
-         <string notr="true">QPushButton:hover:!pressed { color: red; }
+         <string notr="true">QPushButton
+{
+  border: 2px solid blue;
+  border-radius: 10px;
+  padding: 0 8px;
+  background: white;
+}
+QPushButton:hover:!pressed { color: blue; }
 </string>
         </property>
         <property name="text">
@@ -1580,6 +1813,16 @@ QTableView{
          <width>91</width>
          <height>23</height>
         </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton
+{
+  border: 2px solid blue;
+  border-radius: 10px;
+  padding: 0 8px;
+  background: white;
+}
+QPushButton:hover:!pressed { color: blue; }</string>
        </property>
        <property name="text">
         <string>Excel</string>
@@ -1597,15 +1840,30 @@ QTableView{
       </property>
       <property name="styleSheet">
        <string notr="true">QGroupBox {
-    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                      stop: 0 #E0E0E0, stop: 1 #FFFFFF);
-    border: 2px solid gray;
-    border-radius: 5px;
-    margin-top: 1ex; /* leave space at the top for the title */
+    border: 1px solid gray;
+    border-color: #FF17365D;
+    margin-top: 27px;
+    font-size: 14px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    subcontrol-position: top center;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    padding: 5px 150px;
+    background-color: #FF17365D;
+    color: rgb(250, 250, 250);
+}
+QGroupBox {
+    background-color: gray;
+    border: 3px dashed black;
 }</string>
       </property>
       <property name="title">
-       <string>GroupBox</string>
+       <string>Supprimer Chambre</string>
       </property>
       <widget class="QLineEdit" name="lineEdit_csupp">
        <property name="geometry">
@@ -1656,7 +1914,9 @@ QTableView{
   border-radius: 10px;
   padding: 0 8px;
   background: white;
-}</string>
+}
+QPushButton:hover:!pressed { color: blue; }
+</string>
        </property>
        <property name="text">
         <string>supprimer</string>
