@@ -14,6 +14,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     ui->tableView->setModel(requettetmp.AfficherReq());
     ui->tableView_2->setModel(equipetmp.AfficherEq());
+    ui->lineEdit->setText(equipetmp.test());
 }
 
 MainWindow::~MainWindow()

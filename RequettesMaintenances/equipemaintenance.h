@@ -3,7 +3,6 @@
 #include <QString>
 #include <QSqlQueryModel>
 
-
 class EquipeMaintenance
 {
 protected:
@@ -12,6 +11,7 @@ protected:
     QString Specialitee;
     QString NbReq;
 public:
+    QString test(){return "hello world";}
     EquipeMaintenance();
     EquipeMaintenance(QString,QString,QString,QString);
     QSqlQueryModel * AfficherEq();
