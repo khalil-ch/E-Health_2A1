@@ -69,7 +69,7 @@ bool chambre::update(QString id ,int etage ,int numero_chambre,QString type)
 QSqlQueryModel * chambre::rechercher_chambre(QString id,int numero_chambre,int etage)
 {
     QSqlQuery *query=new QSqlQuery();
-    query->prepare("select * from chambre where id=:id and numero_chambre=:numero_chambre ");
+    query->prepare("select * from chambre where id=:id or numero_chambre=:numero_chambre or etage=:etage");
     query->bindValue(":id",id);
     query->bindValue(":numero_chambre",numero_chambre);
     query->bindValue(":etage",etage);

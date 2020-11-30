@@ -22,9 +22,7 @@ bool ajouter();
 QSqlQueryModel * afficher();
 bool supprimer(QString);
 bool update(QString ,QString,int,int, QDate  ,QString ,QString);
-//QSqlQueryModel * rechercher_cin(QString cin);//
-QSqlQueryModel * recherchepatient(QString cin);
-QSqlQueryModel *rechercher_combinaison(QString,QString,QDate);
+QSqlQueryModel *rechercher_patient(QString,QString,QDate);
 QSqlQueryModel *trier(QString crit);
 
 private:

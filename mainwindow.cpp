@@ -10,7 +10,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     ui->tableView_Patient->setModel(tmpPatient.afficher());
     ui->tableView_chambre->setModel(tmpChambre.afficher());
-
+  //  this->setStyleSheet("background-color: rgb(0, 0, 100);");
+    ui->lineEdit_CIN->setMaxLength(8);
 
 }
 
@@ -30,8 +31,7 @@ void MainWindow::on_pushButton_clicked()
     QString nom= ui->lineEdit_nom->text();
     QString prenom= ui->lineEdit_prenom->text();
     patient p(cin,id,age,duree,Date_entrer,nom,prenom);
-
-      if ((age!=0)&&(cin!='\0')&&(duree!=0))
+      if ((age!=0)&&(cin>'0')&&(cin!=NULL)&&(duree!=0)&&(nom!="")&&(prenom!="")&&(id!=""))
       {
           bool test=p.ajouter();
 
@@ -94,7 +94,7 @@ void MainWindow::on_pushButton_3_clicked()
     QString nom=ui->lineEdit_nomp->text();
     QString prenom=ui->lineEdit_prenomp->text();
 
-    if ((age!=0)&&(duree!=0))
+    if ((age!=0)&&(duree!=0)&&(nom!="")&&(prenom!="") && (id!=""))
     {
 
         bool test = tmpPatient.update(cin,id,age,duree,Date_entrer,nom,prenom);
@@ -122,7 +122,7 @@ void MainWindow::on_pushButton_9_clicked()
     QString type=ui->comboBox->currentText();
 
     chambre ch(id ,etage,numero_chambre,type);
-    if (etage>=0)
+    if ((etage>=0)&&(numero_chambre>0)&&(id!="")&&(type!=""))
     {
 
 bool test=ch.ajouter();
@@ -179,9 +179,8 @@ void MainWindow::on_pushButton_10_clicked()
     int numero_chambre= ui->lineEdit_2num->text().toInt();
     int etage=ui->dateEdit_4->text().toInt();
     QString type=ui->comboBox_2->currentText();
-    
-
-
+if((etage>=0)&&(numero_chambre>0)&&(type!=""))
+{
         bool test = tmpChambre.update(id,etage,numero_chambre,type);
 
         if(test)
@@ -195,24 +194,22 @@ void MainWindow::on_pushButton_10_clicked()
         foreach(QLineEdit *widget, this->findChildren<QLineEdit*>()) {
                 widget->clear();
             }
-
 }
 
+}
 
 
 void MainWindow::on_pushButton_5_clicked()
 {
-    QString cin=ui->lineEdit_recherchecin->text();
-    QDate Date_entrer=ui->dateEdit_2->date();
-    QString nom=ui->lineEdit_3->text();
-    //ui->tableView_Patient->setModel(tmpPatient.recherchepatient(cin));//
+    QString cin= ui->lineEdit_recherchecin->text();
+    QString nom= ui->lineEdit_3->text();
+    QDate Date_entrer= ui->dateEdit_2->date();
 
-    QSqlQueryModel *test=tmpPatient.rechercher_combinaison(cin,nom,Date_entrer);
+    QSqlQueryModel *test=tmpPatient.rechercher_patient(cin,nom,Date_entrer);
 if (test)
 {
-    ui->tableView_Patient->setModel(test);
+   ui->tableView_Patient->setModel(test);
 }
-
 foreach(QLineEdit *widget, this->findChildren<QLineEdit*>()) {
         widget->clear();
     }

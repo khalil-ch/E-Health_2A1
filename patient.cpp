@@ -86,40 +86,17 @@ bool patient::update(QString cin ,QString id,int age, int duree,QDate Date_entre
     query.bindValue(":duree",duree);
     query.bindValue(":Date_entrer",Date_entrer);
 
-    return    query.exec();
+    return query.exec();
 }
-/*QSqlQueryModel * patient::rechercher_cin(QString cin)
-{
-    QSqlQuery qry;
-    qry.prepare("select * from patient where cin = :cin");
-    qry.bindValue(":cin",cin);
-    qry.exec();
 
-    QSqlQueryModel *model= new QSqlQueryModel;
-    model->setQuery(qry);
-
-
-   return model;
-
-
-}*/
-QSqlQueryModel * patient::recherchepatient(QString cin)
-{
-    QSqlQueryModel * model=new QSqlQueryModel();
-    QString res= QString(cin);
-    model->setQuery("select * from Chefservice where ID ="+res);
-    model->setHeaderData(0,Qt::Horizontal,QObject::tr("cin"));
-    model->setHeaderData(1,Qt::Horizontal,QObject::tr("nom"));
-    model->setHeaderData(2,Qt::Horizontal,QObject::tr("prenom"));
-    return model;
-}
-QSqlQueryModel * patient::rechercher_combinaison(QString cin,QString nom,QDate Date_entrer)
+QSqlQueryModel * patient::rechercher_patient(QString cin,QString nom,QDate Date_entrer)
 {
     QSqlQuery *query=new QSqlQuery();
-    query->prepare("select * from patient where cin=:cin and nom=:nom and Date_entrer=:Date_entrer");
+    query->prepare("select * from patient where cin=:cin or nom=:nom or Date_entrer=:Date_entrer");
     query->bindValue(":cin",cin);
     query->bindValue(":nom",nom);
     query->bindValue(":Date_entrer",Date_entrer);
+
     query->exec();
 
     QSqlQueryModel *model = new QSqlQueryModel();
