@@ -84,5 +84,6 @@ void MainWindow::on_comboBox_2_currentIndexChanged(const QString &arg1)
 {
     Chefservice chef;
     ui->lineEdit->setText(ui->comboBox_2->itemText(ui->comboBox_2->currentIndex()));
-    ui->tableView->setModel(chefservicetmp.searchChefSvAvanceeSV(ui->lineEdit->text()));
+    chefservicetmp.setStringtmp("khalil");
+    //ui->tableView->setModel(chefservicetmp.searchChefSvAvanceeSV(ui->lineEdit->text()));
 }

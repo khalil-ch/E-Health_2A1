@@ -3,6 +3,7 @@
 #include "QApplication"
 #include "QMessageBox"
 #include "modifywidget.h"
+#include "chefservice.h"
 #include "QDebug"
 
 #include <QApplication>

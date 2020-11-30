@@ -26,8 +26,6 @@ public:
     QSqlQueryModel * afficher();
     QSqlQueryModel * rechercheChefSv(QString);
 
-
-
 };
 
 #endif // CHEFSERVICE_H
