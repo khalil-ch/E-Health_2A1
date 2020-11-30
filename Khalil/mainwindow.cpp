@@ -41,7 +41,7 @@ else {
 
 void MainWindow::on_pushButton_3_clicked()//recherche
 {
-    int id = ui->lineEdit->text().toInt();
+    QString id = ui->lineEdit->text();
     ui->tableView->setModel(chefservicetmp.rechercheChefSv(id));
 }
 
@@ -49,11 +49,11 @@ void MainWindow::on_tableView_doubleClicked(const QModelIndex &index)
 {
 QString ress=QVariant(index.data()).toString();
 ui->lineEdit->clear();
-ui->tabWidget->setCurrentIndex(2);
+ui->lineEdit->insert(ress);
 
 }
 
-void MainWindow::on_pushButton_4_clicked()
+void MainWindow::on_pushButton_4_clicked()//bouton ajouter appel widget ajouter
 {
     AddWidget addw;
     addw.setModal(true);
@@ -61,9 +61,10 @@ void MainWindow::on_pushButton_4_clicked()
     ui->tableView->setModel(chefservicetmp.afficher());
 }
 
-void MainWindow::on_pushButton_2_clicked()//widget modifier
+void MainWindow::on_pushButton_2_clicked()//bouton modifier appel widget modifier
 {
     ModifWidget modw;
+    modw.setIDtmp(ui->lineEdit->text());
     modw.setModal(true);
     modw.exec();
     ui->tableView->setModel(chefservicetmp.afficher());
@@ -77,4 +78,11 @@ void MainWindow::on_pushButton_4_released()
 void MainWindow::on_pushButton_13_clicked()
 {
     ui->tableView->setModel(chefservicetmp.afficher());
+}
+
+void MainWindow::on_comboBox_2_currentIndexChanged(const QString &arg1)
+{
+    Chefservice chef;
+    ui->lineEdit->setText(ui->comboBox_2->itemText(ui->comboBox_2->currentIndex()));
+    ui->tableView->setModel(chefservicetmp.searchChefSvAvanceeSV(ui->lineEdit->text()));
 }

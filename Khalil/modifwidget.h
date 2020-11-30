@@ -2,6 +2,7 @@
 #define MODIFWIDGET_H
 
 #include <QDialog>
+#include <QString>
 
 namespace Ui {
 class ModifWidget;
@@ -13,6 +14,8 @@ class ModifWidget : public QDialog
 
 public:
     explicit ModifWidget(QWidget *parent = nullptr);
+        void setIDtmp(QString tmp){idtmp=tmp;}
+        QString getIDtmp(){return idtmp;}
     ~ModifWidget();
 
 private slots:
@@ -20,7 +23,9 @@ private slots:
 
     void on_pushButton_2_clicked();
 
+
 private:
+    QString idtmp;
     Ui::ModifWidget *ui;
 };
 

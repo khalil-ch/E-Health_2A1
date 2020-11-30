@@ -14,8 +14,6 @@ int main(int argc, char *argv[])
     Connection C;
     bool test=C.createConnection();
     MainWindow w;
-
-    /*
     if(test)
     {
         w.show();
@@ -25,7 +23,7 @@ int main(int argc, char *argv[])
     {
         w.show();
     QMessageBox::information(nullptr,QObject::tr("database is error"),QObject::tr("connection unsuccessful\n""click cancel"),QMessageBox::Cancel);
-    }*/
+    }
     w.show();
     return a.exec();
 }

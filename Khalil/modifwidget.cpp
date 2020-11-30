@@ -19,7 +19,7 @@ void ModifWidget::on_pushButton_clicked()
 {
     QString nom=ui->lineEdit->text();
     QString prenom=ui->lineEdit_2->text();
-    Chefservice c(774,nom,prenom);
+    Chefservice c(this->getIDtmp(),nom,prenom);
     c.modifierChefSv(nom,prenom);
     close();
 }
