@@ -249,6 +249,8 @@ QPushButton:hover:!pressed { color: blue; }
     padding: 0 8px;
     background: white;
     selection-background-color: darkgray;
+    border: 1.5px dashed black;
+
 }</string>
        </property>
       </widget>
@@ -268,6 +270,8 @@ QPushButton:hover:!pressed { color: blue; }
     padding: 0 8px;
     background: white;
     selection-background-color: darkgray;
+    border: 1.5px dashed black;
+
 }</string>
        </property>
       </widget>
@@ -287,6 +291,8 @@ QPushButton:hover:!pressed { color: blue; }
     padding: 0 8px;
     background: white;
     selection-background-color: darkgray;
+    border: 1.5px dashed black;
+
 }</string>
        </property>
       </widget>
@@ -306,6 +312,8 @@ QPushButton:hover:!pressed { color: blue; }
     padding: 0 8px;
     background: white;
     selection-background-color: darkgray;
+    border: 1.5px dashed black;
+
 }</string>
        </property>
       </widget>
@@ -328,6 +336,16 @@ QDateEdit
     border-width: 4px;
     border-color: rgb(0,0,0);
     spacing: 5px; 
+subcontrol-origin: padding;
+    subcontrol-position: top right;
+    selection-background-color: #111;
+    selection-color: yellow;
+    color: white;
+    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #565656, stop: 0.1 #525252, stop: 0.5 #4e4e4e, stop: 0.9 #4a4a4a, stop: 1 #464646);
+    border-style: solid;
+    border: 1px solid #1e1e1e;
+    border-radius: 5;
+    padding: 1px 0px 1px 20px;
 }
 
 </string>
@@ -349,6 +367,8 @@ QDateEdit
     padding: 0 8px;
     background: white;
     selection-background-color: darkgray;
+    border: 1.5px dashed black;
+
 }</string>
        </property>
       </widget>
@@ -381,6 +401,8 @@ QDateEdit
     padding: 0 8px;
     background: white;
     selection-background-color: darkgray;
+    border: 1.5px dashed black;
+
 }</string>
        </property>
       </widget>
@@ -490,7 +512,9 @@ QTableView{
        <property name="styleSheet">
         <string notr="true">QCheckBox::indicator {
     border: 3px solid #5A5A5A;
-    background: none;
+    background-color: #FF17365D;
+    border: 1.5px dashed black;
+
 }</string>
        </property>
        <property name="text">
@@ -528,6 +552,8 @@ QTableView{
     padding: 0 8px;
     background: white;
     selection-background-color: darkgray;
+    border: 1.5px dashed black;
+
 }</string>
         </property>
        </widget>
@@ -596,6 +622,8 @@ QPushButton:hover:!pressed { color: blue; }</string>
     padding: 0 8px;
     background: white;
     selection-background-color: darkgray;
+    border: 1.5px dashed black;
+
 }</string>
         </property>
         <property name="text">
@@ -631,6 +659,8 @@ QPushButton:hover:!pressed { color: blue; }</string>
     padding: 0 8px;
     background: white;
     selection-background-color: darkgray;
+    border: 1.5px dashed black;
+
 }</string>
         </property>
        </widget>
@@ -853,6 +883,8 @@ QPushButton:hover:!pressed { color: blue; }</string>
     padding: 0 8px;
     background: white;
     selection-background-color: darkgray;
+    border: 1.5px dashed black;
+
 }</string>
        </property>
       </widget>
@@ -872,6 +904,8 @@ QPushButton:hover:!pressed { color: blue; }</string>
     padding: 0 8px;
     background: white;
     selection-background-color: darkgray;
+    border: 1.5px dashed black;
+
 }</string>
        </property>
       </widget>
@@ -891,6 +925,8 @@ QPushButton:hover:!pressed { color: blue; }</string>
     padding: 0 8px;
     background: white;
     selection-background-color: darkgray;
+    border: 1.5px dashed black;
+
 }</string>
        </property>
       </widget>
@@ -910,6 +946,8 @@ QPushButton:hover:!pressed { color: blue; }</string>
     padding: 0 8px;
     background: white;
     selection-background-color: darkgray;
+    border: 1.5px dashed black;
+
 }</string>
        </property>
       </widget>
@@ -929,6 +967,8 @@ QPushButton:hover:!pressed { color: blue; }</string>
     padding: 0 8px;
     background: white;
     selection-background-color: darkgray;
+    border: 1.5px dashed black;
+
 }</string>
        </property>
       </widget>
@@ -951,6 +991,16 @@ QDateEdit
     border-width: 4px;
     border-color: rgb(0,0,0);
     spacing: 5px; 
+subcontrol-origin: padding;
+    subcontrol-position: top right;
+    selection-background-color: #111;
+    selection-color: yellow;
+    color: white;
+    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #565656, stop: 0.1 #525252, stop: 0.5 #4e4e4e, stop: 0.9 #4a4a4a, stop: 1 #464646);
+    border-style: solid;
+    border: 1px solid #1e1e1e;
+    border-radius: 5;
+    padding: 1px 0px 1px 20px;
 }
 
 </string>
@@ -985,6 +1035,8 @@ QDateEdit
     padding: 0 8px;
     background: white;
     selection-background-color: darkgray;
+    border: 1.5px dashed black;
+
 }</string>
        </property>
       </widget>
@@ -1078,6 +1130,8 @@ QPushButton:hover:!pressed { color: blue; }
     padding: 0 8px;
     background: white;
     selection-background-color: darkgray;
+    border: 1.5px dashed black;
+
 }
 </string>
        </property>
@@ -1166,6 +1220,10 @@ QGroupBox {
     padding: 0 8px;
     background: white;
     selection-background-color: darkgray;
+    border: 3px dashed black;
+    border: 1.5px dashed black;
+
+
 }</string>
        </property>
       </widget>
@@ -1235,6 +1293,8 @@ QPushButton:hover:!pressed { color: blue; }
     padding: 0 8px;
     background: white;
     selection-background-color: darkgray;
+    border: 1.5px dashed black;
+
 }</string>
        </property>
       </widget>
@@ -1254,6 +1314,8 @@ QPushButton:hover:!pressed { color: blue; }
     padding: 0 8px;
     background: white;
     selection-background-color: darkgray;
+    border: 1.5px dashed black;
+
 }</string>
        </property>
       </widget>
@@ -1398,6 +1460,8 @@ QGroupBox {
     padding: 0 8px;
     background: white;
     selection-background-color: darkgray;
+    border: 2px dashed black;
+
 }</string>
        </property>
       </widget>
@@ -1477,6 +1541,8 @@ QPushButton:hover:!pressed { color: blue; }</string>
     padding: 0 8px;
     background: white;
     selection-background-color: darkgray;
+    border: 1.5px dashed black;
+
 }</string>
        </property>
       </widget>
@@ -1509,6 +1575,8 @@ QPushButton:hover:!pressed { color: blue; }</string>
     padding: 0 8px;
     background: white;
     selection-background-color: darkgray;
+    border: 2px dashed black;
+
 }</string>
        </property>
       </widget>
@@ -1631,7 +1699,8 @@ QPushButton:hover:!pressed { color: blue; }</string>
        <property name="styleSheet">
         <string notr="true">  
 QTableView{
-  border: 1px solid pink; 
+  border: 1px solid blue; 
+    border: 3px dashed black;
 
 }
 </string>
@@ -1649,7 +1718,9 @@ QTableView{
        <property name="styleSheet">
         <string notr="true">QCheckBox::indicator {
     border: 3px solid #5A5A5A;
-    background: none;
+    background-color: #FF17365D;
+    border: 1.5px dashed black;
+
 }</string>
        </property>
        <property name="text">
@@ -1697,7 +1768,10 @@ QTableView{
     padding: 0 8px;
     background: white;
     selection-background-color: darkgray;
-}</string>
+    border: 1.5px dashed black;
+
+}
+</string>
         </property>
         <property name="text">
          <string/>
@@ -1745,6 +1819,8 @@ QTableView{
     padding: 0 8px;
     background: white;
     selection-background-color: darkgray;
+    border: 1.5px dashed black;
+
 }</string>
         </property>
        </widget>
@@ -1764,6 +1840,8 @@ QTableView{
     padding: 0 8px;
     background: white;
     selection-background-color: darkgray;
+    border: 1.5px dashed black;
+
 }</string>
         </property>
        </widget>
@@ -1881,6 +1959,8 @@ QGroupBox {
     padding: 0 8px;
     background: white;
     selection-background-color: darkgray;
+    border: 1.5px dashed black;
+
 }
 </string>
        </property>

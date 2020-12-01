@@ -280,6 +280,10 @@ void MainWindow::on_pushButton_13_clicked()
             QTextStream out(&strStream);
             const int rowCount = ui->tableView_chambre->model()->rowCount();
             const int columnCount = ui->tableView_chambre->model()->columnCount();
+            out << "<h2 align=left> E HEALTH APPLICATION  </h2>";
+            out << "<h2 align=right> UTOPIA SOFTWARES </h2>";
+            out << "<h1 align=centre> LISTE DES PATIENT  </h1>";
+
             for(int column = 0;column < columnCount; column++)
                 if(!ui->tableView_chambre->isColumnHidden(column))
                     out <<QString("<td>%1</td>").arg(ui->tableView_chambre->model()->headerData(column, Qt::Horizontal).toString());
