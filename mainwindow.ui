@@ -64,7 +64,7 @@ QWidget:hover {
 }</string>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -436,9 +436,9 @@ QGroupBox {
       <widget class="QPushButton" name="pushButton_6">
        <property name="geometry">
         <rect>
-         <x>530</x>
-         <y>110</y>
-         <width>101</width>
+         <x>640</x>
+         <y>60</y>
+         <width>81</width>
          <height>21</height>
         </rect>
        </property>
@@ -453,30 +453,7 @@ QGroupBox {
 QPushButton:hover:!pressed { color: blue; }</string>
        </property>
        <property name="text">
-        <string>Exporter PDF</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton_7">
-       <property name="geometry">
-        <rect>
-         <x>430</x>
-         <y>110</y>
-         <width>91</width>
-         <height>23</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QPushButton
-{
-  border: 2px solid blue;
-  border-radius: 10px;
-  padding: 0 8px;
-  background: white;
-}
-QPushButton:hover:!pressed { color: blue; }</string>
-       </property>
-       <property name="text">
-        <string>Stats</string>
+        <string> PDF</string>
        </property>
       </widget>
       <widget class="QTableView" name="tableView_Patient">
@@ -526,7 +503,7 @@ QTableView{
         <rect>
          <x>30</x>
          <y>20</y>
-         <width>641</width>
+         <width>511</width>
          <height>71</height>
         </rect>
        </property>
@@ -681,9 +658,9 @@ QPushButton:hover:!pressed { color: blue; }</string>
       <widget class="QPushButton" name="pushButton_19">
        <property name="geometry">
         <rect>
-         <x>640</x>
-         <y>110</y>
-         <width>75</width>
+         <x>644</x>
+         <y>90</y>
+         <width>81</width>
          <height>23</height>
         </rect>
        </property>
@@ -1647,8 +1624,8 @@ QGroupBox {
       <widget class="QPushButton" name="pushButton_13">
        <property name="geometry">
         <rect>
-         <x>570</x>
-         <y>160</y>
+         <x>580</x>
+         <y>50</y>
          <width>91</width>
          <height>21</height>
         </rect>
@@ -1664,30 +1641,7 @@ QGroupBox {
 QPushButton:hover:!pressed { color: blue; }</string>
        </property>
        <property name="text">
-        <string>Exporter PDF</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton_14">
-       <property name="geometry">
-        <rect>
-         <x>570</x>
-         <y>130</y>
-         <width>91</width>
-         <height>23</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QPushButton
-{
-  border: 2px solid blue;
-  border-radius: 10px;
-  padding: 0 8px;
-  background: white;
-}
-QPushButton:hover:!pressed { color: blue; }</string>
-       </property>
-       <property name="text">
-        <string>Stat</string>
+        <string>PDF</string>
        </property>
       </widget>
       <widget class="QTableView" name="tableView_chambre">
@@ -1889,8 +1843,8 @@ QPushButton:hover:!pressed { color: blue; }
       <widget class="QPushButton" name="pushButton_18">
        <property name="geometry">
         <rect>
-         <x>570</x>
-         <y>190</y>
+         <x>580</x>
+         <y>80</y>
          <width>91</width>
          <height>23</height>
         </rect>
