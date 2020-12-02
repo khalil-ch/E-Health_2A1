@@ -29,6 +29,33 @@ MainWindow::MainWindow(QWidget *parent)
     ui->lineEdit_recherchecin->setMaxLength(8);
     ui-> dateEdit->setMinimumDate(QDate::currentDate());
     ui->dateEdit17->setMinimumDate(QDate::currentDate());
+    ui->lineEdit_2->setMaxLength(9);
+    ui->lineEdit_nomp->setMaxLength(10);
+    ui->lineEdit_prenomp->setMaxLength(10);
+    ui->lineEdit_nom->setMaxLength(10);
+    ui->lineEdit_prenom->setMaxLength(10);
+    ui->lineEdit_nomp->setMaxLength(10);
+    ui->lineEdit_id->setMaxLength(4);
+    ui->lineEdit_agep->setMaxLength(3);
+    ui->lineEdit_num->setMaxLength(3);
+    ui->lineEdit_etage->setMaxLength(1);
+    ui->lineEdit_2id->setMaxLength(4);
+    ui->lineEdit_2num->setMaxLength(3);
+    ui->dateEdit_4->setMaxLength(1);
+    ui->lineEdit_3->setMaxLength(10);
+    ui->lineEdit_4->setMaxLength(10);
+    ui->lineEdit_idrech->setMaxLength(4);
+    ui->lineEdit_numrech->setMaxLength(3);
+    ui->lineEdit_etagerech->setMaxLength(1);
+    ui->lineEdit_csupp->setMaxLength(4);
+    ui->lineEdit->setMaxLength(4);
+    ui->lineEdit_age->setMaxLength(3);
+    ui->lineEdit_2->setMaxLength(4);
+
+
+
+
+
     int const n=0;
         QMediaPlayer *player = new QMediaPlayer;
         player->setMedia(QUrl::fromLocalFile("C:/Users/hp/Desktop/qt/Piano-melancholy-music-short.mp3"));
