@@ -92,6 +92,17 @@ QSqlQueryModel * Requette::RechercheReqbyService()
     model->setHeaderData(4,Qt::Horizontal,QObject::tr("SERVICE"));
     return model;
 }
+QSqlQueryModel * Requette::RechercheReqbyEtat()
+{
+    QSqlQueryModel * model=new QSqlQueryModel();
+    model->setQuery("SELECT * from Requettes WHERE ETAT='"+infotmp+"'");
+    model->setHeaderData(0,Qt::Horizontal,QObject::tr("REFERENCE"));
+    model->setHeaderData(1,Qt::Horizontal,QObject::tr("EQUIPEID"));
+    model->setHeaderData(2,Qt::Horizontal,QObject::tr("TYPEMAINTENANCE"));
+    model->setHeaderData(3,Qt::Horizontal,QObject::tr("ETAT"));
+    model->setHeaderData(4,Qt::Horizontal,QObject::tr("SERVICE"));
+    return model;
+}
 QSqlQueryModel * Requette::TrierParREF()
 {
     QSqlQueryModel * model=new QSqlQueryModel();

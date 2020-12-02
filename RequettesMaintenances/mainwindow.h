@@ -67,6 +67,8 @@ private slots:
 
     void on_ExtraireEq_clicked();
 
+    void on_FiltrerReqEtat_currentIndexChanged(const QString &arg1);
+
 private:
     Ui::MainWindow *ui;
     Requette requettetmp;

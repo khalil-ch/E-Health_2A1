@@ -38,6 +38,7 @@ MainWindow::~MainWindow()
 void MainWindow::on_AjouterReq_clicked()//Ajouter Requettes
 {
     AddW widgetajout;
+    widgetajout.setWindowTitle("Ajouter Requette");
     widgetajout.setModal(true);
     widgetajout.exec();
     ui->tableView->setModel(requettetmp.AfficherReq());
@@ -69,6 +70,7 @@ void MainWindow::on_DeleteReq_clicked()//Supprimer Requette
 void MainWindow::on_ModifReq_clicked()//Modifier Requette
 {
     ModW WidgetMod;
+    WidgetMod.setWindowTitle("Modifier Requette");
     WidgetMod.SetReftmp(ui->lineEdit->text());
     WidgetMod.setModal(true);
     WidgetMod.exec();
@@ -102,6 +104,7 @@ void MainWindow::on_AjouterEq_clicked()//ajouter equipe
 {
     WidAdd2 widgetequipeadd;
     widgetequipeadd.setModal(true);
+    widgetequipeadd.setWindowTitle("Ajouter Equipe");
     widgetequipeadd.exec();
     ui->tableView_2->setModel(equipetmp.AfficherEq());
 }
@@ -126,6 +129,7 @@ void MainWindow::on_statRq_clicked()
         Employees<<info;
     }
     StatChart stat;
+    stat.setWindowTitle("Requettes par equipe");
     stat.exec();
 
 }
@@ -134,6 +138,7 @@ void MainWindow::on_ModifEq_clicked()
 {
     WidMod2 widmodeq;
     widmodeq.setIDeqtmp(ui->lineEdit_2->text());
+    widmodeq.setWindowTitle("Modifier Equipe");
     widmodeq.exec();
 }
 
@@ -157,6 +162,8 @@ void MainWindow::on_statEq_clicked()
     }
     //values<<"35"<<"45"<<"58";
     StatChart stat;
+    stat.setModal(true);
+    stat.setWindowTitle("Statistiques");
     stat.afficherStats(&Employees,&values);
     stat.exec();
 }
@@ -260,4 +267,13 @@ void MainWindow::on_ExtraireEq_clicked()
     doc.setHtml(*html);
     doc.setPageSize(printer.pageRect().size());//hide num de poge
     doc.print(&printer);
+}
+
+void MainWindow::on_FiltrerReqEtat_currentIndexChanged(const QString &arg1)
+{
+    requettetmp.SetInfotmp(ui->FiltrerReqEtat->currentText());
+    if((ui->FiltrerReqEtat->currentText()=="Resolu")||(ui->FiltrerReqEtat->currentText()=="Non Resolu"))
+        ui->tableView->setModel(requettetmp.RechercheReqbyEtat());
+    else
+        return;
 }

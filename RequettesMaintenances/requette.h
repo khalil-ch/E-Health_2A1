@@ -23,6 +23,7 @@ public:
     bool ModifierReq(QString,QString,QString,QString);
     QSqlQueryModel * RechercheReqbyRef();
     QSqlQueryModel * RechercheReqbyService();
+    QSqlQueryModel * RechercheReqbyEtat();
     QSqlQueryModel * TrierParREF();
     QSqlQueryModel * TrierParDATE();
 };
