@@ -57,7 +57,7 @@ void StatChart::afficherStats(QStringList* list,QStringList* nbrq)
 
     // Holds the category titles
     QStringList total;
-    total<<"2019"<<"2020";
+    total<<"Total";
 
     // Adds categories to the axes
     QBarCategoryAxis *axis = new QBarCategoryAxis();
@@ -79,7 +79,7 @@ void StatChart::afficherStats(QStringList* list,QStringList* nbrq)
     QPalette pal = qApp->palette();
 
     // Change the color around the chart widget and text
-    pal.setColor(QPalette::Window, QRgb(0x4BE5D8));//0xE5E14B
+    pal.setColor(QPalette::Window, QRgb(0x5C5C5C));//0xE5E14B
     pal.setColor(QPalette::WindowText, QRgb(0x4BE5D8));
 
     // Apply palette changes to the application

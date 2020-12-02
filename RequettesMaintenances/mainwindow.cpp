@@ -232,3 +232,32 @@ void MainWindow::on_tableView_2_doubleClicked(const QModelIndex &index)
     QString info = QVariant(index.data()).toString();
     ui->lineEdit_2->insert(info);
 }
+
+void MainWindow::on_ExtraireEq_clicked()
+{
+    QString fileName = QFileDialog::getSaveFileName((QWidget* )0, "Export PDF", QString(), "*.pdf");
+    if (QFileInfo(fileName).suffix().isEmpty()) { fileName.append(".pdf"); }
+    QPrinter printer(QPrinter::PrinterResolution);
+    QString imgsource="C:/Users/khali/Desktop/Project-E-Health/RequettesMaintenances/UtopiaSft.png";
+    printer.setOutputFormat(QPrinter::PdfFormat);
+    printer.setPaperSize(QPrinter::A4);
+    printer.setOutputFileName(fileName);
+    QString *html = new QString();
+    QStringList info;
+    int i=0;
+    for (int row = 0; row < ui->tableView_2->model()->rowCount(); ++row) {
+
+        for (int col = 0; col < ui->tableView_2->model()->columnCount(); ++col) {
+            info<<ui->tableView_2->model()->data(ui->tableView_2->model()->index(row,col)).toString();//(row,col)
+            *html=*html+info.at(i)+"\t";
+            i++;
+        }*html+="<br> ";
+    }
+    *html+="<img src=+"+imgsource+" >";
+    i=0;
+    /*----*/
+    QTextDocument doc;
+    doc.setHtml(*html);
+    doc.setPageSize(printer.pageRect().size());//hide num de poge
+    doc.print(&printer);
+}
