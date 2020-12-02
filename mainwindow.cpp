@@ -12,6 +12,7 @@
 #include <QModelIndexList>
 #include <QStringList>
 #include <QPropertyAnimation>
+#include <QMediaPlayer>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -28,7 +29,19 @@ MainWindow::MainWindow(QWidget *parent)
     ui->lineEdit_recherchecin->setMaxLength(8);
     ui-> dateEdit->setMinimumDate(QDate::currentDate());
     ui->dateEdit17->setMinimumDate(QDate::currentDate());
-
+    int const n=0;
+        QMediaPlayer *player = new QMediaPlayer;
+        player->setMedia(QUrl::fromLocalFile("C:/Users/hp/Desktop/qt/Piano-melancholy-music-short.mp3"));
+        player->setVolume(n);
+        player->play();
+        ui->spinBox->setRange(0,100);
+        ui->spinBox->setValue(n);
+        ui->horizontalSlider->setRange(0,100);
+        ui->horizontalSlider->setValue(n);
+        QObject::connect(ui->horizontalSlider,SIGNAL(valueChanged(int)),ui->spinBox,SLOT(setValue(int)));
+        QObject::connect(ui->spinBox,SIGNAL(valueChanged(int)),ui->horizontalSlider,SLOT(setValue(int)));
+        QObject::connect(ui->horizontalSlider,SIGNAL(valueChanged(int)),player,SLOT(setVolume(int)));
+        QObject::connect(ui->spinBox,SIGNAL(valueChanged(int)),player,SLOT(setVolume(int)));
 
 }
 

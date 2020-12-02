@@ -4,6 +4,7 @@
 #include "patient.h"
 #include "chambre.h"
 #include <QPropertyAnimation>
+#include <QMediaPlayer>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -50,6 +51,7 @@ private:
     Ui::MainWindow *ui;
     patient tmpPatient;
     chambre tmpChambre;
-
+    QPropertyAnimation *contract_animation;
+    QPropertyAnimation *expand_animation;
 };
 #endif // MAINWINDOW_H
