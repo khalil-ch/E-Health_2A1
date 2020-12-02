@@ -7,27 +7,33 @@
 #include "requette.h"
 #include <QMessageBox>
 #include "statchart.h"
-#include <QPdfWriter>
-#ifndef QT_NO_PRINTER
-#include <QPrinter>
-#include <QPainter>
-#include <QTextDocument>
-#include <QFileDialog>
-#endif
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    ui->statRq->hide();
     ui->tableView->setModel(requettetmp.AfficherReq());
     ui->tableView_2->setModel(equipetmp.AfficherEq());
+
+    animation = new QPropertyAnimation(ui->groupBox_2, "geometry");
+    animation2 = new QPropertyAnimation(ui->groupBox, "geometry");
+    animation->setDuration(1000);
+    animation2->setDuration(2500);
+    animation->setStartValue(ui->groupBox_2->geometry());
+    animation2->setStartValue(ui->groupBox_2->geometry());
+    animation->setEndValue(QRect(100,450,551,90));
+    animation2->setEndValue(QRect(10,10,751,391));
+
+    animation->start();
+    animation2->start();
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
 }
-
 
 void MainWindow::on_AjouterReq_clicked()//Ajouter Requettes
 {
@@ -68,10 +74,6 @@ void MainWindow::on_ModifReq_clicked()//Modifier Requette
     WidgetMod.exec();
 }
 /*---------table view-----------*/
-//QString info= QVariant(index.data()).toString();
-//ui->lineEdit->clear();
-//ui->lineEdit->insert(info);
-//ui->lineEdit->insert(info);
 void MainWindow::on_tableView_doubleClicked(const QModelIndex &index)//Afficher
 {
     //int col=ui->tableView->model()->columnCount(index);
@@ -90,16 +92,12 @@ void MainWindow::on_RechercheReq_clicked()
     ui->tableView->setModel(requettetmp.RechercheReqbyRef());
 }
 
-void MainWindow::on_FiltrerReqSv_currentIndexChanged(const QString &arg1)
+void MainWindow::on_FiltrerReqSv_currentIndexChanged(const QString &arg1)//filtrer requette
 {
     //filtre
     requettetmp.SetInfotmp(ui->FiltrerReqSv->currentText());
     ui->tableView->setModel(requettetmp.RechercheReqbyService());
 }
-/*    AddW widgetajout;
-    widgetajout.setModal(true);
-    widgetajout.exec();
-    ui->tableView->setModel(requettetmp.AfficherReq());*/
 void MainWindow::on_AjouterEq_clicked()//ajouter equipe
 {
     WidAdd2 widgetequipeadd;
@@ -121,9 +119,6 @@ void MainWindow::on_RechercheEq_clicked()
 
 void MainWindow::on_statRq_clicked()
 {
-    //int row=ui->tableView->model()->rowCount(index);
-    //QString infoint=QString::number(row);
-    //QModelIndex idx;
     QString info = ui->tableView->model()->data(ui->tableView->model()->index(1,2)).toString();
     QStringList Employees;
     for (int i = 0; i < 3; ++i) {
@@ -213,4 +208,27 @@ void MainWindow::on_ExtraiareReq_clicked()
         doc.setHtml(*html);
         doc.setPageSize(printer.pageRect().size());//hide num de poge
         doc.print(&printer);
+}
+
+void MainWindow::on_TabReqAndEquipes_currentChanged(int index)
+{
+    if (index==1)
+        ui->groupBox_2->hide();
+    else
+        ui->groupBox_2->show();
+}
+
+void MainWindow::on_FiltrerEq_currentIndexChanged(const QString &arg1)
+{
+    equipetmp.SetInfotmp2(ui->FiltrerEq->currentText());
+    ui->tableView_2->setModel(equipetmp.RechercheEqbySpec());
+}
+
+void MainWindow::on_tableView_2_doubleClicked(const QModelIndex &index)
+{
+    int row=ui->tableView_2->model()->rowCount(index);
+    ui->lineEdit_2->clear();
+    QString infoint=QString::number(row);
+    QString info = QVariant(index.data()).toString();
+    ui->lineEdit_2->insert(info);
 }

@@ -61,7 +61,7 @@ bool Requette::ModifierReq(QString EqId,QString TypeM,QString Et,QString Serv)
 {
     QSqlQuery query;
     //query.prepare("UPDATE Requettes SET equipeid ='"+EqId+"', typemaintenance = '"+TypeM+ "' , etat= '"+Et+"' , service= '"+Serv+"' WHERE reference ="+infotmp);
-    query.prepare("UPDATE Requettes SET equipeid=:equipeid,typemaintenance=:typemaintence,etat=:etat,service=:service WHERE reference=:val");
+    query.prepare("UPDATE Requettes SET equipeid=:equipeid,typemaintenance=:typemaintenance,etat=:etat,service=:service WHERE reference=:val");
     query.bindValue(":equipeid",EqId);
     query.bindValue(":typemaintenance",TypeM);
     query.bindValue(":etat",Et);

@@ -3,6 +3,15 @@
 #include "requette.h"
 #include <QMainWindow>
 #include"equipemaintenance.h"
+#include <QUrl>
+#include <QPdfWriter>
+#ifndef QT_NO_PRINTER
+#include <QPrinter>
+#include <QPainter>
+#include <QTextDocument>
+#include <QPropertyAnimation>
+#include <QFileDialog>
+#endif
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -50,9 +59,17 @@ private slots:
 
     void on_ExtraiareReq_clicked();
 
+    void on_TabReqAndEquipes_currentChanged(int index);
+
+    void on_FiltrerEq_currentIndexChanged(const QString &arg1);
+
+    void on_tableView_2_doubleClicked(const QModelIndex &index);
+
 private:
     Ui::MainWindow *ui;
     Requette requettetmp;
     EquipeMaintenance equipetmp;
+    QPropertyAnimation* animation;
+    QPropertyAnimation* animation2;
 };
 #endif // MAINWINDOW_H
