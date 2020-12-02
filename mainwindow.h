@@ -3,6 +3,8 @@
 #include <QMainWindow>
 #include "patient.h"
 #include "chambre.h"
+#include <QPropertyAnimation>
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -48,5 +50,6 @@ private:
     Ui::MainWindow *ui;
     patient tmpPatient;
     chambre tmpChambre;
+
 };
 #endif // MAINWINDOW_H

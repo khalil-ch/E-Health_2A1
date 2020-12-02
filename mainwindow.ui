@@ -60,11 +60,11 @@ QTabBar::tab {
 QWidget:hover {
   padding: 15px;
 
-    background-color: #FF17365D;
+    background-color: gray;
 }</string>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -95,11 +95,11 @@ QGroupBox::title {
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     padding: 5px 150px;
-    background-color: #FF17365D;
+    background-color: black;
     color: rgb(250, 250, 250);
 }
 QGroupBox {
-    background-color: gray;
+    background-color: #FF17365D;
     border: 3px dashed black;
 }
 </string>
@@ -426,7 +426,7 @@ subcontrol-origin: padding;
 
 }
 QGroupBox {
-    background-color: gray;
+    background-color: #FF17365D;
     border: 3px dashed black;
 }</string>
       </property>
@@ -727,11 +727,11 @@ QGroupBox::title {
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     padding: 5px 150px;
-    background-color: #FF17365D;
+    background-color: black;
     color: rgb(250, 250, 250);
 }
 QGroupBox {
-    background-color: gray;
+    background-color: #FF17365D;
     border: 3px dashed black;
 }
 </string>
@@ -1066,11 +1066,11 @@ QGroupBox::title {
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     padding: 5px 150px;
-    background-color: #FF17365D;
+    background-color: black;
     color: rgb(250, 250, 250);
 }
 QGroupBox {
-    background-color: gray;
+    background-color: #FF17365D;
     border: 3px dashed black;
 }</string>
       </property>
@@ -1167,11 +1167,11 @@ QGroupBox::title {
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     padding: 5px 150px;
-    background-color: #FF17365D;
+    background-color: black;
     color: rgb(255, 255, 255);
 }
 QGroupBox {
-    background-color: gray;
+    background-color: #FF17365D;
     border: 3px dashed black;
 }</string>
       </property>
@@ -1199,6 +1199,9 @@ QGroupBox {
          <width>101</width>
          <height>16</height>
         </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"/>
        </property>
        <property name="text">
         <string>id</string>
@@ -1407,11 +1410,11 @@ QGroupBox::title {
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     padding: 5px 150px;
-    background-color: #FF17365D;
+    background-color: black;
     color: rgb(250, 250, 250);
 }
 QGroupBox {
-    background-color: gray;
+    background-color: #FF17365D;
     border: 3px dashed black;
 }</string>
       </property>
@@ -1634,7 +1637,7 @@ QPushButton:hover:!pressed { color: blue; }</string>
     margin-top: 1ex; /* leave space at the top for the title */
 }
 QGroupBox {
-    background-color: gray;
+    background-color: #FF17365D;
     border: 3px dashed black;
 }</string>
       </property>
@@ -1932,11 +1935,11 @@ QGroupBox::title {
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     padding: 5px 150px;
-    background-color: #FF17365D;
+    background-color: black;
     color: rgb(250, 250, 250);
 }
 QGroupBox {
-    background-color: gray;
+    background-color: #FF17365D;
     border: 3px dashed black;
 }</string>
       </property>
