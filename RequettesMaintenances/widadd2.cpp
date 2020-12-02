@@ -22,7 +22,7 @@ void WidAdd2::on_AddEqConfirm_clicked()
     QString ideq=ui->AddIdEq->text();
     QString chefeq=ui->AddChefeq->text();
     QString spec=ui->AddSpecEq->currentText();//ui->CheckboxRq->accessibleName();
-    QString nbrq="1";
+    QString nbrq=ui->AddNbRq->text();
     //QString ref,QString ideq,QString service,QString typem,QString etat
     EquipeMaintenance equipe(ideq,chefeq,spec,nbrq);
     bool test=equipe.AjouterEq();

@@ -36,6 +36,20 @@ private slots:
 
     void on_RechercheEq_clicked();
 
+    void on_statRq_clicked();
+
+    void on_ModifEq_clicked();
+
+    void on_DelEq_clicked();
+
+    void on_statEq_clicked();
+
+    void on_TrierEq_currentIndexChanged(const QString &arg1);
+
+    void on_TrierReq_currentIndexChanged(const QString &arg1);
+
+    void on_ExtraiareReq_clicked();
+
 private:
     Ui::MainWindow *ui;
     Requette requettetmp;

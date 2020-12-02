@@ -1009,6 +1009,31 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical
        <height>22</height>
       </rect>
      </property>
+     <item>
+      <property name="text">
+       <string>Type</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Preventive</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Curative</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Reparation</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Installation</string>
+      </property>
+     </item>
     </widget>
    </widget>
    <widget class="QGroupBox" name="groupBox_6">
@@ -1081,6 +1106,36 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical
        <height>22</height>
       </rect>
      </property>
+     <item>
+      <property name="text">
+       <string>Service</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Urgence</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Pediatrie</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Psychiatrie</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Secretariat</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Neurologie</string>
+      </property>
+     </item>
     </widget>
    </widget>
    <widget class="QGroupBox" name="groupBox_9">

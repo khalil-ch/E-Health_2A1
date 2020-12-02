@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>824</width>
-    <height>670</height>
+    <width>816</width>
+    <height>693</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -941,7 +941,7 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="Requettes">
      <attribute name="title">
@@ -999,7 +999,7 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical
         <rect>
          <x>170</x>
          <y>50</y>
-         <width>111</width>
+         <width>121</width>
          <height>22</height>
         </rect>
        </property>
@@ -1042,7 +1042,7 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical
       <widget class="QPushButton" name="RechercheReq">
        <property name="geometry">
         <rect>
-         <x>490</x>
+         <x>590</x>
          <y>50</y>
          <width>93</width>
          <height>28</height>
@@ -1104,28 +1104,53 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical
         <string>Eextraire</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="TriReq">
-       <property name="geometry">
-        <rect>
-         <x>590</x>
-         <y>50</y>
-         <width>93</width>
-         <height>28</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Trier</string>
-       </property>
-      </widget>
       <widget class="QLineEdit" name="lineEdit">
        <property name="geometry">
         <rect>
-         <x>302</x>
+         <x>420</x>
          <y>50</y>
          <width>161</width>
          <height>21</height>
         </rect>
        </property>
+      </widget>
+      <widget class="QPushButton" name="statRq">
+       <property name="geometry">
+        <rect>
+         <x>330</x>
+         <y>350</y>
+         <width>92</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Statistiques</string>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="TrierReq">
+       <property name="geometry">
+        <rect>
+         <x>300</x>
+         <y>50</y>
+         <width>111</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <item>
+        <property name="text">
+         <string>Trier</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Reference</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Date</string>
+        </property>
+       </item>
       </widget>
      </widget>
      <widget class="QGroupBox" name="groupBox_2">
@@ -1253,12 +1278,12 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical
        </item>
        <item>
         <property name="text">
-         <string>Ordre alphabetique</string>
+         <string>Nom</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Ordre Numerique</string>
+         <string>Requettes</string>
         </property>
        </item>
       </widget>
@@ -1314,6 +1339,19 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical
         <string>Actualiser</string>
        </property>
       </widget>
+      <widget class="QPushButton" name="statEq">
+       <property name="geometry">
+        <rect>
+         <x>290</x>
+         <y>320</y>
+         <width>92</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Statistiques</string>
+       </property>
+      </widget>
      </widget>
      <widget class="QGroupBox" name="groupBox_4">
       <property name="geometry">
@@ -1362,8 +1400,8 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>824</width>
-     <height>28</height>
+     <width>816</width>
+     <height>27</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">

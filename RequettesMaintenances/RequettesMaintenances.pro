@@ -1,4 +1,4 @@
-QT       += core gui sql
+QT       += core gui sql charts printsupport
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -23,6 +23,7 @@ SOURCES += \
     mainwindow.cpp \
     modw.cpp \
     requette.cpp \
+    statchart.cpp \
     widadd2.cpp \
     widmod2.cpp
 
@@ -33,6 +34,7 @@ HEADERS += \
     mainwindow.h \
     modw.h \
     requette.h \
+    statchart.h \
     widadd2.h \
     widmod2.h
 
@@ -40,6 +42,7 @@ FORMS += \
     addw.ui \
     mainwindow.ui \
     modw.ui \
+    statchart.ui \
     widadd2.ui \
     widmod2.ui
 

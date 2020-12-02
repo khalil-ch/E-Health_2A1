@@ -42,10 +42,10 @@ bool EquipeMaintenance::SupprimerEq(QString equipeid)
     query.bindValue(":EQUIPEID", equipeid);
     return query.exec();
 }
-bool EquipeMaintenance::ModifierEq(QString eqid,QString chefeq,QString spec,QString nbrq)
+bool EquipeMaintenance::ModifierEq(QString chefeq,QString spec,QString nbrq)
 {
     QSqlQuery query;
-    query.prepare("UPDATE Equipemaintenance SET equipeid ='"+eqid+"', chefequipe = '"+chefeq+ "' , specialitee= '"+spec+"' , nombrerequettes= '"+nbrq+"' WHERE equipeid ="+infotmp);
+    query.prepare("UPDATE Equipemaintenance SET chefequipe = '"+chefeq+ "' , specialitee= '"+spec+"' , nombrerequettes= '"+nbrq+"' WHERE equipeid ="+infotmp);
     return query.exec();
 }
 QSqlQueryModel * EquipeMaintenance::RechercheEqbyId()
@@ -62,6 +62,26 @@ QSqlQueryModel * EquipeMaintenance::RechercheEqbySpec()
 {
     QSqlQueryModel * model=new QSqlQueryModel();
     model->setQuery("SELECT * from Equipemaintenance WHERE specialitee='"+infotmp+"'");
+    model->setHeaderData(0,Qt::Horizontal,QObject::tr("EQUIPEID"));
+    model->setHeaderData(1,Qt::Horizontal,QObject::tr("CHEFEQUIPE"));
+    model->setHeaderData(2,Qt::Horizontal,QObject::tr("SPECIALITEE"));
+    model->setHeaderData(3,Qt::Horizontal,QObject::tr("NOMBREREQUETTES"));
+    return model;
+}
+QSqlQueryModel * EquipeMaintenance::TrierNom()
+{
+    QSqlQueryModel * model=new QSqlQueryModel();
+    model->setQuery("SELECT * from Equipemaintenance ORDER BY CHEFEQUIPE DESC");
+    model->setHeaderData(0,Qt::Horizontal,QObject::tr("EQUIPEID"));
+    model->setHeaderData(1,Qt::Horizontal,QObject::tr("CHEFEQUIPE"));
+    model->setHeaderData(2,Qt::Horizontal,QObject::tr("SPECIALITEE"));
+    model->setHeaderData(3,Qt::Horizontal,QObject::tr("NOMBREREQUETTES"));
+    return model;
+}
+QSqlQueryModel * EquipeMaintenance::TrierRequettes()
+{
+    QSqlQueryModel * model=new QSqlQueryModel();
+    model->setQuery("SELECT * from Equipemaintenance ORDER BY NOMBREREQUETTES DESC");
     model->setHeaderData(0,Qt::Horizontal,QObject::tr("EQUIPEID"));
     model->setHeaderData(1,Qt::Horizontal,QObject::tr("CHEFEQUIPE"));
     model->setHeaderData(2,Qt::Horizontal,QObject::tr("SPECIALITEE"));

@@ -968,6 +968,26 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical
        <string>Specialitee</string>
       </property>
      </item>
+     <item>
+      <property name="text">
+       <string>Informatique</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Biomedicale</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Electricite</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Installation</string>
+      </property>
+     </item>
     </widget>
    </widget>
    <widget class="QGroupBox" name="groupBox_4">

@@ -953,6 +953,11 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical
     </property>
     <item>
      <property name="text">
+      <string>Service</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
       <string>Urgence</string>
      </property>
     </item>
@@ -991,6 +996,11 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical
       <height>22</height>
      </rect>
     </property>
+    <item>
+     <property name="text">
+      <string>Type</string>
+     </property>
+    </item>
     <item>
      <property name="text">
       <string>Preventive</string>

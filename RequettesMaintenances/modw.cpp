@@ -18,7 +18,11 @@ void ModW::on_ConfirmModif_clicked()
 {
     QString Eqid=ui->ModRqIdEq->text();
     QString typem=ui->ModRqType->itemText(ui->ModRqType->currentIndex());
-    QString et="Resolu";
+    QString et="Non Resolu";
+    if(ui->ModRqEtat->checkState())
+        et="Resolu";
+    else
+        et="Non Resolu";
     QString serv=ui->ModRqServ->itemText(ui->ModRqServ->currentIndex());
     Requette req;
     req.SetInfotmp(GetReftmp());

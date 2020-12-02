@@ -20,10 +20,15 @@ void AddW::on_ConfirmerAddRq_clicked()
     QString ref=ui->AddRqRef->text();
     QString ideq=ui->AddRqIdEq->text();
     QString etat="Non Resolu";//ui->CheckboxRq->accessibleName();
+    if(ui->CheckboxRq->checkState())
+        etat="Resolu";
+    else
+        etat="Non Resolu";
     QString service="Pediatrie";
     QString typem="preventive";
+    QDate dateajout=ui->DateAjoutEdit->date();
     //QString ref,QString ideq,QString service,QString typem,QString etat
-    Requette req(ref,ideq,service,typem,etat);
+    Requette req(ref,ideq,service,typem,etat,dateajout);
     bool test=req.AjouterReq();
     if(test)
     {

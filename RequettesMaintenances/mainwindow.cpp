@@ -1,4 +1,4 @@
-#include "mainwindow.h"
+﻿#include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "widadd2.h"
 #include"widmod2.h"
@@ -6,7 +6,14 @@
 #include "modw.h"
 #include "requette.h"
 #include <QMessageBox>
-
+#include "statchart.h"
+#include <QPdfWriter>
+#ifndef QT_NO_PRINTER
+#include <QPrinter>
+#include <QPainter>
+#include <QTextDocument>
+#include <QFileDialog>
+#endif
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -14,7 +21,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     ui->tableView->setModel(requettetmp.AfficherReq());
     ui->tableView_2->setModel(equipetmp.AfficherEq());
-    ui->lineEdit->setText(equipetmp.test());
 }
 
 MainWindow::~MainWindow()
@@ -23,7 +29,7 @@ MainWindow::~MainWindow()
 }
 
 
-void MainWindow::on_AjouterReq_clicked()
+void MainWindow::on_AjouterReq_clicked()//Ajouter Requettes
 {
     AddW widgetajout;
     widgetajout.setModal(true);
@@ -31,12 +37,12 @@ void MainWindow::on_AjouterReq_clicked()
     ui->tableView->setModel(requettetmp.AfficherReq());
 }
 
-void MainWindow::on_ActualiserReq_clicked()
+void MainWindow::on_ActualiserReq_clicked()//Actualiser Requettes
 {
     ui->tableView->setModel(requettetmp.AfficherReq());
 }
 
-void MainWindow::on_DeleteReq_clicked()
+void MainWindow::on_DeleteReq_clicked()//Supprimer Requette
 {
     QString ref=ui->lineEdit->text();
     bool test=requettetmp.SupprimerReq(ref);
@@ -54,23 +60,32 @@ void MainWindow::on_DeleteReq_clicked()
     ui->tableView->setModel(requettetmp.AfficherReq());
 }
 
-void MainWindow::on_ModifReq_clicked()
+void MainWindow::on_ModifReq_clicked()//Modifier Requette
 {
     ModW WidgetMod;
     WidgetMod.SetReftmp(ui->lineEdit->text());
     WidgetMod.setModal(true);
     WidgetMod.exec();
 }
-void MainWindow::on_tableView_doubleClicked(const QModelIndex &index)
+/*---------table view-----------*/
+//QString info= QVariant(index.data()).toString();
+//ui->lineEdit->clear();
+//ui->lineEdit->insert(info);
+//ui->lineEdit->insert(info);
+void MainWindow::on_tableView_doubleClicked(const QModelIndex &index)//Afficher
 {
-    QString info= QVariant(index.data()).toString();
+    //int col=ui->tableView->model()->columnCount(index);
+    int row=ui->tableView->model()->rowCount(index);
     ui->lineEdit->clear();
+    QString infoint=QString::number(row);
+    QModelIndex idx;
+    QString info = QVariant(index.data()).toString();
     ui->lineEdit->insert(info);
-
 }
-
+/*-----------------------------*/
 void MainWindow::on_RechercheReq_clicked()
 {
+
     requettetmp.SetInfotmp(ui->lineEdit->text());
     ui->tableView->setModel(requettetmp.RechercheReqbyRef());
 }
@@ -102,4 +117,100 @@ void MainWindow::on_RechercheEq_clicked()
 {
     equipetmp.SetInfotmp2(ui->lineEdit_2->text());
     ui->tableView_2->setModel(equipetmp.RechercheEqbyId());
+}
+
+void MainWindow::on_statRq_clicked()
+{
+    //int row=ui->tableView->model()->rowCount(index);
+    //QString infoint=QString::number(row);
+    //QModelIndex idx;
+    QString info = ui->tableView->model()->data(ui->tableView->model()->index(1,2)).toString();
+    QStringList Employees;
+    for (int i = 0; i < 3; ++i) {
+        info = ui->tableView->model()->data(ui->tableView->model()->index(0,3)).toString();
+        Employees<<info;
+    }
+    StatChart stat;
+    stat.exec();
+
+}
+
+void MainWindow::on_ModifEq_clicked()
+{
+    WidMod2 widmodeq;
+    widmodeq.setIDeqtmp(ui->lineEdit_2->text());
+    widmodeq.exec();
+}
+
+void MainWindow::on_DelEq_clicked()
+{
+    equipetmp.SupprimerEq(ui->lineEdit_2->text());
+}
+
+void MainWindow::on_statEq_clicked()
+{
+    QString info = ui->tableView->model()->data(ui->tableView->model()->index(1,2)).toString();
+    QStringList Employees;
+    for (int i = 0; i < ui->tableView_2->model()->rowCount(); ++i) {
+        info = ui->tableView_2->model()->data(ui->tableView->model()->index(i,1)).toString();
+        Employees<<info;
+    }
+    QStringList values;
+    for (int i = 0; i < ui->tableView_2->model()->rowCount(); ++i) {
+        info = ui->tableView_2->model()->data(ui->tableView->model()->index(i,3)).toString();
+        values<<info;
+    }
+    //values<<"35"<<"45"<<"58";
+    StatChart stat;
+    stat.afficherStats(&Employees,&values);
+    stat.exec();
+}
+
+void MainWindow::on_TrierEq_currentIndexChanged(const QString &arg1)
+{
+    if(ui->TrierEq->currentText()=="Nom")
+        ui->tableView_2->setModel(equipetmp.TrierNom());
+    else if(ui->TrierEq->currentText()=="Requettes")
+        ui->tableView_2->setModel(equipetmp.TrierRequettes());
+    else
+        return;
+}
+
+void MainWindow::on_TrierReq_currentIndexChanged(const QString &arg1)
+{
+    if(ui->TrierReq->currentText()=="Reference")
+        ui->tableView->setModel(requettetmp.TrierParREF());
+    else if(ui->TrierReq->currentText()=="Date")
+        ui->tableView->setModel(requettetmp.TrierParDATE());
+    else
+        return;
+}
+
+void MainWindow::on_ExtraiareReq_clicked()
+{
+        QString fileName = QFileDialog::getSaveFileName((QWidget* )0, "Export PDF", QString(), "*.pdf");
+        if (QFileInfo(fileName).suffix().isEmpty()) { fileName.append(".pdf"); }
+        QPrinter printer(QPrinter::PrinterResolution);
+        QString imgsource="C:/Users/khali/Desktop/Project-E-Health/RequettesMaintenances/UtopiaSft.png";
+        printer.setOutputFormat(QPrinter::PdfFormat);
+        printer.setPaperSize(QPrinter::A4);
+        printer.setOutputFileName(fileName);
+        QString *html = new QString();
+        QStringList info;
+        int i=0;
+        for (int row = 0; row < ui->tableView->model()->rowCount(); ++row) {
+
+            for (int col = 0; col < ui->tableView->model()->columnCount(); ++col) {
+                info<<ui->tableView->model()->data(ui->tableView->model()->index(row,col)).toString();//(row,col)
+                *html=*html+info.at(i)+"\t";
+                i++;
+            }*html+="<br> ";
+        }
+        *html+="<img src=+"+imgsource+" >";
+        i=0;
+        /*----*/
+        QTextDocument doc;
+        doc.setHtml(*html);
+        doc.setPageSize(printer.pageRect().size());//hide num de poge
+        doc.print(&printer);
 }
