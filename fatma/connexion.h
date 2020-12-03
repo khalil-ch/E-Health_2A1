@@ -4,13 +4,11 @@
 
 class Connexion
 {
-private:
     QSqlDatabase db;
 public:
     Connexion();
-    bool ouvrir();
-    void fermer();
-
+    bool ouvrirConnexion();
+    bool fermeConnexion();
 };
 
 #endif // CONNEXION_H

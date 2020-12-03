@@ -1,0 +1,72 @@
+#ifndef EQUIPEMENT_H
+#define EQUIPEMENT_H
+#include <QString>
+#include <QDate>
+#include <QSqlQueryModel>
+
+class equipement
+{
+
+
+
+private:
+QString nom;
+int numdeserie;
+QString modele;
+QString type;
+QString condition;
+
+public:
+  equipement();
+  QString getnom() const;
+  void setnom(const QString &value);
+
+  int getnumdeserie() const;
+  void setnumdeserie(int value);
+  QString getmodele() const;
+  void setmodele(const QString &value);
+  QString gettype() const;
+  void settype(const QString &value);
+  QString getcondition() const;
+  void setcondition(const QString &value);
+  QString getConsommation() const;
+  void setConsommation(const QString &value);
+  QString getDescription() const;
+  void setDescription(const QString &value);
+  QString getCatG() const;
+  void setCatG(const QString &value);
+  QDate getDateAcquis() const;
+  void setDateAcquis(const QDate &value);
+  QString getCouleur() const;
+  void setCouleur(const QString &value);
+  int getDispo() const;
+  void setDispo(int value);
+  int getForfaitJour() const;
+  void setForfaitJour(int value);
+  int getForfaitMois() const;
+  void setForfaitMois(int value);
+
+  int getForfaitSem() const;
+  void setForfaitSem(int value);
+
+
+
+
+
+  bool AjouterVoit();
+
+  QSqlQueryModel* AfficherVoit(QString);
+
+  QSqlQueryModel* SearchVoit(QString);
+
+
+  bool SupprimerVoit(QString);
+
+  bool modifierVoit(QString);
+
+  //void SortByHeader(int);
+};
+
+#endif // VOITURE_H
+
+

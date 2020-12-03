@@ -1,24 +1,25 @@
-#include "mainwindow.h"
+﻿#include "mainwindow.h"
 #include "connexion.h"
 #include <QApplication>
 #include <QMessageBox>
-
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     MainWindow w;
-    Connexion c;
-    QMessageBox msgBox;
+    Connexion Cnx;
 
-    if(c.ouvrir())
+    if(Cnx.ouvrirConnexion())
     {
+        QMessageBox msgBox;
+        msgBox.setText("Connexion Avec Success!");
+        msgBox.exec();
         w.show();
-        return a.exec();
     }
     else
     {
-        msgBox.critical(nullptr,QObject::tr("can't open database !"),QObject::tr("connection failed !\n"));
-        c.fermer();
+        QMessageBox msgBox;
+        msgBox.setText("Echec!");
+        msgBox.exec();
     }
-    return 0;
+ return a.exec();
 }
