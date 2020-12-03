@@ -466,12 +466,18 @@ void MainWindow::on_pushButton_19_clicked()
 
 void MainWindow::on_pushButton_7_clicked()
 {
+    QMediaPlayer *sound =new QMediaPlayer();
+    sound-> setMedia(QUrl("C:/Users/hp/Downloads/Mouse-Click-03-m-FesliyanStudios.com.mp3"));
+    sound ->play();
     ui->tableView_Patient->setModel(tmpPatient.afficher());
 
 }
 
 void MainWindow::on_pushButton_14_clicked()
 {
+    QMediaPlayer *sound =new QMediaPlayer();
+    sound-> setMedia(QUrl("C:/Users/hp/Downloads/Mouse-Click-03-m-FesliyanStudios.com.mp3"));
+    sound ->play();
     ui->tableView_chambre->setModel(tmpChambre.afficher());
 
 }
