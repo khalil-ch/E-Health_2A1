@@ -13,6 +13,7 @@
 #include <QStringList>
 #include <QPropertyAnimation>
 #include <QMediaPlayer>
+#include  <QSound>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -75,6 +76,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_clicked()
 {
+
     QString cin = ui->lineEdit_CIN->text();
     QString id= ui->lineEdit->text();
     int age= ui-> lineEdit_age->text().toInt();
@@ -257,6 +259,9 @@ if((etage>=0)&&(numero_chambre>0)&&(type!=""))
 
 void MainWindow::on_pushButton_5_clicked()
 {
+    QMediaPlayer *sound =new QMediaPlayer();
+    sound-> setMedia(QUrl("C:/Users/hp/Downloads/Mouse-Click-03-m-FesliyanStudios.com.mp3"));
+    sound ->play();
     QString cin= ui->lineEdit_recherchecin->text();
     QString nom= ui->lineEdit_3->text();
     QString prenom= ui->lineEdit_4->text();
@@ -274,6 +279,9 @@ foreach(QLineEdit *widget, this->findChildren<QLineEdit*>()) {
 
 void MainWindow::on_pushButton_12_clicked()
 {
+    QMediaPlayer *sound =new QMediaPlayer();
+    sound-> setMedia(QUrl("C:/Users/hp/Downloads/Mouse-Click-03-m-FesliyanStudios.com.mp3"));
+    sound ->play();
     QString id=ui->lineEdit_idrech->text();
     int numero_chambre=ui->lineEdit_numrech->text().toInt();
     int etage=ui->lineEdit_etagerech->text().toInt();
@@ -296,6 +304,9 @@ foreach(QLineEdit *widget, this->findChildren<QLineEdit*>()) {
 
 void MainWindow::on_checkBox_3_clicked()
 {
+    QMediaPlayer *sound =new QMediaPlayer();
+    sound-> setMedia(QUrl("C:/Users/hp/Downloads/Mouse-Click-03-m-FesliyanStudios.com.mp3"));
+    sound ->play();
     if (ui->checkBox_3->isChecked())
     {
         ui->tableView_Patient->setModel(tmpPatient.trier("age"));
@@ -308,6 +319,9 @@ void MainWindow::on_checkBox_3_clicked()
 
 void MainWindow::on_checkBox_clicked()
 {
+    QMediaPlayer *sound =new QMediaPlayer();
+    sound-> setMedia(QUrl("C:/Users/hp/Downloads/Mouse-Click-03-m-FesliyanStudios.com.mp3"));
+    sound ->play();
     if (ui->checkBox->isChecked())
     {
         ui->tableView_chambre->setModel(tmpChambre.trier("numero_chambre"));
@@ -316,6 +330,9 @@ void MainWindow::on_checkBox_clicked()
 
 void MainWindow::on_pushButton_13_clicked()
 {
+    QMediaPlayer *sound =new QMediaPlayer();
+    sound-> setMedia(QUrl("C:/Users/hp/Downloads/Mouse-Click-03-m-FesliyanStudios.com.mp3"));
+    sound ->play();
     QString strStream;
         QTextStream out(&strStream);
         const int rowCount = ui->tableView_chambre->model()->rowCount();
@@ -372,7 +389,9 @@ void MainWindow::on_pushButton_13_clicked()
 
 void MainWindow::on_pushButton_6_clicked()
 {
-
+    QMediaPlayer *sound =new QMediaPlayer();
+    sound-> setMedia(QUrl("C:/Users/hp/Downloads/Mouse-Click-03-m-FesliyanStudios.com.mp3"));
+    sound ->play();
     QString strStream;
             QTextStream out(&strStream);
             const int rowCount = ui->tableView_Patient->model()->rowCount();
@@ -429,6 +448,9 @@ void MainWindow::on_pushButton_6_clicked()
 
 void MainWindow::on_pushButton_18_clicked()
 {
+    QMediaPlayer *sound =new QMediaPlayer();
+    sound-> setMedia(QUrl("C:/Users/hp/Downloads/Mouse-Click-03-m-FesliyanStudios.com.mp3"));
+    sound ->play();
 
     tmpChambre.exporter(ui->tableView_chambre);
 
@@ -436,5 +458,8 @@ void MainWindow::on_pushButton_18_clicked()
 
 void MainWindow::on_pushButton_19_clicked()
 {
+    QMediaPlayer *sound =new QMediaPlayer();
+    sound-> setMedia(QUrl("C:/Users/hp/Downloads/Mouse-Click-03-m-FesliyanStudios.com.mp3"));
+    sound ->play();
      tmpPatient.exporter(ui->tableView_Patient);
 }
