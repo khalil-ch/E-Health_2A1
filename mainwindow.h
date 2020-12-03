@@ -9,6 +9,7 @@
 #include <QString>
 #include <QSqlTableModel>
 #include <QSqlQueryModel>
+#include <QSound>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -65,9 +66,16 @@ private slots:
 
     void on_mail_clicked();
 
+    void on_play_clicked();
+
+    void on_mute_clicked();
+
 private:
     Ui::MainWindow *ui;
     personnel tmppersonnel;
     service tmpservice;
+    QSound *son;
+
+
 };
 #endif // MAINWINDOW_H

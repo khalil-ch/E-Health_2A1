@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -40,7 +40,7 @@
        </rect>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab_3">
        <attribute name="title">
@@ -219,6 +219,32 @@
          </property>
          <property name="text">
           <string>ajouter</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="play">
+         <property name="geometry">
+          <rect>
+           <x>570</x>
+           <y>50</y>
+           <width>93</width>
+           <height>28</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>PLAY</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="mute">
+         <property name="geometry">
+          <rect>
+           <x>570</x>
+           <y>90</y>
+           <width>93</width>
+           <height>28</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>STOP</string>
          </property>
         </widget>
        </widget>
@@ -403,12 +429,12 @@
        <rect>
         <x>10</x>
         <y>0</y>
-        <width>601</width>
-        <height>421</height>
+        <width>771</width>
+        <height>501</height>
        </rect>
       </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="tab_9">
        <attribute name="title">
@@ -419,8 +445,8 @@
          <rect>
           <x>0</x>
           <y>10</y>
-          <width>491</width>
-          <height>291</height>
+          <width>761</width>
+          <height>471</height>
          </rect>
         </property>
         <property name="title">
@@ -429,8 +455,8 @@
         <widget class="QLabel" name="label_13">
          <property name="geometry">
           <rect>
-           <x>10</x>
-           <y>40</y>
+           <x>30</x>
+           <y>80</y>
            <width>111</width>
            <height>16</height>
           </rect>
@@ -442,8 +468,8 @@
         <widget class="QLabel" name="label_15">
          <property name="geometry">
           <rect>
-           <x>10</x>
-           <y>90</y>
+           <x>20</x>
+           <y>160</y>
            <width>81</width>
            <height>16</height>
           </rect>
@@ -455,8 +481,8 @@
         <widget class="QLabel" name="label_16">
          <property name="geometry">
           <rect>
-           <x>20</x>
-           <y>160</y>
+           <x>40</x>
+           <y>240</y>
            <width>81</width>
            <height>16</height>
           </rect>
@@ -468,10 +494,10 @@
         <widget class="QLineEdit" name="id_service">
          <property name="geometry">
           <rect>
-           <x>150</x>
-           <y>40</y>
-           <width>113</width>
-           <height>20</height>
+           <x>210</x>
+           <y>70</y>
+           <width>151</width>
+           <height>41</height>
           </rect>
          </property>
          <property name="styleSheet">
@@ -489,10 +515,10 @@
         <widget class="QLineEdit" name="cin_chef">
          <property name="geometry">
           <rect>
-           <x>150</x>
-           <y>90</y>
-           <width>113</width>
-           <height>20</height>
+           <x>212</x>
+           <y>150</y>
+           <width>151</width>
+           <height>41</height>
           </rect>
          </property>
          <property name="styleSheet">
@@ -510,10 +536,10 @@
         <widget class="QLineEdit" name="type_service">
          <property name="geometry">
           <rect>
-           <x>150</x>
-           <y>150</y>
-           <width>113</width>
-           <height>20</height>
+           <x>210</x>
+           <y>230</y>
+           <width>151</width>
+           <height>41</height>
           </rect>
          </property>
          <property name="styleSheet">
@@ -531,10 +557,10 @@
         <widget class="QPushButton" name="ajouter_vehicule_2">
          <property name="geometry">
           <rect>
-           <x>210</x>
-           <y>210</y>
+           <x>260</x>
+           <y>300</y>
            <width>256</width>
-           <height>41</height>
+           <height>61</height>
           </rect>
          </property>
          <property name="styleSheet">
@@ -564,8 +590,8 @@
          <rect>
           <x>10</x>
           <y>20</y>
-          <width>491</width>
-          <height>211</height>
+          <width>761</width>
+          <height>471</height>
          </rect>
         </property>
         <property name="title">
@@ -575,7 +601,7 @@
          <property name="geometry">
           <rect>
            <x>10</x>
-           <y>60</y>
+           <y>80</y>
            <width>121</width>
            <height>16</height>
           </rect>
@@ -589,8 +615,8 @@
           <rect>
            <x>200</x>
            <y>60</y>
-           <width>113</width>
-           <height>20</height>
+           <width>191</width>
+           <height>51</height>
           </rect>
          </property>
          <property name="styleSheet">
@@ -609,9 +635,9 @@
          <property name="geometry">
           <rect>
            <x>230</x>
-           <y>130</y>
+           <y>210</y>
            <width>256</width>
-           <height>41</height>
+           <height>51</height>
           </rect>
          </property>
          <property name="styleSheet">

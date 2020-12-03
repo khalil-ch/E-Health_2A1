@@ -8,6 +8,7 @@
 #include <MimeMessage>
 #include <EmailAddress>
 #include <MimeText>*/
+#include <QtWidgets>
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -15,7 +16,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
+    son=new QSound("D:/qt/wedd/music.wav");
 
     ui->tabpersonnel->setModel(tmppersonnel.afficher());
      ui->tabservice->setModel(tmpservice.afficher());
@@ -49,6 +50,11 @@ void MainWindow::on_ajouter_vehicule_clicked()
   bool test=p.ajouter();
   if(test)
 {ui->tabpersonnel->setModel(tmppersonnel.afficher());//refresh
+      QSystemTrayIcon *notifyIcon = new QSystemTrayIcon;
+             notifyIcon->show();
+             notifyIcon->setIcon(QIcon("icone.png"));
+
+             notifyIcon->showMessage("GESTION PERSONNEL ","Personnel Ajouté",QSystemTrayIcon::Information,15000);
 QMessageBox::information(nullptr, QObject::tr("Ajouter un personnel"),
                   QObject::tr("personnel ajouté.\n"
                               "Click Cancel to exit."), QMessageBox::Cancel);
@@ -68,7 +74,11 @@ void MainWindow::on_supprimer_vehicule_clicked()
         bool test=tmppersonnel.supprimer(cin);
         if(test)
         {ui->tabpersonnel->setModel(tmppersonnel.afficher());//refresh
+            QSystemTrayIcon *notifyIcon = new QSystemTrayIcon;
+                   notifyIcon->show();
+                   notifyIcon->setIcon(QIcon("icone.png"));
 
+                   notifyIcon->showMessage("GESTION PERSONNEL ","Personnel Supprimé",QSystemTrayIcon::Information,15000);
 
             QMessageBox::information(nullptr, QObject::tr("Supprimer un personnel"),
                         QObject::tr("personnel supprimé.\n"
@@ -95,6 +105,13 @@ void MainWindow::on_ajouter_vehicule_2_clicked()
   bool test=s.ajouter();
   if(test)
 {ui->tabservice->setModel(tmpservice.afficher());//refresh
+
+      QSystemTrayIcon *notifyIcon = new QSystemTrayIcon;
+             notifyIcon->show();
+             notifyIcon->setIcon(QIcon("icone.png"));
+
+             notifyIcon->showMessage("GESTION SERVICE ","Service Ajouté",QSystemTrayIcon::Information,15000);
+
 QMessageBox::information(nullptr, QObject::tr("Ajouter un service"),
                   QObject::tr("service ajouté.\n"
                               "Click Cancel to exit."), QMessageBox::Cancel);
@@ -113,6 +130,12 @@ void MainWindow::on_supprimer_panne_clicked()
     bool test=tmpservice.supprimer(idservice);
     if(test)
     {ui->tabservice->setModel(tmpservice.afficher());//refresh
+
+        QSystemTrayIcon *notifyIcon = new QSystemTrayIcon;
+               notifyIcon->show();
+               notifyIcon->setIcon(QIcon("icone.png"));
+
+               notifyIcon->showMessage("GESTION SERVICE ","Service Supprimé",QSystemTrayIcon::Information,15000);
         QMessageBox::information(nullptr, QObject::tr("Supprimer un service"),
                     QObject::tr(" service supprimé.\n"
                                 "Click Cancel to exit."), QMessageBox::Cancel);
@@ -144,7 +167,11 @@ void MainWindow::on_modifier_vehicule_clicked()
                 ui->modifier_vehicule->setText("Modifier");
                 ui->tabpersonnel->setModel(tmppersonnel.afficher());
 
+                QSystemTrayIcon *notifyIcon = new QSystemTrayIcon;
+                       notifyIcon->show();
+                       notifyIcon->setIcon(QIcon("icone.png"));
 
+                       notifyIcon->showMessage("GESTION PERSONNEL ","Personnel Modifié",QSystemTrayIcon::Information,15000);
             }
 
 
@@ -162,13 +189,18 @@ void MainWindow::on_modifier_service_clicked()
         tableModel->setTable("SERVICE");
         tableModel->select();
         ui->tabservice->setModel(tableModel);
+
     }
     else
     {
         ui->modifier_service->setText("Modifier");
         ui->tabservice->setModel(tmpservice.afficher());
 
+        QSystemTrayIcon *notifyIcon = new QSystemTrayIcon;
+           notifyIcon->show();
+           notifyIcon->setIcon(QIcon("icone.png"));
 
+           notifyIcon->showMessage("GESTION SERVICE ","Service Modifié",QSystemTrayIcon::Information,15000);
     }
 
 }
@@ -307,3 +339,15 @@ void MainWindow::on_mail_clicked()
 
        smtp.quit();
 }*/
+
+void MainWindow::on_play_clicked()
+{
+    son->play();
+
+}
+
+void MainWindow::on_mute_clicked()
+{
+    son->stop();
+
+}
