@@ -47,6 +47,10 @@ private slots:
 
     void on_pushButton_19_clicked();
 
+    void on_pushButton_7_clicked();
+
+    void on_pushButton_14_clicked();
+
 private:
     Ui::MainWindow *ui;
     patient tmpPatient;

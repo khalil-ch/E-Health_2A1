@@ -463,3 +463,15 @@ void MainWindow::on_pushButton_19_clicked()
     sound ->play();
      tmpPatient.exporter(ui->tableView_Patient);
 }
+
+void MainWindow::on_pushButton_7_clicked()
+{
+    ui->tableView_Patient->setModel(tmpPatient.afficher());
+
+}
+
+void MainWindow::on_pushButton_14_clicked()
+{
+    ui->tableView_chambre->setModel(tmpChambre.afficher());
+
+}
