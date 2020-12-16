@@ -28,7 +28,7 @@ public:
        QSqlQueryModel * afficher();
        bool supprimer(QString);
        QSqlQueryModel * chercher_four(QString,int);
-
+       QSqlQueryModel * trier_four(QString,int);
 
 };
 

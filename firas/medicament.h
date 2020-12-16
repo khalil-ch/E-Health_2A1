@@ -5,7 +5,10 @@
 #include <QSqlQuery>
 #include <QSqlQueryModel>
 #include <QSqlRecord>
-
+#include <QTableView>
+#include <QFileDialog>
+#include<QCoreApplication>
+#include<QTextStream>
 class Medicament
 {
 
@@ -36,7 +39,7 @@ public:
        QSqlQueryModel * afficher();
        bool supprimer(QString);
        QSqlQueryModel * chercher_med(QString,int);
-
+       void exporter(QTableView* tableau);
 
 };
 

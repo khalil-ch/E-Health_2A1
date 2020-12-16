@@ -30,7 +30,7 @@ QSqlQueryModel * fournisseur::afficher()
 {
     QSqlQueryModel *model= new QSqlQueryModel();
 
-    model->setQuery("select * from fournisseur");
+    model->setQuery("SELECT * FROM FOURNISSEUR");
 
     model->setHeaderData(0, Qt::Horizontal, QObject::tr("NOM"));
     model->setHeaderData(1, Qt::Horizontal, QObject::tr("MATRICULE"));
@@ -39,11 +39,11 @@ QSqlQueryModel * fournisseur::afficher()
 }
 
 
-bool fournisseur::supprimer(QString NOM)
+bool fournisseur::supprimer(QString MATRICULE)
 {
     QSqlQuery qry;
-    qry.prepare("Delete from fournisseur where NOM = :NOM");
-    qry.bindValue(":NOM",NOM);
+    qry.prepare("Delete from FOURNISSEUR where MATRICULE = :MATRICULE");
+    qry.bindValue(":MATRICULE",MATRICULE);
     return qry.exec();
 }
 
@@ -84,8 +84,36 @@ QSqlQueryModel * fournisseur::chercher_four(QString chaine,int valeur)
                 return model;
     }
         return nullptr;
-
-
-
 }
+QSqlQueryModel * fournisseur::trier_four(QString critere,int ordre)
+{
+   QSqlQuery *qry=new QSqlQuery();
+   QSqlQueryModel *model=new QSqlQueryModel();
+   if(critere=="NOM")
+    {
+       if(ordre==1)
+            qry->prepare("select * from FOURNISSEUR order by NOM ASC");
+       else
+           qry->prepare("select * from FOURNISSEUR order by NOM DESC");
+       }
+   else if(critere=="MATRICULE")
+   {
+      if(ordre==1)
+           qry->prepare("select * from FOURNISSEUR order by MATRICULE ASC");
+      else
+          qry->prepare("select * from FOURNISSEUR order by MATRICULE DESC");
+      }
+   else if(critere=="ADRESSE")
+   {
+      if(ordre==1)
+           qry->prepare("select * from FOURNISSEUR order by ADRESSE ASC");
+      else
+          qry->prepare("select * from FOURNISSEUR order by ADRESSE DESC");
+      }
+   qry->exec();
+   model->setQuery(*qry);
+   return model;
+}
+
+
 
