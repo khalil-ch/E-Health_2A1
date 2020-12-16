@@ -24,32 +24,32 @@ MainWindow::MainWindow(QWidget *parent)
     ui->tableView_Patient->setModel(tmpPatient.afficher());
     ui->tableView_chambre->setModel(tmpChambre.afficher());
    //this->setStyleSheet("background-color: rgb(0, 0, 100);");
-    ui->lineEdit_CIN->setMaxLength(8);
+    ui->lineEdit_CINpatient->setMaxLength(8);
     ui->lineEdit_cinp->setMaxLength(8);
     ui->lineEdit_cin_supp->setMaxLength(8);
     ui->lineEdit_recherchecin->setMaxLength(8);
     ui->lineEdit_nomp->setMaxLength(10);
     ui->lineEdit_prenomp->setMaxLength(10);
-    ui->lineEdit_nom->setMaxLength(10);
-    ui->lineEdit_prenom->setMaxLength(10);
-    ui->lineEdit_id->setMaxLength(4);
+    ui->lineEdit_nompatient->setMaxLength(10);
+    ui->lineEdit_prenompatient->setMaxLength(10);
+    ui->lineEdit_idchambre->setMaxLength(4);
     ui->lineEdit_agep->setMaxLength(2);
-    ui->lineEdit_num->setMaxLength(2);
+    ui->lineEdit_numchambre->setMaxLength(2);
     ui->lineEdit_etage->setMaxLength(1);
     ui->lineEdit_2id->setMaxLength(4);
     ui->lineEdit_2num->setMaxLength(2);
-    ui->dateEdit_4->setMaxLength(1);
-    ui->lineEdit_3->setMaxLength(10);
-    ui->lineEdit_4->setMaxLength(10);
+    ui->dateEdit_Modifchambre->setMaxLength(1);
+    ui->lineEdit_rechnomp->setMaxLength(10);
+    ui->lineEdit_rechprenomp->setMaxLength(10);
     ui->lineEdit_idrech->setMaxLength(4);
     ui->lineEdit_numrech->setMaxLength(2);
     ui->lineEdit_etagerech->setMaxLength(1);
     ui->lineEdit_csupp->setMaxLength(4);
-    ui->lineEdit->setMaxLength(4);
+    ui->lineEdit_idajoutp->setMaxLength(4);
     ui->lineEdit_age->setMaxLength(2);
-    ui->lineEdit_2->setMaxLength(4);
-    ui-> dateEdit->setMinimumDate(QDate::currentDate());
-    ui->dateEdit17->setMinimumDate(QDate::currentDate());
+    ui->lineEdit_idpatient->setMaxLength(4);
+    ui-> dateEditajoutp->setMinimumDate(QDate::currentDate());
+    ui->dateEditModifP->setMinimumDate(QDate::currentDate());
 
 
     int const n=0;
@@ -74,16 +74,16 @@ MainWindow::~MainWindow()
 }
 
 
-void MainWindow::on_pushButton_clicked()
+void MainWindow::on_pushButtonAjoutP_clicked()
 {
 
-    QString cin = ui->lineEdit_CIN->text();
-    QString id= ui->lineEdit->text();
+    QString cin = ui->lineEdit_CINpatient->text();
+    QString id= ui->lineEdit_idajoutp->text();
     int age= ui-> lineEdit_age->text().toInt();
     int duree= ui-> lineEdit_duree->text().toInt();
-    QDate Date_entrer= ui-> dateEdit->date();
-    QString nom= ui->lineEdit_nom->text();
-    QString prenom= ui->lineEdit_prenom->text();
+    QDate Date_entrer= ui->dateEditajoutp->date();
+    QString nom= ui->lineEdit_nompatient->text();
+    QString prenom= ui->lineEdit_prenompatient->text();
     patient p(cin,id,age,duree,Date_entrer,nom,prenom);
       if ((age!=0)&&(cin.length()!=0) &&(duree!=0)&&(nom.length()!=0)&&
               (prenom.length()!=0)&&(id.length()!=0)
@@ -114,7 +114,7 @@ foreach(QLineEdit *widget, this->findChildren<QLineEdit*>()) {
     }
 
 }
-void MainWindow::on_pushButton_15_clicked()
+void MainWindow::on_pushButton_suppP_clicked()
 {
     QString cin = ui -> lineEdit_cin_supp->text() ;
 
@@ -139,14 +139,14 @@ void MainWindow::on_pushButton_15_clicked()
         }
 }
 
-void MainWindow::on_pushButton_3_clicked()
+void MainWindow::on_pushButton_updatepatient_clicked()
 {
 
     QString cin= ui->lineEdit_cinp->text();
-    QString id= ui->lineEdit_2->text();
+    QString id= ui->lineEdit_idpatient->text();
     int age= ui->lineEdit_agep->text().toInt();
     int duree= ui->lineEdit_dureep->text().toInt();
-    QDate Date_entrer=ui->dateEdit17->date();
+    QDate Date_entrer=ui->dateEditModifP->date();
     QString nom=ui->lineEdit_nomp->text();
     QString prenom=ui->lineEdit_prenomp->text();
 
@@ -172,12 +172,12 @@ void MainWindow::on_pushButton_3_clicked()
 }
 
 
-void MainWindow::on_pushButton_9_clicked()
+void MainWindow::on_pushButton_ajoutchambre_clicked()
 {
     int etage= ui-> lineEdit_etage->text().toInt();
-    int numero_chambre= ui-> lineEdit_num->text().toInt();
-    QString id= ui-> lineEdit_id->text();
-    QString type=ui->comboBox->currentText();
+    int numero_chambre= ui-> lineEdit_numchambre->text().toInt();
+    QString id= ui-> lineEdit_idchambre->text();
+    QString type=ui->comboBoxchambre->currentText();
 
     chambre ch(id ,etage,numero_chambre,type);
     if ((etage>=0)&&(numero_chambre>0)&&(id.length()!=0)&&(type.length()!=0))
@@ -203,7 +203,7 @@ foreach(QLineEdit *widget, this->findChildren<QLineEdit*>()) {
     }
 }
 
-void MainWindow::on_pushButton_16_clicked()
+void MainWindow::on_pushButton_suppchambre_clicked()
 {
     QString id = ui -> lineEdit_csupp->text();
     bool test=tmpChambre.supprimer(id);
@@ -230,12 +230,12 @@ void MainWindow::on_pushButton_16_clicked()
 
 
 
-void MainWindow::on_pushButton_10_clicked()
+void MainWindow::on_pushButton_upatechambre_clicked()
 {
     QString id= ui->lineEdit_2id->text();
     
     int numero_chambre= ui->lineEdit_2num->text().toInt();
-    int etage=ui->dateEdit_4->text().toInt();
+    int etage=ui->dateEdit_Modifchambre->text().toInt();
     QString type=ui->comboBox_2->currentText();
 if((etage>=0)&&(numero_chambre>0)&&(type!=""))
 {
@@ -257,14 +257,14 @@ if((etage>=0)&&(numero_chambre>0)&&(type!=""))
 }
 
 
-void MainWindow::on_pushButton_5_clicked()
+void MainWindow::on_pushButton_rechpatient_clicked()
 {
     QMediaPlayer *sound =new QMediaPlayer();
     sound-> setMedia(QUrl("C:/Users/hp/Downloads/Mouse-Click-03-m-FesliyanStudios.com.mp3"));
     sound ->play();
     QString cin= ui->lineEdit_recherchecin->text();
-    QString nom= ui->lineEdit_3->text();
-    QString prenom= ui->lineEdit_4->text();
+    QString nom= ui->lineEdit_rechnomp->text();
+    QString prenom= ui->lineEdit_rechprenomp->text();
 
     QSqlQueryModel *test=tmpPatient.rechercher_patient(cin,nom,prenom);
 if (test)
@@ -277,7 +277,7 @@ foreach(QLineEdit *widget, this->findChildren<QLineEdit*>()) {
 
 }
 
-void MainWindow::on_pushButton_12_clicked()
+void MainWindow::on_pushButton_rechchambre_clicked()
 {
     QMediaPlayer *sound =new QMediaPlayer();
     sound-> setMedia(QUrl("C:/Users/hp/Downloads/Mouse-Click-03-m-FesliyanStudios.com.mp3"));
@@ -302,12 +302,12 @@ foreach(QLineEdit *widget, this->findChildren<QLineEdit*>()) {
 
 
 
-void MainWindow::on_checkBox_3_clicked()
+void MainWindow::on_checkBox_rechercheage_clicked()
 {
     QMediaPlayer *sound =new QMediaPlayer();
     sound-> setMedia(QUrl("C:/Users/hp/Downloads/Mouse-Click-03-m-FesliyanStudios.com.mp3"));
     sound ->play();
-    if (ui->checkBox_3->isChecked())
+    if (ui->checkBox_rechercheage->isChecked())
     {
         ui->tableView_Patient->setModel(tmpPatient.trier("age"));
     }
@@ -317,18 +317,18 @@ void MainWindow::on_checkBox_3_clicked()
 
 
 
-void MainWindow::on_checkBox_clicked()
+void MainWindow::on_checkBoxchambre_clicked()
 {
     QMediaPlayer *sound =new QMediaPlayer();
     sound-> setMedia(QUrl("C:/Users/hp/Downloads/Mouse-Click-03-m-FesliyanStudios.com.mp3"));
     sound ->play();
-    if (ui->checkBox->isChecked())
+    if (ui->checkBoxchambre->isChecked())
     {
         ui->tableView_chambre->setModel(tmpChambre.trier("numero_chambre"));
     }
 }
 
-void MainWindow::on_pushButton_13_clicked()
+void MainWindow::on_pushButton_PDFchambre_clicked()
 {
     QMediaPlayer *sound =new QMediaPlayer();
     sound-> setMedia(QUrl("C:/Users/hp/Downloads/Mouse-Click-03-m-FesliyanStudios.com.mp3"));
@@ -387,7 +387,7 @@ void MainWindow::on_pushButton_13_clicked()
 }
 
 
-void MainWindow::on_pushButton_6_clicked()
+void MainWindow::on_pushButton_pdff_clicked()
 {
     QMediaPlayer *sound =new QMediaPlayer();
     sound-> setMedia(QUrl("C:/Users/hp/Downloads/Mouse-Click-03-m-FesliyanStudios.com.mp3"));
@@ -446,7 +446,7 @@ void MainWindow::on_pushButton_6_clicked()
     }
 
 
-void MainWindow::on_pushButton_18_clicked()
+void MainWindow::on_pushButton_Exelchambre_clicked()
 {
     QMediaPlayer *sound =new QMediaPlayer();
     sound-> setMedia(QUrl("C:/Users/hp/Downloads/Mouse-Click-03-m-FesliyanStudios.com.mp3"));
@@ -456,7 +456,7 @@ void MainWindow::on_pushButton_18_clicked()
 
 }
 
-void MainWindow::on_pushButton_19_clicked()
+void MainWindow::on_pushButton_ExcelP_clicked()
 {
     QMediaPlayer *sound =new QMediaPlayer();
     sound-> setMedia(QUrl("C:/Users/hp/Downloads/Mouse-Click-03-m-FesliyanStudios.com.mp3"));
@@ -464,7 +464,7 @@ void MainWindow::on_pushButton_19_clicked()
      tmpPatient.exporter(ui->tableView_Patient);
 }
 
-void MainWindow::on_pushButton_7_clicked()
+void MainWindow::on_pushButton_affichertoutP_clicked()
 {
     QMediaPlayer *sound =new QMediaPlayer();
     sound-> setMedia(QUrl("C:/Users/hp/Downloads/Mouse-Click-03-m-FesliyanStudios.com.mp3"));
@@ -473,7 +473,7 @@ void MainWindow::on_pushButton_7_clicked()
 
 }
 
-void MainWindow::on_pushButton_14_clicked()
+void MainWindow::on_pushButton_afficherchambre_clicked()
 {
     QMediaPlayer *sound =new QMediaPlayer();
     sound-> setMedia(QUrl("C:/Users/hp/Downloads/Mouse-Click-03-m-FesliyanStudios.com.mp3"));

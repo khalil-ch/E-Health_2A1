@@ -19,37 +19,37 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_pushButton_clicked();
+    void on_pushButtonAjoutP_clicked();
 
-    void on_pushButton_15_clicked();
+    void on_pushButton_suppP_clicked();
 
-    void on_pushButton_9_clicked();
+    void on_pushButton_ajoutchambre_clicked();
 
-    void on_pushButton_16_clicked();
+    void on_pushButton_suppchambre_clicked();
 
-    void on_pushButton_3_clicked();
+    void on_pushButton_updatepatient_clicked();
 
-    void on_pushButton_10_clicked();
+    void on_pushButton_upatechambre_clicked();
 
-    void on_pushButton_12_clicked();
+    void on_pushButton_rechchambre_clicked();
 
-    void on_pushButton_5_clicked();
+    void on_pushButton_rechpatient_clicked();
 
-    void on_checkBox_3_clicked();
+    void on_checkBox_rechercheage_clicked();
 
-    void on_checkBox_clicked();
+    void on_checkBoxchambre_clicked();
 
-    void on_pushButton_13_clicked();
+    void on_pushButton_PDFchambre_clicked();
 
-    void on_pushButton_6_clicked();
+    void on_pushButton_pdff_clicked();
 
-    void on_pushButton_18_clicked();
+    void on_pushButton_Exelchambre_clicked();
 
-    void on_pushButton_19_clicked();
+    void on_pushButton_ExcelP_clicked();
 
-    void on_pushButton_7_clicked();
+    void on_pushButton_affichertoutP_clicked();
 
-    void on_pushButton_14_clicked();
+    void on_pushButton_afficherchambre_clicked();
 
 private:
     Ui::MainWindow *ui;
