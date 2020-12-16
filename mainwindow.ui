@@ -1606,7 +1606,7 @@ QPushButton:hover:!pressed { color: blue; }</string>
 }</string>
        </property>
       </widget>
-      <widget class="QComboBox" name="comboBox_2">
+      <widget class="QComboBox" name="comboBox_modiftypchambre">
        <property name="geometry">
         <rect>
          <x>70</x>

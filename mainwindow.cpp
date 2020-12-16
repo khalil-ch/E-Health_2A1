@@ -236,7 +236,7 @@ void MainWindow::on_pushButton_upatechambre_clicked()
     
     int numero_chambre= ui->lineEdit_2num->text().toInt();
     int etage=ui->dateEdit_Modifchambre->text().toInt();
-    QString type=ui->comboBox_2->currentText();
+    QString type=ui->comboBox_modiftypchambre->currentText();
 if((etage>=0)&&(numero_chambre>0)&&(type!=""))
 {
         bool test = tmpChambre.update(id,etage,numero_chambre,type);
