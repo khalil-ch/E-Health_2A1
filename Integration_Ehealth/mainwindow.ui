@@ -3654,8 +3654,7 @@ subcontrol-origin: padding;
               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
              <property name="styleSheet">
-              <string notr="true">
-</string>
+              <string notr="true"/>
              </property>
             </widget>
             <widget class="QCheckBox" name="checkBox_rechercheage">
@@ -3881,7 +3880,7 @@ QPushButton:hover:!pressed { color: gray; }
             <widget class="QSlider" name="horizontalSlider">
              <property name="geometry">
               <rect>
-               <x>260</x>
+               <x>280</x>
                <y>110</y>
                <width>160</width>
                <height>22</height>
@@ -3935,8 +3934,7 @@ QPushButton:hover:!pressed { color: gray; }
              </rect>
             </property>
             <property name="styleSheet">
-             <string notr="true">
-</string>
+             <string notr="true"/>
             </property>
             <property name="title">
              <string>Modifier Patient</string>
