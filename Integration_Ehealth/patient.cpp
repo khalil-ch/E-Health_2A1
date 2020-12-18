@@ -4,6 +4,7 @@
 #include <QDate>
 #include <QChar>
 #include<QSqlRecord>
+//test
 patient::patient()
 {
     this->cin="";
