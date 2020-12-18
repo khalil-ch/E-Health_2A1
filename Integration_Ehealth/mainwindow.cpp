@@ -348,7 +348,7 @@ void MainWindow::on_Login_clicked()
 {
     if(ui->loginLineEdit->text()=="firas")
             ui->stackedWidget->setCurrentIndex(0);
-    else if (ui->loginLineEdit->text()=="eya")
+    if (ui->loginLineEdit->text()=="eya")
         ui->stackedWidget->setCurrentIndex(2);
 }
 

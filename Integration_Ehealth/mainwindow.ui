@@ -188,7 +188,7 @@ QCheckBox::indicator:disabled
            <string notr="true"/>
           </property>
           <property name="currentIndex">
-           <number>0</number>
+           <number>1</number>
           </property>
           <widget class="QWidget" name="tab">
            <attribute name="title">
@@ -3307,7 +3307,7 @@ QPushButton:pressed
            <string notr="true"/>
           </property>
           <property name="currentIndex">
-           <number>0</number>
+           <number>1</number>
           </property>
           <widget class="QWidget" name="tab_3">
            <attribute name="title">
@@ -3418,12 +3418,22 @@ QPushButton:pressed
              <property name="styleSheet">
               <string notr="true">QPushButton
 {
-  border: 2px solid black;
-  border-radius: 10px;
-  padding: 0 8px;
+    color: #b1b1b1;
+    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #565656, stop: 0.1 #525252, stop: 0.5 #4e4e4e, stop: 0.9 #4a4a4a, stop: 1 #464646);
+    border-width: 1px;
+    border-color: #1e1e1e;
+    border-style: solid;
+    border-radius: 6;
+    padding: 3px;
+    font-size: 12px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
-QPushButton:hover:!pressed { color: gray; }
-</string>
+
+QPushButton:pressed
+{
+    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #2d2d2d, stop: 0.1 #2b2b2b, stop: 0.5 #292929, stop: 0.9 #282828, stop: 1 #252525);
+}</string>
              </property>
              <property name="text">
               <string>Ajouter</string>
@@ -3441,11 +3451,22 @@ QPushButton:hover:!pressed { color: gray; }
              <property name="styleSheet">
               <string notr="true">QPushButton
 {
-  border: 2px solid black;
-  border-radius: 10px;
-  padding: 0 8px;
+    color: #b1b1b1;
+    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #565656, stop: 0.1 #525252, stop: 0.5 #4e4e4e, stop: 0.9 #4a4a4a, stop: 1 #464646);
+    border-width: 1px;
+    border-color: #1e1e1e;
+    border-style: solid;
+    border-radius: 6;
+    padding: 3px;
+    font-size: 12px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
-QPushButton:hover:!pressed { color: gray; }
+
+QPushButton:pressed
+{
+    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #2d2d2d, stop: 0.1 #2b2b2b, stop: 0.5 #292929, stop: 0.9 #282828, stop: 1 #252525);
+}
 </string>
              </property>
              <property name="text">
@@ -3462,15 +3483,16 @@ QPushButton:hover:!pressed { color: gray; }
               </rect>
              </property>
              <property name="styleSheet">
-              <string notr="true">QLineEdit {
-    border: 2px solid gray;
-    border-radius: 10px;
-    padding: 0 8px;
-    background: white;
-    selection-background-color: darkgray;
-    border: 1.5px dashed black;
-
-}</string>
+              <string notr="true">QLineEdit
+{
+    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #4d4d4d, stop: 0 #646464, stop: 1 #5d5d5d);
+    padding: 1px;
+    border-style: solid;
+    border: 1px solid #1e1e1e;
+color: rgb(255, 170, 0);
+    border-radius: 5;
+}
+</string>
              </property>
             </widget>
             <widget class="QLineEdit" name="lineEdit_nompatient">
@@ -3483,15 +3505,16 @@ QPushButton:hover:!pressed { color: gray; }
               </rect>
              </property>
              <property name="styleSheet">
-              <string notr="true">QLineEdit {
-    border: 2px solid gray;
-    border-radius: 10px;
-    padding: 0 8px;
-    background: white;
-    selection-background-color: darkgray;
-    border: 1.5px dashed black;
-
-}</string>
+              <string notr="true">QLineEdit
+{
+    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #4d4d4d, stop: 0 #646464, stop: 1 #5d5d5d);
+    padding: 1px;
+    border-style: solid;
+    border: 1px solid #1e1e1e;
+color: rgb(255, 170, 0);
+    border-radius: 5;
+}
+</string>
              </property>
             </widget>
             <widget class="QLineEdit" name="lineEdit_age">
@@ -3504,15 +3527,16 @@ QPushButton:hover:!pressed { color: gray; }
               </rect>
              </property>
              <property name="styleSheet">
-              <string notr="true">QLineEdit {
-    border: 2px solid gray;
-    border-radius: 10px;
-    padding: 0 8px;
-    background: white;
-    selection-background-color: darkgray;
-    border: 1.5px dashed black;
-
-}</string>
+              <string notr="true">QLineEdit
+{
+    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #4d4d4d, stop: 0 #646464, stop: 1 #5d5d5d);
+    padding: 1px;
+    border-style: solid;
+    border: 1px solid #1e1e1e;
+color: rgb(255, 170, 0);
+    border-radius: 5;
+}
+</string>
              </property>
             </widget>
             <widget class="QLineEdit" name="lineEdit_duree">
@@ -3525,15 +3549,16 @@ QPushButton:hover:!pressed { color: gray; }
               </rect>
              </property>
              <property name="styleSheet">
-              <string notr="true">QLineEdit {
-    border: 2px solid gray;
-    border-radius: 10px;
-    padding: 0 8px;
-    background: white;
-    selection-background-color: darkgray;
-    border: 1.5px dashed black;
-
-}</string>
+              <string notr="true">QLineEdit
+{
+    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #4d4d4d, stop: 0 #646464, stop: 1 #5d5d5d);
+    padding: 1px;
+    border-style: solid;
+    border: 1px solid #1e1e1e;
+color: rgb(255, 170, 0);
+    border-radius: 5;
+}
+</string>
              </property>
             </widget>
             <widget class="QDateEdit" name="dateEditajoutp">
@@ -3580,15 +3605,16 @@ subcontrol-origin: padding;
               </rect>
              </property>
              <property name="styleSheet">
-              <string notr="true">QLineEdit {
-    border: 2px solid gray;
-    border-radius: 10px;
-    padding: 0 8px;
-    background: white;
-    selection-background-color: darkgray;
-    border: 1.5px dashed black;
-
-}</string>
+              <string notr="true">QLineEdit
+{
+    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #4d4d4d, stop: 0 #646464, stop: 1 #5d5d5d);
+    padding: 1px;
+    border-style: solid;
+    border: 1px solid #1e1e1e;
+color: rgb(255, 170, 0);
+    border-radius: 5;
+}
+</string>
              </property>
             </widget>
             <widget class="QLabel" name="label_23">
@@ -3614,15 +3640,16 @@ subcontrol-origin: padding;
               </rect>
              </property>
              <property name="styleSheet">
-              <string notr="true">QLineEdit {
-    border: 2px solid gray;
-    border-radius: 10px;
-    padding: 0 8px;
-    background: white;
-    selection-background-color: darkgray;
-    border: 1.5px dashed black;
-
-}</string>
+              <string notr="true">QLineEdit
+{
+    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #4d4d4d, stop: 0 #646464, stop: 1 #5d5d5d);
+    padding: 1px;
+    border-style: solid;
+    border: 1px solid #1e1e1e;
+color: rgb(255, 170, 0);
+    border-radius: 5;
+}
+</string>
              </property>
             </widget>
            </widget>
@@ -3698,15 +3725,16 @@ subcontrol-origin: padding;
                </rect>
               </property>
               <property name="styleSheet">
-               <string notr="true">QLineEdit {
-    border: 2px solid gray;
-    border-radius: 10px;
-    padding: 0 8px;
-    background: white;
-    selection-background-color: darkgray;
-    border: 1.5px dashed black;
-
-}</string>
+               <string notr="true">QLineEdit
+{
+    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #4d4d4d, stop: 0 #646464, stop: 1 #5d5d5d);
+    padding: 1px;
+    border-style: solid;
+    border: 1px solid #1e1e1e;
+color: rgb(255, 170, 0);
+    border-radius: 5;
+}
+</string>
               </property>
              </widget>
              <widget class="QLabel" name="label_25">
@@ -3734,13 +3762,22 @@ subcontrol-origin: padding;
               <property name="styleSheet">
                <string notr="true">QPushButton
 {
-  border: 2px solid black;
-  border-radius: 10px;
-  padding: 0 8px;
-  background: white;
+    color: #b1b1b1;
+    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #565656, stop: 0.1 #525252, stop: 0.5 #4e4e4e, stop: 0.9 #4a4a4a, stop: 1 #464646);
+    border-width: 1px;
+    border-color: #1e1e1e;
+    border-style: solid;
+    border-radius: 6;
+    padding: 3px;
+    font-size: 12px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
-QPushButton:hover:!pressed { color: gray; }
-</string>
+
+QPushButton:pressed
+{
+    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #2d2d2d, stop: 0.1 #2b2b2b, stop: 0.5 #292929, stop: 0.9 #282828, stop: 1 #252525);
+}</string>
               </property>
               <property name="text">
                <string>Rechercher</string>
@@ -3769,15 +3806,16 @@ QPushButton:hover:!pressed { color: gray; }
                </rect>
               </property>
               <property name="styleSheet">
-               <string notr="true">QLineEdit {
-    border: 2px solid gray;
-    border-radius: 10px;
-    padding: 0 8px;
-    background: white;
-    selection-background-color: darkgray;
-    border: 1.5px dashed black;
-
-}</string>
+               <string notr="true">QLineEdit
+{
+    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #4d4d4d, stop: 0 #646464, stop: 1 #5d5d5d);
+    padding: 1px;
+    border-style: solid;
+    border: 1px solid #1e1e1e;
+color: rgb(255, 170, 0);
+    border-radius: 5;
+}
+</string>
               </property>
               <property name="text">
                <string/>
@@ -3806,15 +3844,16 @@ QPushButton:hover:!pressed { color: gray; }
                </rect>
               </property>
               <property name="styleSheet">
-               <string notr="true">QLineEdit {
-    border: 2px solid gray;
-    border-radius: 10px;
-    padding: 0 8px;
-    background: white;
-    selection-background-color: darkgray;
-    border: 1.5px dashed black;
-
-}</string>
+               <string notr="true">QLineEdit
+{
+    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #4d4d4d, stop: 0 #646464, stop: 1 #5d5d5d);
+    padding: 1px;
+    border-style: solid;
+    border: 1px solid #1e1e1e;
+color: rgb(255, 170, 0);
+    border-radius: 5;
+}
+</string>
               </property>
              </widget>
             </widget>
@@ -3843,12 +3882,22 @@ QPushButton:hover:!pressed { color: gray; }
              <property name="styleSheet">
               <string notr="true">QPushButton
 {
-  border: 2px solid black;
-  border-radius: 10px;
-  padding: 0 8px;
+    color: #b1b1b1;
+    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #565656, stop: 0.1 #525252, stop: 0.5 #4e4e4e, stop: 0.9 #4a4a4a, stop: 1 #464646);
+    border-width: 1px;
+    border-color: #1e1e1e;
+    border-style: solid;
+    border-radius: 6;
+    padding: 3px;
+    font-size: 12px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
-QPushButton:hover:!pressed { color: gray; }
-</string>
+
+QPushButton:pressed
+{
+    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #2d2d2d, stop: 0.1 #2b2b2b, stop: 0.5 #292929, stop: 0.9 #282828, stop: 1 #252525);
+}</string>
              </property>
              <property name="text">
               <string>Excel</string>
@@ -3866,12 +3915,22 @@ QPushButton:hover:!pressed { color: gray; }
              <property name="styleSheet">
               <string notr="true">QPushButton
 {
-  border: 2px solid black;
-  border-radius: 10px;
-  padding: 0 8px;
+    color: #b1b1b1;
+    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #565656, stop: 0.1 #525252, stop: 0.5 #4e4e4e, stop: 0.9 #4a4a4a, stop: 1 #464646);
+    border-width: 1px;
+    border-color: #1e1e1e;
+    border-style: solid;
+    border-radius: 6;
+    padding: 3px;
+    font-size: 12px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
-QPushButton:hover:!pressed { color: gray; }
-</string>
+
+QPushButton:pressed
+{
+    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #2d2d2d, stop: 0.1 #2b2b2b, stop: 0.5 #292929, stop: 0.9 #282828, stop: 1 #252525);
+}</string>
              </property>
              <property name="text">
               <string> PDF</string>
@@ -3912,12 +3971,22 @@ QPushButton:hover:!pressed { color: gray; }
              <property name="styleSheet">
               <string notr="true">QPushButton
 {
-  border: 2px solid black;
-  border-radius: 10px;
-  padding: 0 8px;
+    color: #b1b1b1;
+    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #565656, stop: 0.1 #525252, stop: 0.5 #4e4e4e, stop: 0.9 #4a4a4a, stop: 1 #464646);
+    border-width: 1px;
+    border-color: #1e1e1e;
+    border-style: solid;
+    border-radius: 6;
+    padding: 3px;
+    font-size: 12px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
-QPushButton:hover:!pressed { color: gray; }
-</string>
+
+QPushButton:pressed
+{
+    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #2d2d2d, stop: 0.1 #2b2b2b, stop: 0.5 #292929, stop: 0.9 #282828, stop: 1 #252525);
+}</string>
              </property>
              <property name="text">
               <string>Afficher tout</string>
@@ -4029,12 +4098,22 @@ QPushButton:hover:!pressed { color: gray; }
              <property name="styleSheet">
               <string notr="true">QPushButton
 {
-  border: 2px solid black;
-  border-radius: 10px;
-  padding: 0 8px;
+    color: #b1b1b1;
+    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #565656, stop: 0.1 #525252, stop: 0.5 #4e4e4e, stop: 0.9 #4a4a4a, stop: 1 #464646);
+    border-width: 1px;
+    border-color: #1e1e1e;
+    border-style: solid;
+    border-radius: 6;
+    padding: 3px;
+    font-size: 12px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
-QPushButton:hover:!pressed { color: gray; }
-</string>
+
+QPushButton:pressed
+{
+    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #2d2d2d, stop: 0.1 #2b2b2b, stop: 0.5 #292929, stop: 0.9 #282828, stop: 1 #252525);
+}</string>
              </property>
              <property name="text">
               <string>Mettre à jour</string>
@@ -4055,12 +4134,22 @@ QPushButton:hover:!pressed { color: gray; }
              <property name="styleSheet">
               <string notr="true">QPushButton
 {
-  border: 2px solid black;
-  border-radius: 10px;
-  padding: 0 8px;
+    color: #b1b1b1;
+    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #565656, stop: 0.1 #525252, stop: 0.5 #4e4e4e, stop: 0.9 #4a4a4a, stop: 1 #464646);
+    border-width: 1px;
+    border-color: #1e1e1e;
+    border-style: solid;
+    border-radius: 6;
+    padding: 3px;
+    font-size: 12px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
-QPushButton:hover:!pressed { color: gray; }
-</string>
+
+QPushButton:pressed
+{
+    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #2d2d2d, stop: 0.1 #2b2b2b, stop: 0.5 #292929, stop: 0.9 #282828, stop: 1 #252525);
+}</string>
              </property>
              <property name="text">
               <string>Annuler</string>
@@ -4076,15 +4165,16 @@ QPushButton:hover:!pressed { color: gray; }
               </rect>
              </property>
              <property name="styleSheet">
-              <string notr="true">QLineEdit {
-    border: 2px solid gray;
-    border-radius: 10px;
-    padding: 0 8px;
-    background: white;
-    selection-background-color: darkgray;
-    border: 1.5px dashed black;
-
-}</string>
+              <string notr="true">QLineEdit
+{
+    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #4d4d4d, stop: 0 #646464, stop: 1 #5d5d5d);
+    padding: 1px;
+    border-style: solid;
+    border: 1px solid #1e1e1e;
+color: rgb(255, 170, 0);
+    border-radius: 5;
+}
+</string>
              </property>
             </widget>
             <widget class="QLineEdit" name="lineEdit_nomp">
@@ -4097,15 +4187,16 @@ QPushButton:hover:!pressed { color: gray; }
               </rect>
              </property>
              <property name="styleSheet">
-              <string notr="true">QLineEdit {
-    border: 2px solid gray;
-    border-radius: 10px;
-    padding: 0 8px;
-    background: white;
-    selection-background-color: darkgray;
-    border: 1.5px dashed black;
-
-}</string>
+              <string notr="true">QLineEdit
+{
+    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #4d4d4d, stop: 0 #646464, stop: 1 #5d5d5d);
+    padding: 1px;
+    border-style: solid;
+    border: 1px solid #1e1e1e;
+color: rgb(255, 170, 0);
+    border-radius: 5;
+}
+</string>
              </property>
             </widget>
             <widget class="QLineEdit" name="lineEdit_prenomp">
@@ -4118,15 +4209,16 @@ QPushButton:hover:!pressed { color: gray; }
               </rect>
              </property>
              <property name="styleSheet">
-              <string notr="true">QLineEdit {
-    border: 2px solid gray;
-    border-radius: 10px;
-    padding: 0 8px;
-    background: white;
-    selection-background-color: darkgray;
-    border: 1.5px dashed black;
-
-}</string>
+              <string notr="true">QLineEdit
+{
+    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #4d4d4d, stop: 0 #646464, stop: 1 #5d5d5d);
+    padding: 1px;
+    border-style: solid;
+    border: 1px solid #1e1e1e;
+color: rgb(255, 170, 0);
+    border-radius: 5;
+}
+</string>
              </property>
             </widget>
             <widget class="QLineEdit" name="lineEdit_agep">
@@ -4139,15 +4231,16 @@ QPushButton:hover:!pressed { color: gray; }
               </rect>
              </property>
              <property name="styleSheet">
-              <string notr="true">QLineEdit {
-    border: 2px solid gray;
-    border-radius: 10px;
-    padding: 0 8px;
-    background: white;
-    selection-background-color: darkgray;
-    border: 1.5px dashed black;
-
-}</string>
+              <string notr="true">QLineEdit
+{
+    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #4d4d4d, stop: 0 #646464, stop: 1 #5d5d5d);
+    padding: 1px;
+    border-style: solid;
+    border: 1px solid #1e1e1e;
+color: rgb(255, 170, 0);
+    border-radius: 5;
+}
+</string>
              </property>
             </widget>
             <widget class="QLineEdit" name="lineEdit_dureep">
@@ -4160,15 +4253,16 @@ QPushButton:hover:!pressed { color: gray; }
               </rect>
              </property>
              <property name="styleSheet">
-              <string notr="true">QLineEdit {
-    border: 2px solid gray;
-    border-radius: 10px;
-    padding: 0 8px;
-    background: white;
-    selection-background-color: darkgray;
-    border: 1.5px dashed black;
-
-}</string>
+              <string notr="true">QLineEdit
+{
+    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #4d4d4d, stop: 0 #646464, stop: 1 #5d5d5d);
+    padding: 1px;
+    border-style: solid;
+    border: 1px solid #1e1e1e;
+color: rgb(255, 170, 0);
+    border-radius: 5;
+}
+</string>
              </property>
             </widget>
             <widget class="QDateEdit" name="dateEditModifP">
@@ -4228,15 +4322,16 @@ subcontrol-origin: padding;
               </rect>
              </property>
              <property name="styleSheet">
-              <string notr="true">QLineEdit {
-    border: 2px solid gray;
-    border-radius: 10px;
-    padding: 0 8px;
-    background: white;
-    selection-background-color: darkgray;
-    border: 1.5px dashed black;
-
-}</string>
+              <string notr="true">QLineEdit
+{
+    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #4d4d4d, stop: 0 #646464, stop: 1 #5d5d5d);
+    padding: 1px;
+    border-style: solid;
+    border: 1px solid #1e1e1e;
+color: rgb(255, 170, 0);
+    border-radius: 5;
+}
+</string>
              </property>
             </widget>
            </widget>
@@ -4267,13 +4362,22 @@ subcontrol-origin: padding;
              <property name="styleSheet">
               <string notr="true">QPushButton
 {
-  border: 2px solid black;
-  border-radius: 10px;
-  padding: 0 8px;
-  background: white;
+    color: #b1b1b1;
+    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #565656, stop: 0.1 #525252, stop: 0.5 #4e4e4e, stop: 0.9 #4a4a4a, stop: 1 #464646);
+    border-width: 1px;
+    border-color: #1e1e1e;
+    border-style: solid;
+    border-radius: 6;
+    padding: 3px;
+    font-size: 12px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
-QPushButton:hover:!pressed { color: gray; }
 
+QPushButton:pressed
+{
+    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #2d2d2d, stop: 0.1 #2b2b2b, stop: 0.5 #292929, stop: 0.9 #282828, stop: 1 #252525);
+}
 </string>
              </property>
              <property name="text">
@@ -4303,14 +4407,14 @@ QPushButton:hover:!pressed { color: gray; }
               </rect>
              </property>
              <property name="styleSheet">
-              <string notr="true">QLineEdit {
-    border: 2px solid gray;
-    border-radius: 10px;
-    padding: 0 8px;
-    background: white;
-    selection-background-color: darkgray;
-    border: 1.5px dashed black;
-
+              <string notr="true">QLineEdit
+{
+    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #4d4d4d, stop: 0 #646464, stop: 1 #5d5d5d);
+    padding: 1px;
+    border-style: solid;
+    border: 1px solid #1e1e1e;
+color: rgb(255, 170, 0);
+    border-radius: 5;
 }
 </string>
              </property>
@@ -4375,17 +4479,16 @@ QPushButton:hover:!pressed { color: gray; }
               </rect>
              </property>
              <property name="styleSheet">
-              <string notr="true">QLineEdit {
-    border: 2px solid gray;
-    border-radius: 10px;
-    padding: 0 8px;
-    background: white;
-    selection-background-color: darkgray;
-    border: 3px dashed black;
-    border: 1.5px dashed black;
-
-
-}</string>
+              <string notr="true">QLineEdit
+{
+    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #4d4d4d, stop: 0 #646464, stop: 1 #5d5d5d);
+    padding: 1px;
+    border-style: solid;
+    border: 1px solid #1e1e1e;
+color: rgb(255, 170, 0);
+    border-radius: 5;
+}
+</string>
              </property>
             </widget>
             <widget class="QPushButton" name="pushButton_8">
@@ -4400,12 +4503,22 @@ QPushButton:hover:!pressed { color: gray; }
              <property name="styleSheet">
               <string notr="true">QPushButton
 {
-  border: 2px solid black;
-  border-radius: 10px;
-  padding: 0 8px;
+    color: #b1b1b1;
+    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #565656, stop: 0.1 #525252, stop: 0.5 #4e4e4e, stop: 0.9 #4a4a4a, stop: 1 #464646);
+    border-width: 1px;
+    border-color: #1e1e1e;
+    border-style: solid;
+    border-radius: 6;
+    padding: 3px;
+    font-size: 12px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
-QPushButton:hover:!pressed { color: gray; }
-</string>
+
+QPushButton:pressed
+{
+    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #2d2d2d, stop: 0.1 #2b2b2b, stop: 0.5 #292929, stop: 0.9 #282828, stop: 1 #252525);
+}</string>
              </property>
              <property name="text">
               <string>Annuler</string>
@@ -4426,12 +4539,22 @@ QPushButton:hover:!pressed { color: gray; }
              <property name="styleSheet">
               <string notr="true">QPushButton
 {
-  border: 2px solid black;
-  border-radius: 10px;
-  padding: 0 8px;
+    color: #b1b1b1;
+    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #565656, stop: 0.1 #525252, stop: 0.5 #4e4e4e, stop: 0.9 #4a4a4a, stop: 1 #464646);
+    border-width: 1px;
+    border-color: #1e1e1e;
+    border-style: solid;
+    border-radius: 6;
+    padding: 3px;
+    font-size: 12px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
-QPushButton:hover:!pressed { color: gray; }
 
+QPushButton:pressed
+{
+    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #2d2d2d, stop: 0.1 #2b2b2b, stop: 0.5 #292929, stop: 0.9 #282828, stop: 1 #252525);
+}
 
 </string>
              </property>
@@ -4449,15 +4572,16 @@ QPushButton:hover:!pressed { color: gray; }
               </rect>
              </property>
              <property name="styleSheet">
-              <string notr="true">QLineEdit {
-    border: 2px solid gray;
-    border-radius: 10px;
-    padding: 0 8px;
-    background: white;
-    selection-background-color: darkgray;
-    border: 1.5px dashed black;
-
-}</string>
+              <string notr="true">QLineEdit
+{
+    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #4d4d4d, stop: 0 #646464, stop: 1 #5d5d5d);
+    padding: 1px;
+    border-style: solid;
+    border: 1px solid #1e1e1e;
+color: rgb(255, 170, 0);
+    border-radius: 5;
+}
+</string>
              </property>
             </widget>
             <widget class="QLineEdit" name="lineEdit_numchambre">
@@ -4470,15 +4594,16 @@ QPushButton:hover:!pressed { color: gray; }
               </rect>
              </property>
              <property name="styleSheet">
-              <string notr="true">QLineEdit {
-    border: 2px solid gray;
-    border-radius: 10px;
-    padding: 0 8px;
-    background: white;
-    selection-background-color: darkgray;
-    border: 1.5px dashed black;
-
-}</string>
+              <string notr="true">QLineEdit
+{
+    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #4d4d4d, stop: 0 #646464, stop: 1 #5d5d5d);
+    padding: 1px;
+    border-style: solid;
+    border: 1px solid #1e1e1e;
+color: rgb(255, 170, 0);
+    border-radius: 5;
+}
+</string>
              </property>
             </widget>
             <widget class="QLabel" name="label_17">
@@ -4595,15 +4720,16 @@ QPushButton:hover:!pressed { color: gray; }
               </rect>
              </property>
              <property name="styleSheet">
-              <string notr="true">QLineEdit {
-    border: 2px solid gray;
-    border-radius: 10px;
-    padding: 0 8px;
-    background: white;
-    selection-background-color: darkgray;
-    border: 2px dashed black;
-
-}</string>
+              <string notr="true">QLineEdit
+{
+    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #4d4d4d, stop: 0 #646464, stop: 1 #5d5d5d);
+    padding: 1px;
+    border-style: solid;
+    border: 1px solid #1e1e1e;
+color: rgb(255, 170, 0);
+    border-radius: 5;
+}
+</string>
              </property>
             </widget>
             <widget class="QPushButton" name="pushButton_upatechambre">
@@ -4618,13 +4744,22 @@ QPushButton:hover:!pressed { color: gray; }
              <property name="styleSheet">
               <string notr="true">QPushButton
 {
-  border: 2px solid black;
-  border-radius: 10px;
-  padding: 0 8px;
-
+    color: #b1b1b1;
+    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #565656, stop: 0.1 #525252, stop: 0.5 #4e4e4e, stop: 0.9 #4a4a4a, stop: 1 #464646);
+    border-width: 1px;
+    border-color: #1e1e1e;
+    border-style: solid;
+    border-radius: 6;
+    padding: 3px;
+    font-size: 12px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
-QPushButton:hover:!pressed { color: gray; }
-</string>
+
+QPushButton:pressed
+{
+    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #2d2d2d, stop: 0.1 #2b2b2b, stop: 0.5 #292929, stop: 0.9 #282828, stop: 1 #252525);
+}</string>
              </property>
              <property name="text">
               <string>Mettre à jour</string>
@@ -4642,12 +4777,22 @@ QPushButton:hover:!pressed { color: gray; }
              <property name="styleSheet">
               <string notr="true">QPushButton
 {
-  border: 2px solid black;
-  border-radius: 10px;
-  padding: 0 8px;
+    color: #b1b1b1;
+    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #565656, stop: 0.1 #525252, stop: 0.5 #4e4e4e, stop: 0.9 #4a4a4a, stop: 1 #464646);
+    border-width: 1px;
+    border-color: #1e1e1e;
+    border-style: solid;
+    border-radius: 6;
+    padding: 3px;
+    font-size: 12px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
-QPushButton:hover:!pressed { color: gray; }
-</string>
+
+QPushButton:pressed
+{
+    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #2d2d2d, stop: 0.1 #2b2b2b, stop: 0.5 #292929, stop: 0.9 #282828, stop: 1 #252525);
+}</string>
              </property>
              <property name="text">
               <string>Annuler</string>
@@ -4676,15 +4821,16 @@ QPushButton:hover:!pressed { color: gray; }
               </rect>
              </property>
              <property name="styleSheet">
-              <string notr="true">QLineEdit {
-    border: 2px solid gray;
-    border-radius: 10px;
-    padding: 0 8px;
-    background: white;
-    selection-background-color: darkgray;
-    border: 1.5px dashed black;
-
-}</string>
+              <string notr="true">QLineEdit
+{
+    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #4d4d4d, stop: 0 #646464, stop: 1 #5d5d5d);
+    padding: 1px;
+    border-style: solid;
+    border: 1px solid #1e1e1e;
+color: rgb(255, 170, 0);
+    border-radius: 5;
+}
+</string>
              </property>
             </widget>
             <widget class="QLabel" name="label_27">
@@ -4710,15 +4856,16 @@ QPushButton:hover:!pressed { color: gray; }
               </rect>
              </property>
              <property name="styleSheet">
-              <string notr="true">QLineEdit {
-    border: 2px solid gray;
-    border-radius: 10px;
-    padding: 0 8px;
-    background: white;
-    selection-background-color: darkgray;
-    border: 2px dashed black;
-
-}</string>
+              <string notr="true">QLineEdit
+{
+    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #4d4d4d, stop: 0 #646464, stop: 1 #5d5d5d);
+    padding: 1px;
+    border-style: solid;
+    border: 1px solid #1e1e1e;
+color: rgb(255, 170, 0);
+    border-radius: 5;
+}
+</string>
              </property>
             </widget>
             <widget class="QComboBox" name="comboBox_modiftypchambre">
@@ -4784,12 +4931,22 @@ QPushButton:hover:!pressed { color: gray; }
              <property name="styleSheet">
               <string notr="true">QPushButton
 {
-  border: 2px solid black;
-  border-radius: 10px;
-  padding: 0 8px;
+    color: #b1b1b1;
+    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #565656, stop: 0.1 #525252, stop: 0.5 #4e4e4e, stop: 0.9 #4a4a4a, stop: 1 #464646);
+    border-width: 1px;
+    border-color: #1e1e1e;
+    border-style: solid;
+    border-radius: 6;
+    padding: 3px;
+    font-size: 12px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
-QPushButton:hover:!pressed { color: gray; }
-</string>
+
+QPushButton:pressed
+{
+    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #2d2d2d, stop: 0.1 #2b2b2b, stop: 0.5 #292929, stop: 0.9 #282828, stop: 1 #252525);
+}</string>
              </property>
              <property name="text">
               <string>PDF</string>
@@ -4859,14 +5016,14 @@ QPushButton:hover:!pressed { color: gray; }
                </rect>
               </property>
               <property name="styleSheet">
-               <string notr="true">QLineEdit {
-    border: 2px solid gray;
-    border-radius: 10px;
-    padding: 0 8px;
-    background: white;
-    selection-background-color: darkgray;
-    border: 1.5px dashed black;
-
+               <string notr="true">QLineEdit
+{
+    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #4d4d4d, stop: 0 #646464, stop: 1 #5d5d5d);
+    padding: 1px;
+    border-style: solid;
+    border: 1px solid #1e1e1e;
+color: rgb(255, 170, 0);
+    border-radius: 5;
 }
 </string>
               </property>
@@ -4910,15 +5067,16 @@ QPushButton:hover:!pressed { color: gray; }
                </rect>
               </property>
               <property name="styleSheet">
-               <string notr="true">QLineEdit {
-    border: 2px solid gray;
-    border-radius: 10px;
-    padding: 0 8px;
-    background: white;
-    selection-background-color: darkgray;
-    border: 1.5px dashed black;
-
-}</string>
+               <string notr="true">QLineEdit
+{
+    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #4d4d4d, stop: 0 #646464, stop: 1 #5d5d5d);
+    padding: 1px;
+    border-style: solid;
+    border: 1px solid #1e1e1e;
+color: rgb(255, 170, 0);
+    border-radius: 5;
+}
+</string>
               </property>
              </widget>
              <widget class="QLineEdit" name="lineEdit_numrech">
@@ -4931,15 +5089,16 @@ QPushButton:hover:!pressed { color: gray; }
                </rect>
               </property>
               <property name="styleSheet">
-               <string notr="true">QLineEdit {
-    border: 2px solid gray;
-    border-radius: 10px;
-    padding: 0 8px;
-    background: white;
-    selection-background-color: darkgray;
-    border: 1.5px dashed black;
-
-}</string>
+               <string notr="true">QLineEdit
+{
+    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #4d4d4d, stop: 0 #646464, stop: 1 #5d5d5d);
+    padding: 1px;
+    border-style: solid;
+    border: 1px solid #1e1e1e;
+color: rgb(255, 170, 0);
+    border-radius: 5;
+}
+</string>
               </property>
              </widget>
              <widget class="QLabel" name="label_33">
@@ -4967,12 +5126,22 @@ QPushButton:hover:!pressed { color: gray; }
               <property name="styleSheet">
                <string notr="true">QPushButton
 {
-  border: 2px solid black;
-  border-radius: 10px;
-  padding: 0 8px;
+    color: #b1b1b1;
+    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #565656, stop: 0.1 #525252, stop: 0.5 #4e4e4e, stop: 0.9 #4a4a4a, stop: 1 #464646);
+    border-width: 1px;
+    border-color: #1e1e1e;
+    border-style: solid;
+    border-radius: 6;
+    padding: 3px;
+    font-size: 12px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
-QPushButton:hover:!pressed { color: gray; }
-</string>
+
+QPushButton:pressed
+{
+    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #2d2d2d, stop: 0.1 #2b2b2b, stop: 0.5 #292929, stop: 0.9 #282828, stop: 1 #252525);
+}</string>
               </property>
               <property name="text">
                <string>Rechercher</string>
@@ -4991,12 +5160,22 @@ QPushButton:hover:!pressed { color: gray; }
              <property name="styleSheet">
               <string notr="true">QPushButton
 {
-  border: 2px solid black;
-  border-radius: 10px;
-  padding: 0 8px;
+    color: #b1b1b1;
+    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #565656, stop: 0.1 #525252, stop: 0.5 #4e4e4e, stop: 0.9 #4a4a4a, stop: 1 #464646);
+    border-width: 1px;
+    border-color: #1e1e1e;
+    border-style: solid;
+    border-radius: 6;
+    padding: 3px;
+    font-size: 12px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
-QPushButton:hover:!pressed { color: gray; }
-</string>
+
+QPushButton:pressed
+{
+    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #2d2d2d, stop: 0.1 #2b2b2b, stop: 0.5 #292929, stop: 0.9 #282828, stop: 1 #252525);
+}</string>
              </property>
              <property name="text">
               <string>Excel</string>
@@ -5014,12 +5193,22 @@ QPushButton:hover:!pressed { color: gray; }
              <property name="styleSheet">
               <string notr="true">QPushButton
 {
-  border: 2px solid black;
-  border-radius: 10px;
-  padding: 0 8px;
+    color: #b1b1b1;
+    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #565656, stop: 0.1 #525252, stop: 0.5 #4e4e4e, stop: 0.9 #4a4a4a, stop: 1 #464646);
+    border-width: 1px;
+    border-color: #1e1e1e;
+    border-style: solid;
+    border-radius: 6;
+    padding: 3px;
+    font-size: 12px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
-QPushButton:hover:!pressed { color: gray; }
-</string>
+
+QPushButton:pressed
+{
+    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #2d2d2d, stop: 0.1 #2b2b2b, stop: 0.5 #292929, stop: 0.9 #282828, stop: 1 #252525);
+}</string>
              </property>
              <property name="text">
               <string>Afficher tout</string>
@@ -5051,14 +5240,14 @@ QPushButton:hover:!pressed { color: gray; }
               </rect>
              </property>
              <property name="styleSheet">
-              <string notr="true">QLineEdit {
-    border: 2px solid gray;
-    border-radius: 10px;
-    padding: 0 8px;
-    background: white;
-    selection-background-color: darkgray;
-    border: 1.5px dashed black;
-
+              <string notr="true">QLineEdit
+{
+    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #4d4d4d, stop: 0 #646464, stop: 1 #5d5d5d);
+    padding: 1px;
+    border-style: solid;
+    border: 1px solid #1e1e1e;
+color: rgb(255, 170, 0);
+    border-radius: 5;
 }
 </string>
              </property>
@@ -5088,11 +5277,22 @@ QPushButton:hover:!pressed { color: gray; }
              <property name="styleSheet">
               <string notr="true">QPushButton
 {
-  border: 2px solid black;
-  border-radius: 10px;
-  padding: 0 8px;
+    color: #b1b1b1;
+    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #565656, stop: 0.1 #525252, stop: 0.5 #4e4e4e, stop: 0.9 #4a4a4a, stop: 1 #464646);
+    border-width: 1px;
+    border-color: #1e1e1e;
+    border-style: solid;
+    border-radius: 6;
+    padding: 3px;
+    font-size: 12px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
-QPushButton:hover:!pressed { color: gray; }
+
+QPushButton:pressed
+{
+    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #2d2d2d, stop: 0.1 #2b2b2b, stop: 0.5 #292929, stop: 0.9 #282828, stop: 1 #252525);
+}
 </string>
              </property>
              <property name="text">
