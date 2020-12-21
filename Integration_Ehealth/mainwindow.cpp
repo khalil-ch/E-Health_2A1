@@ -370,7 +370,9 @@ QString cin = ui->lineEdit_CINpatient->text();
 
 if(test)
   { ui->tableView_Patient->setModel(tmpPatient.afficher());
-
+    QSystemTrayIcon * notifyIcon = new QSystemTrayIcon;
+               notifyIcon-> show ();
+                notifyIcon-> showMessage ( " GESTION PATIENT " , " Patient ajouté " , QSystemTrayIcon :: Information, 15000 );
    QMessageBox::information(nullptr, QObject::tr("Ajouter Patient"),
                QObject::tr("Patient ajuter.\n""Click Cancel to exit."), QMessageBox::Cancel);
 
@@ -413,6 +415,9 @@ void MainWindow::on_pushButton_updatepatient_clicked()
 
            {
                ui->tableView_Patient->setModel(tmpPatient.afficher());
+               QSystemTrayIcon * notifyIcon = new QSystemTrayIcon;
+                          notifyIcon-> show ();
+                           notifyIcon-> showMessage ( " GESTION PATIENT " , " Patient Modifié " , QSystemTrayIcon :: Information, 15000 );
 
                QMessageBox::information(nullptr, QObject::tr("update "),
                            QObject::tr("Patient modifie\n"
@@ -432,8 +437,11 @@ void MainWindow::on_pushButton_suppP_clicked()
 
        if(test)
           { ui->tableView_Patient->setModel(tmpPatient.afficher());
-
+           QSystemTrayIcon * notifyIcon = new QSystemTrayIcon;
+                      notifyIcon-> show ();
+                       notifyIcon-> showMessage ( " GESTION PATIENT " , " Patient Supprimé " , QSystemTrayIcon :: Information, 15000 );
            QMessageBox::information(nullptr, QObject::tr("supprimer Patient"),
+
                        QObject::tr("Patient supprimer.\n""Click Cancel to exit."), QMessageBox::Cancel);
        }
 
@@ -463,7 +471,9 @@ void MainWindow::on_pushButton_ajoutchambre_clicked()
     bool test=ch.ajouter();
     if(test)
        { ui->tableView_chambre->setModel(tmpChambre.afficher());
-
+        QSystemTrayIcon * notifyIcon = new QSystemTrayIcon;
+                   notifyIcon-> show ();
+                    notifyIcon-> showMessage ( " GESTION CHAMBRE " , " chambre ajouté " , QSystemTrayIcon :: Information, 15000 );
         QMessageBox::information(nullptr, QObject::tr("Ajouter chambre"),
                     QObject::tr("chambre ajouter.\n""Click Cancel to exit."), QMessageBox::Cancel);
     }
@@ -495,7 +505,9 @@ void MainWindow::on_pushButton_upatechambre_clicked()
 
             {
                 ui->tableView_chambre->setModel(tmpChambre.afficher());
-
+                QSystemTrayIcon * notifyIcon = new QSystemTrayIcon;
+                           notifyIcon-> show ();
+                            notifyIcon-> showMessage ( " GESTION CHAMBRE " , " chambre modifié " , QSystemTrayIcon :: Information, 15000 );
                 QMessageBox::information(nullptr, QObject::tr("update "),
                             QObject::tr("Chambre modifie\n"
             "Click Cancel to exit."), QMessageBox::Cancel);}
@@ -512,7 +524,9 @@ void MainWindow::on_pushButton_suppchambre_clicked()
 
        if(test)
           { ui->tableView_chambre->setModel(tmpChambre.afficher());
-
+           QSystemTrayIcon * notifyIcon = new QSystemTrayIcon;
+                      notifyIcon-> show ();
+                       notifyIcon-> showMessage ( " GESTION CHAMBRE " , " Chambre Supprimé " , QSystemTrayIcon :: Information, 15000 );
            QMessageBox::information(nullptr, QObject::tr("supprimer Chambre"),
                        QObject::tr("Chambre supprimer.\n""Click Cancel to exit."), QMessageBox::Cancel);
        }
@@ -576,6 +590,9 @@ void MainWindow::on_checkBox_rechercheage_clicked()
       if (ui->checkBox_rechercheage->isChecked())
       {
           ui->tableView_Patient->setModel(tmpPatient.trier("age"));
+          QSystemTrayIcon * notifyIcon = new QSystemTrayIcon;
+                     notifyIcon-> show ();
+                      notifyIcon-> showMessage ( " GESTION PATIENT " , " Patient Trié " , QSystemTrayIcon :: Information, 15000 );
       }
 }
 
@@ -587,6 +604,9 @@ void MainWindow::on_checkBoxchambre_clicked()
        if (ui->checkBoxchambre->isChecked())
        {
            ui->tableView_chambre->setModel(tmpChambre.trier("numero_chambre"));
+           QSystemTrayIcon * notifyIcon = new QSystemTrayIcon;
+                      notifyIcon-> show ();
+                       notifyIcon-> showMessage ( " GESTION CHAMBRE " , " Chambre Trié " , QSystemTrayIcon :: Information, 15000 );
        }
 }
 
