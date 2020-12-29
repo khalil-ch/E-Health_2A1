@@ -19,11 +19,23 @@
 #include <QPropertyAnimation>
 #include <QMediaPlayer>
 #include  <QSound>
+#include<QString>
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    int ret=A.connect_arduino();
+    switch (ret)
+    {
+     case(0):qDebug()<<"arduino is available and connected to :"<<A.getarduino_port_name();
+        break;
+    case(1):qDebug()<<"arduino is available but not connected to :"<<A.getarduino_port_name();
+       break;
+    case(-1):qDebug()<<"arduino is not available and connected to :"<<A.getarduino_port_name();
+       break;
+    }
+    QObject::connect(A.getserial(),SIGNAL(readyRead()),this,SLOT(update_label()));
     ui->stackedWidget->setCurrentIndex(1);
     ui->tablemed->setModel(temp.afficher());
     ui->tablemed->setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -758,3 +770,10 @@ void MainWindow::on_pushButton_afficherchambre_clicked()
        sound ->play();
        ui->tableView_chambre->setModel(tmpChambre.afficher());
 }
+void MainWindow::update_label()
+{
+   data=A.read_from_arduino();
+   heartRateBPM+=data;
+   qDebug()<< data;
+ui->lineEdit_bpm->setText(heartRateBPM);
+   }

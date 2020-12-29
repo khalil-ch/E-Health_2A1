@@ -5,9 +5,10 @@
 #include "fournisseur.h"
 #include "patient.h"
 #include "chambre.h"
-
+#include "arduino.h"
 #include <QMainWindow>
 #include <QStatusBar>
+#include <QString>
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -22,7 +23,7 @@ public:
 
 private slots:
 
-
+void update_label();
 
     void on_resetmed_clicked();
 
@@ -91,6 +92,9 @@ private:
     fournisseur tempo;
       patient tmpPatient;
       chambre tmpChambre;
+      QByteArray data;
+     QString heartRateBPM="";
 
+      arduino A;
 };
 #endif // MAINWINDOW_H
