@@ -1,6 +1,7 @@
 QT       += core gui sql
 QT +=printsupport
 QT += multimedia
+QT        += core gui serialport
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++11
@@ -10,6 +11,7 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    arduino.cpp \
     chambre.cpp \
     connection.cpp \
     main.cpp \
@@ -17,6 +19,7 @@ SOURCES += \
     patient.cpp
 
 HEADERS += \
+    arduino.h \
     chambre.h \
     connection.h \
     mainwindow.h \

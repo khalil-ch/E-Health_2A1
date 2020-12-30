@@ -5,7 +5,8 @@
 #include "chambre.h"
 #include <QPropertyAnimation>
 #include <QMediaPlayer>
-
+#include "arduino.h"
+#include<QString>
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -15,10 +16,13 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
+
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
 private slots:
+    void update_label();
+
     void on_pushButtonAjoutP_clicked();
 
     void on_pushButton_suppP_clicked();
@@ -57,5 +61,9 @@ private:
     chambre tmpChambre;
     QPropertyAnimation *contract_animation;
     QPropertyAnimation *expand_animation;
+    QByteArray data;
+   QString heartRateBPM="";
+
+    arduino A;
 };
 #endif // MAINWINDOW_H

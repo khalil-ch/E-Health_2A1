@@ -14,12 +14,25 @@
 #include <QPropertyAnimation>
 #include <QMediaPlayer>
 #include  <QSound>
+#include "arduino.h"
+#include <QString>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
-
+ui->setupUi(this);
+int ret=A.connect_arduino();
+switch (ret)
+{
+ case(0):qDebug()<<"arduino is available and connected to :"<<A.getarduino_port_name();
+    break;
+case(1):qDebug()<<"arduino is available but not connected to :"<<A.getarduino_port_name();
+   break;
+case(-1):qDebug()<<"arduino is not available and connected to :"<<A.getarduino_port_name();
+   break;
+}
+QObject::connect(A.getserial(),SIGNAL(readyRead()),this,SLOT(update_label()));
     ui->setupUi(this);
     ui->tableView_Patient->setModel(tmpPatient.afficher());
     ui->tableView_chambre->setModel(tmpChambre.afficher());
@@ -93,6 +106,10 @@ void MainWindow::on_pushButtonAjoutP_clicked()
 
 if(test)
    { ui->tableView_Patient->setModel(tmpPatient.afficher());
+    QSystemTrayIcon * notifyIcon = new QSystemTrayIcon;
+               notifyIcon-> show ();
+
+               notifyIcon-> showMessage ( " GESTION Patient " , " patient ajouté " , QSystemTrayIcon :: Information, 15000 );
 
     QMessageBox::information(nullptr, QObject::tr("Ajouter Patient"),
                 QObject::tr("Patient ajuter.\n""Click Cancel to exit."), QMessageBox::Cancel);
@@ -481,3 +498,11 @@ void MainWindow::on_pushButton_afficherchambre_clicked()
     ui->tableView_chambre->setModel(tmpChambre.afficher());
 
 }
+void MainWindow::update_label()
+{
+   data=A.read_from_arduino();
+   heartRateBPM+=data;
+   qDebug()<< data;
+ui->lineEdit_bpm->setText(heartRateBPM);
+   }
+
