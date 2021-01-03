@@ -14,7 +14,7 @@ AddW::~AddW()
 {
     delete ui;
 }
-
+// spec=ui->ModSpecEq->itemText(ui->ModSpecEq->currentIndex());
 void AddW::on_ConfirmerAddRq_clicked()
 {
     QString ref=ui->AddRqRef->text();
@@ -24,8 +24,8 @@ void AddW::on_ConfirmerAddRq_clicked()
         etat="Resolu";
     else
         etat="Non Resolu";
-    QString service="Pediatrie";
-    QString typem="preventive";
+    QString service=ui->AddRqServ->itemText(ui->AddRqServ->currentIndex());
+    QString typem=ui->AddRqTypeRq->itemText(ui->AddRqTypeRq->currentIndex());
     QDate dateajout=ui->DateAjoutEdit->date();
     //QString ref,QString ideq,QString service,QString typem,QString etat
     Requette req(ref,ideq,service,typem,etat,dateajout);

@@ -16,7 +16,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->statRq->hide();
     ui->tableView->setModel(requettetmp.AfficherReq());
     ui->tableView_2->setModel(equipetmp.AfficherEq());
-
+/*
     animation = new QPropertyAnimation(ui->groupBox_2, "geometry");
     animation2 = new QPropertyAnimation(ui->groupBox, "geometry");
     animation->setDuration(1000);
@@ -27,7 +27,7 @@ MainWindow::MainWindow(QWidget *parent)
     animation2->setEndValue(QRect(10,10,751,391));
 
     animation->start();
-    animation2->start();
+    animation2->start();*/
 }
 
 MainWindow::~MainWindow()
@@ -147,24 +147,26 @@ void MainWindow::on_DelEq_clicked()
     equipetmp.SupprimerEq(ui->lineEdit_2->text());
 }
 
-void MainWindow::on_statEq_clicked()
+void MainWindow::on_statEq_clicked()//stat equipe
 {
     QString info = ui->tableView->model()->data(ui->tableView->model()->index(1,2)).toString();
     QStringList Employees;
     for (int i = 0; i < ui->tableView_2->model()->rowCount(); ++i) {
-        info = ui->tableView_2->model()->data(ui->tableView->model()->index(i,1)).toString();
+        info = ui->tableView_2->model()->data(ui->tableView_2->model()->index(i,1)).toString();
         Employees<<info;
     }
     QStringList values;
     for (int i = 0; i < ui->tableView_2->model()->rowCount(); ++i) {
-        info = ui->tableView_2->model()->data(ui->tableView->model()->index(i,3)).toString();
+        info = ui->tableView_2->model()->data(ui->tableView_2->model()->index(i,3)).toString();
         values<<info;
     }
+    ui->lineEdit_2->insert(info);
+
     //values<<"35"<<"45"<<"58";
     StatChart stat;
     stat.setModal(true);
     stat.setWindowTitle("Statistiques");
-    stat.afficherStats(&Employees,&values);
+    stat.afficherStats(Employees,values);
     stat.exec();
 }
 

@@ -28,12 +28,12 @@ class StatChart : public QDialog
 
 public:
     explicit StatChart(QWidget *parent = nullptr);
-    void afficherStats(QStringList* list,QStringList* nbrq);
+    void afficherStats(QStringList list,QStringList nbrq);
     ~StatChart();
 
 private:
     Ui::StatChart *ui;
-    QStringList* EquipId,nbrq;
+    QStringList EquipId,nbrq;
     int i;
 };
 
