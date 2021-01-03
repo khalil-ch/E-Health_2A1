@@ -20,6 +20,13 @@
 #include <QMediaPlayer>
 #include  <QSound>
 #include<QString>
+//khalil
+#include <addw.h>
+#include <modw.h>
+#include <widadd2.h>
+#include <widmod2.h>
+#include <statchart.h>
+//
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -45,6 +52,10 @@ MainWindow::MainWindow(QWidget *parent)
     ui->tablefour->setSelectionMode(QAbstractItemView::SingleSelection);
     ui->tableView_Patient->setModel(tmpPatient.afficher());
     ui->tableView_chambre->setModel(tmpChambre.afficher());
+    //khalil
+    ui->tableView->setModel(requettetmp.AfficherReq());
+    ui->tableView_2->setModel(equipetmp.AfficherEq());
+    //
        //this->setStyleSheet("background-color: rgb(0, 0, 100);");
         ui->lineEdit_CINpatient->setMaxLength(8);
         ui->lineEdit_cinp->setMaxLength(8);
@@ -362,6 +373,8 @@ void MainWindow::on_Login_clicked()
             ui->stackedWidget->setCurrentIndex(0);
     if (ui->loginLineEdit->text()=="eya")
         ui->stackedWidget->setCurrentIndex(2);
+    if (ui->loginLineEdit->text()=="khalil")
+        ui->stackedWidget->setCurrentIndex(3);
 }
 
 void MainWindow::on_pushButtonAjoutP_clicked()
@@ -777,3 +790,219 @@ void MainWindow::update_label()
    qDebug()<< data;
 ui->lineEdit_bpm->setText(heartRateBPM);
    }
+//Ajoute une requette avec appel a un autre widget
+void MainWindow::on_AjouterReq_clicked()
+{
+    AddW widgetajout;
+    widgetajout.setWindowTitle("Ajouter Requette");
+    widgetajout.setModal(true);
+    widgetajout.exec();
+    ui->tableView->setModel(requettetmp.AfficherReq());
+}
+//Actualise l affichage de requettes
+void MainWindow::on_ActualiserReq_clicked()
+{
+    ui->tableView->setModel(requettetmp.AfficherReq());
+}
+//Supression de requettes
+void MainWindow::on_DeleteReq_clicked()
+{
+    QString ref=ui->lineEdit->text();
+    bool test=requettetmp.SupprimerReq(ref);
+    if (test)
+    {
+        QMessageBox::information(nullptr,QObject::tr("OK"),
+                                 QObject::tr("suppression effectuee\n"
+                                             "click cancel to exite"),QMessageBox::Cancel);
+    }
+    else {
+        QMessageBox::critical(nullptr,QObject::tr("not ok"),
+                QObject::tr("suppression non effectuee\n"
+                            "click cancel to exit"),QMessageBox::Cancel);
+    }
+    ui->tableView->setModel(requettetmp.AfficherReq());
+}
+//modification de requette
+void MainWindow::on_ModifReq_clicked()
+{
+    ModW WidgetMod;
+    WidgetMod.setWindowTitle("Modifier Requette");
+    WidgetMod.SetReftmp(ui->lineEdit->text());
+    WidgetMod.setModal(true);
+    WidgetMod.exec();
+}
+// tableview
+void MainWindow::on_tableView_doubleClicked(const QModelIndex &index)
+{
+    //int col=ui->tableView->model()->columnCount(index);
+    int row=ui->tableView->model()->rowCount(index);
+    ui->lineEdit->clear();
+    QString infoint=QString::number(row);
+    QModelIndex idx;
+    QString info = QVariant(index.data()).toString();
+    ui->lineEdit->insert(info);
+}
+/*------------Recherche de requette-----------------*/
+void MainWindow::on_RechercheReq_clicked()
+{
+
+    requettetmp.SetInfotmp(ui->lineEdit->text());
+    ui->tableView->setModel(requettetmp.RechercheReqbyRef());
+}
+
+void MainWindow::on_FiltrerReqSv_currentIndexChanged(const QString &arg1)
+{
+    //filtre
+    requettetmp.SetInfotmp(ui->FiltrerReqSv->currentText());
+    ui->tableView->setModel(requettetmp.RechercheReqbyService());
+}
+
+void MainWindow::on_TrierReq_currentIndexChanged(const QString &arg1)
+{
+    if(ui->TrierReq->currentText()=="Reference")
+        ui->tableView->setModel(requettetmp.TrierParREF());
+    else if(ui->TrierReq->currentText()=="Date")
+        ui->tableView->setModel(requettetmp.TrierParDATE());
+    else
+        return;
+}
+//Extraction PDF
+void MainWindow::on_ExtraiareReq_clicked()
+{
+    QString fileName = QFileDialog::getSaveFileName((QWidget* )0, "Export PDF", QString(), "*.pdf");
+    if (QFileInfo(fileName).suffix().isEmpty()) { fileName.append(".pdf"); }
+    QPrinter printer(QPrinter::PrinterResolution);
+    QString imgsource="C:/Users/khali/Desktop/Project-E-Health/RequettesMaintenances/UtopiaSft.png";
+    printer.setOutputFormat(QPrinter::PdfFormat);
+    printer.setPaperSize(QPrinter::A4);
+    printer.setOutputFileName(fileName);
+    QString *html = new QString();
+    QStringList info;
+    int i=0;
+    for (int row = 0; row < ui->tableView->model()->rowCount(); ++row) {
+
+        for (int col = 0; col < ui->tableView->model()->columnCount(); ++col) {
+            info<<ui->tableView->model()->data(ui->tableView->model()->index(row,col)).toString();//(row,col)
+            *html=*html+info.at(i)+"\t";
+            i++;
+        }*html+="<br> ";
+    }
+    *html+="<img src=+"+imgsource+" >";
+    i=0;
+    /*----*/
+    QTextDocument doc;
+    doc.setHtml(*html);
+    doc.setPageSize(printer.pageRect().size());//hide num de poge
+    doc.print(&printer);
+}
+//Partie Equipe de maintenance
+//Ajout equipe
+void MainWindow::on_AjouterEq_clicked()
+{
+    WidAdd2 widgetequipeadd;
+    widgetequipeadd.setModal(true);
+    widgetequipeadd.setWindowTitle("Ajouter Equipe");
+    widgetequipeadd.exec();
+    ui->tableView_2->setModel(equipetmp.AfficherEq());
+}
+//Actualise l affichage
+void MainWindow::on_ActualiserEq_clicked()
+{
+    ui->tableView_2->setModel(equipetmp.AfficherEq());
+}
+//recherche simple equipe
+void MainWindow::on_RechercheEq_clicked()
+{
+    equipetmp.SetInfotmp2(ui->lineEdit_2->text());
+    ui->tableView_2->setModel(equipetmp.RechercheEqbyId());
+}
+//Midfier equipe
+void MainWindow::on_ModifEq_clicked()
+{
+    WidMod2 widmodeq;
+    widmodeq.setIDeqtmp(ui->lineEdit_2->text());
+    widmodeq.setWindowTitle("Modifier Equipe");
+    widmodeq.exec();
+}
+//Suppression Equipe
+void MainWindow::on_DelEq_clicked()
+{
+    equipetmp.SupprimerEq(ui->lineEdit_2->text());
+}
+//tri equipe
+void MainWindow::on_TrierEq_currentIndexChanged(const QString &arg1)
+{
+    if(ui->TrierEq->currentText()=="Nom")
+        ui->tableView_2->setModel(equipetmp.TrierNom());
+    else if(ui->TrierEq->currentText()=="Requettes")
+        ui->tableView_2->setModel(equipetmp.TrierRequettes());
+    else
+        return;
+}
+
+void MainWindow::on_FiltrerEq_currentIndexChanged(const QString &arg1)
+{
+    equipetmp.SetInfotmp2(ui->FiltrerEq->currentText());
+    ui->tableView_2->setModel(equipetmp.RechercheEqbySpec());
+}
+
+void MainWindow::on_tableView_2_doubleClicked(const QModelIndex &index)
+{
+    int row=ui->tableView_2->model()->rowCount(index);
+    ui->lineEdit_2->clear();
+    QString infoint=QString::number(row);
+    QString info = QVariant(index.data()).toString();
+    ui->lineEdit_2->insert(info);
+}
+
+void MainWindow::on_ExtraireEq_clicked()
+{
+    QString fileName = QFileDialog::getSaveFileName((QWidget* )0, "Export PDF", QString(), "*.pdf");
+    if (QFileInfo(fileName).suffix().isEmpty()) { fileName.append(".pdf"); }
+    QPrinter printer(QPrinter::PrinterResolution);
+    QString imgsource="C:/Users/khali/Desktop/Project-E-Health/RequettesMaintenances/UtopiaSft.png";
+    printer.setOutputFormat(QPrinter::PdfFormat);
+    printer.setPaperSize(QPrinter::A4);
+    printer.setOutputFileName(fileName);
+    QString *html = new QString();
+    QStringList info;
+    int i=0;
+    for (int row = 0; row < ui->tableView_2->model()->rowCount(); ++row) {
+
+        for (int col = 0; col < ui->tableView_2->model()->columnCount(); ++col) {
+            info<<ui->tableView_2->model()->data(ui->tableView_2->model()->index(row,col)).toString();//(row,col)
+            *html=*html+info.at(i)+"\t";
+            i++;
+        }*html+="<br> ";
+    }
+    *html+="<img src=+"+imgsource+" >";
+    i=0;
+    /*----*/
+    QTextDocument doc;
+    doc.setHtml(*html);
+    doc.setPageSize(printer.pageRect().size());//hide num de poge
+    doc.print(&printer);
+}
+
+void MainWindow::on_statEq_clicked()
+{
+    QString info = ui->tableView->model()->data(ui->tableView->model()->index(1,2)).toString();
+    QStringList Employees;
+    for (int i = 0; i < ui->tableView_2->model()->rowCount(); ++i) {
+        info = ui->tableView_2->model()->data(ui->tableView_2->model()->index(i,1)).toString();
+        Employees<<info;
+    }
+    QStringList values;
+    for (int i = 0; i < ui->tableView_2->model()->rowCount(); ++i) {
+        info = ui->tableView_2->model()->data(ui->tableView_2->model()->index(i,3)).toString();
+        values<<info;
+    }
+    ui->lineEdit_2->insert(info);
+
+    //values<<"35"<<"45"<<"58";
+    StatChart stat;
+    stat.setModal(true);
+    stat.setWindowTitle("Statistiques");
+    stat.afficherStats(Employees,values);
+    stat.exec();
+}

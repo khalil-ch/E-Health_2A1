@@ -9,6 +9,17 @@
 #include <QMainWindow>
 #include <QStatusBar>
 #include <QString>
+//
+#include "requette.h"
+#include"equipemaintenance.h"
+#include <QUrl>
+#include <QPdfWriter>
+#include <QPrinter>
+#include <QPainter>
+#include <QTextDocument>
+#include <QPropertyAnimation>
+#include <QFileDialog>
+//
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -86,6 +97,44 @@ void update_label();
 
     void on_pushButton_afficherchambre_clicked();
 
+    void on_AjouterReq_clicked();
+
+    void on_ActualiserReq_clicked();
+
+    void on_DeleteReq_clicked();
+
+    void on_ModifReq_clicked();
+
+    void on_tableView_doubleClicked(const QModelIndex &index);
+
+    void on_RechercheReq_clicked();
+
+    void on_FiltrerReqSv_currentIndexChanged(const QString &arg1);
+
+    void on_TrierReq_currentIndexChanged(const QString &arg1);
+
+    void on_ExtraiareReq_clicked();
+
+    void on_AjouterEq_clicked();
+
+    void on_ActualiserEq_clicked();
+
+    void on_RechercheEq_clicked();
+
+    void on_ModifEq_clicked();
+
+    void on_DelEq_clicked();
+
+    void on_TrierEq_currentIndexChanged(const QString &arg1);
+
+    void on_FiltrerEq_currentIndexChanged(const QString &arg1);
+
+    void on_tableView_2_doubleClicked(const QModelIndex &index);
+
+    void on_ExtraireEq_clicked();
+
+    void on_statEq_clicked();
+
 private:
     Ui::MainWindow *ui;
     Medicament temp;
@@ -94,6 +143,12 @@ private:
       chambre tmpChambre;
       QByteArray data;
      QString heartRateBPM="";
+     //
+     Requette requettetmp;
+     EquipeMaintenance equipetmp;
+     QPropertyAnimation* animation;
+     QPropertyAnimation* animation2;
+     //
 
       arduino A;
 };
