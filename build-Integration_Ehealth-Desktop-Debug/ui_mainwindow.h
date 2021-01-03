@@ -245,6 +245,39 @@ public:
     QWidget *tab_5;
     QLineEdit *lineEdit_bpm;
     QLabel *label_35;
+    QWidget *page_4;
+    QTabWidget *TabReqAndEquipes;
+    QWidget *Requettes;
+    QGroupBox *groupBox1;
+    QTableView *tableView;
+    QComboBox *FiltrerReqEtat;
+    QComboBox *FiltrerReqSv;
+    QPushButton *RechercheReq;
+    QPushButton *ActualiserReq;
+    QPushButton *DeleteReq;
+    QPushButton *ModifReq;
+    QPushButton *ExtraiareReq;
+    QLineEdit *lineEdit;
+    QPushButton *statRq;
+    QComboBox *TrierReq;
+    QGroupBox *groupBox_21;
+    QPushButton *AjouterReq;
+    QPushButton *Retour;
+    QWidget *Equipes;
+    QGroupBox *groupBox_31;
+    QTableView *tableView_2;
+    QComboBox *FiltrerEq;
+    QLineEdit *lineEdit_2;
+    QPushButton *RechercheEq;
+    QComboBox *TrierEq;
+    QPushButton *ExtraireEq;
+    QPushButton *ModifEq;
+    QPushButton *DelEq;
+    QPushButton *ActualiserEq;
+    QPushButton *statEq;
+    QGroupBox *groupBox_41;
+    QPushButton *RetourEq;
+    QPushButton *AjouterEq;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -256,9 +289,9 @@ public:
         MainWindow->setStyleSheet(QLatin1String("/*-----QWidget-----*/\n"
 "QWidget\n"
 "{\n"
-"	background-color: #292f45;\n"
-"	color: #000000;\n"
-"	border-color: #000000;\n"
+"        background-color: #292f45;\n"
+"        color: #000000;\n"
+"        border-color: #000000;\n"
 "\n"
 "}\n"
 "\n"
@@ -266,9 +299,9 @@ public:
 "/*-----QLabel-----*/\n"
 "QLabel\n"
 "{\n"
-"	background-color: #292f45;\n"
-"	color: #b9b9bb;\n"
-"	border-color: #000000;\n"
+"        background-color: #292f45;\n"
+"        color: #b9b9bb;\n"
+"        border-color: #000000;\n"
 "\n"
 "}\n"
 "\n"
@@ -276,30 +309,30 @@ public:
 "/*-----QPushButton-----*/\n"
 "QPushButton\n"
 "{\n"
-"	background-color: #f0742f;\n"
-"	color: #fff;\n"
-"	font-weight: bold;\n"
-"	border-style: solid;\n"
-"	border-width: 1px;\n"
-"	border-radius: 17px;\n"
-"	border-color: #f0742f;\n"
-"	padding: 10px;\n"
+"        background-color: #f0742f;\n"
+"        color: #fff;\n"
+"        font-weight: bold;\n"
+"        border-style: solid;\n"
+"        border-width: 1px;\n"
+"        border-radius: 17px;\n"
+"        border-color: #f0742f;\n"
+"        padding: 10px;\n"
 "\n"
 "}\n"
 "\n"
 "\n"
 "QPushButton::hover\n"
 "{\n"
-"	background-color: #fc7c11;\n"
-"	color: #fff;\n"
+"        background-color: #fc7c11;\n"
+"        color: #fff;\n"
 "\n"
 "}\n"
 "\n"
 "\n"
 "QPushButton::pressed\n"
 "{\n"
-"	background-color: #ff6b35;\n"
-"	color: #fff;\n"
+"        background-color: #ff6b35;\n"
+"        color: #fff;\n"
 "\n"
 "}\n"
 "\n"
@@ -307,48 +340,48 @@ public:
 "/*-----QToolButton-----*/\n"
 "QToolButton\n"
 "{\n"
-"	background-color: #292f45;\n"
-"	color: #000000;\n"
-"	border-style: solid;\n"
-"	border-color: #000000;\n"
+"        background-color: #292f45;\n"
+"        color: #000000;\n"
+"        border-st"
+                        "yle: solid;\n"
+"        border-color: #000000;\n"
 "\n"
 "}\n"
 "\n"
 "\n"
 "QToolButton::hover\n"
 "{\n"
-"	background-color: #fc7c11;\n"
-"	color: #000000;\n"
-""
-                        "	padding: 2px;\n"
-"	border-radius: 15px;\n"
-"	border-color: #fc7c11;\n"
+"        background-color: #fc7c11;\n"
+"        color: #000000;\n"
+"        padding: 2px;\n"
+"        border-radius: 15px;\n"
+"        border-color: #fc7c11;\n"
 "\n"
 "}\n"
 "\n"
 "\n"
 "QToolButton::pressed\n"
 "{\n"
-"	background-color: #fc7c11;\n"
-"	color: #000000;\n"
-"	border-style: solid;\n"
-"	border-width: 2px;\n"
+"        background-color: #fc7c11;\n"
+"        color: #000000;\n"
+"        border-style: solid;\n"
+"        border-width: 2px;\n"
 "\n"
 "}\n"
 "\n"
 "\n"
 "/*-----QLineEdit-----*/\n"
 "QLineEdit{\n"
-"	background-color: #292f45;\n"
-"	color: #b9b9bb;\n"
-"	font-weight: bold;\n"
-"	border-style: solid;\n"
-"	border-width: 2px;\n"
-"	border-top: 0px;\n"
-"	border-left: 0px;\n"
-"	border-right: 0px;\n"
-"	border-color: #b9b9bb;\n"
-"	padding: 10px;\n"
+"        background-color: #292f45;\n"
+"        color: #b9b9bb;\n"
+"        font-weight: bold;\n"
+"        border-style: solid;\n"
+"        border-width: 2px;\n"
+"        border-top: 0px;\n"
+"        border-left: 0px;\n"
+"        border-right: 0px;\n"
+"        border-color: #b9b9bb;\n"
+"        padding: 10px;\n"
 "\n"
 "}\n"
 "\n"
@@ -356,14 +389,15 @@ public:
 "/*-----QCheckBox-----*/\n"
 "QCheckBox\n"
 "{\n"
-"	background-color: transparent;\n"
-"	color: #b9b9bb;\n"
-"	font-weight: bold;\n"
+"        background-color: transparent;\n"
+"        color: #b9b9bb;\n"
+"        font-weight: bold;\n"
 "\n"
 "}\n"
 "\n"
 "\n"
-"QCheckBox::indicator\n"
+"QCheckBox:"
+                        ":indicator\n"
 "{\n"
 "    color: #b1b1b1;\n"
 "    background-color: #00111d;\n"
@@ -377,9 +411,8 @@ public:
 "QCheckBox::indicator:checked\n"
 "{\n"
 "    image:url(\"./ressources/check.png\"); /*To replace*/\n"
-"	background-color: #1f2b2b;\n"
-""
-                        "    border: 1px solid #f0742f;\n"
+"        background-color: #1f2b2b;\n"
+"    border: 1px solid #f0742f;\n"
 "\n"
 "}\n"
 "\n"
@@ -393,15 +426,15 @@ public:
 "\n"
 "QCheckBox::disabled\n"
 "{\n"
-"	color: #656565;\n"
+"        color: #656565;\n"
 "\n"
 "}\n"
 "\n"
 "\n"
 "QCheckBox::indicator:disabled\n"
 "{\n"
-"	background-color: #656565;\n"
-"	color: #656565;\n"
+"        background-color: #656565;\n"
+"        color: #656565;\n"
 "    border: 1px solid #656565;\n"
 "\n"
 "}"));
@@ -500,7 +533,7 @@ public:
         typeDeMDicamentComboBox->setStyleSheet(QLatin1String("QComboBox\n"
 "{\n"
 "    selection-background-color: #ffaa00;\n"
-"	\n"
+"\n"
 "color: rgb(238, 251, 251);\n"
 "    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #565656, stop: 0.1 #525252, stop: 0.5 #4e4e4e, stop: 0.9 #4a4a4a, stop: 1 #464646);\n"
 "    border-style: solid;\n"
@@ -527,8 +560,8 @@ public:
 "    selection-background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #ffa02f, stop: 1 #d7801a);\n"
 "}\n"
 "\n"
-"QC"
-                        "omboBox::drop-down\n"
+"QCo"
+                        "mboBox::drop-down\n"
 "{\n"
 "     subcontrol-origin: padding;\n"
 "     subcontrol-position: top right;\n"
@@ -899,7 +932,7 @@ public:
         groupBox_2->setObjectName(QStringLiteral("groupBox_2"));
         groupBox_2->setStyleSheet(QLatin1String("QGroupBox {\n"
 "color: rgb(238, 251, 251);\n"
-"	background-color: rgb(29, 29, 29);\n"
+"        background-color: rgb(29, 29, 29);\n"
 "}\n"
 ""));
         verticalLayout_8 = new QVBoxLayout(groupBox_2);
@@ -1266,7 +1299,7 @@ public:
         groupBox_3->setObjectName(QStringLiteral("groupBox_3"));
         groupBox_3->setStyleSheet(QLatin1String("QGroupBox {\n"
 "color: rgb(238, 251, 251);\n"
-"	\n"
+"\n"
 "}\n"
 ""));
         verticalLayout_10 = new QVBoxLayout(groupBox_3);
@@ -1429,7 +1462,7 @@ public:
         groupBox_4->setObjectName(QStringLiteral("groupBox_4"));
         groupBox_4->setStyleSheet(QLatin1String("QGroupBox {\n"
 "color: rgb(238, 251, 251);\n"
-"	\n"
+"\n"
 "}\n"
 ""));
         verticalLayout_12 = new QVBoxLayout(groupBox_4);
@@ -1467,7 +1500,7 @@ public:
         ordrefour->setStyleSheet(QLatin1String("QComboBox\n"
 "{\n"
 "    selection-background-color: #ffaa00;\n"
-"	\n"
+"\n"
 "color: rgb(238, 251, 251);\n"
 "    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #565656, stop: 0.1 #525252, stop: 0.5 #4e4e4e, stop: 0.9 #4a4a4a, stop: 1 #464646);\n"
 "    border-style: solid;\n"
@@ -1494,8 +1527,8 @@ public:
 "    selection-background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #ffa02f, stop: 1 #d7801a);\n"
 "}\n"
 "\n"
-"QC"
-                        "omboBox::drop-down\n"
+"QCo"
+                        "mboBox::drop-down\n"
 "{\n"
 "     subcontrol-origin: padding;\n"
 "     subcontrol-position: top right;\n"
@@ -1905,7 +1938,7 @@ public:
 "    border-style: solid;\n"
 "    border-width: 4px;\n"
 "    border-color: rgb(0,0,0);\n"
-"    spacing: 5px; \n"
+"    spacing: 5px;\n"
 "subcontrol-origin: padding;\n"
 "    subcontrol-position: top right;\n"
 "    selection-background-color: #111;\n"
@@ -2246,7 +2279,7 @@ public:
 "    border-style: solid;\n"
 "    border-width: 4px;\n"
 "    border-color: rgb(0,0,0);\n"
-"    spacing: 5px; \n"
+"    spacing: 5px;\n"
 "subcontrol-origin: padding;\n"
 "    subcontrol-position: top right;\n"
 "    selection-background-color: #111;\n"
@@ -2762,6 +2795,105 @@ public:
         label_35->setGeometry(QRect(160, 50, 47, 13));
         tabWidget_2->addTab(tab_5, QString());
         stackedWidget->addWidget(page_3);
+        page_4 = new QWidget();
+        page_4->setObjectName(QStringLiteral("page_4"));
+        TabReqAndEquipes = new QTabWidget(page_4);
+        TabReqAndEquipes->setObjectName(QStringLiteral("TabReqAndEquipes"));
+        TabReqAndEquipes->setGeometry(QRect(10, 10, 761, 571));
+        Requettes = new QWidget();
+        Requettes->setObjectName(QStringLiteral("Requettes"));
+        groupBox1 = new QGroupBox(Requettes);
+        groupBox1->setObjectName(QStringLiteral("groupBox1"));
+        groupBox1->setGeometry(QRect(10, 10, 751, 401));
+        tableView = new QTableView(groupBox1);
+        tableView->setObjectName(QStringLiteral("tableView"));
+        tableView->setGeometry(QRect(50, 100, 631, 221));
+        FiltrerReqEtat = new QComboBox(groupBox1);
+        FiltrerReqEtat->setObjectName(QStringLiteral("FiltrerReqEtat"));
+        FiltrerReqEtat->setGeometry(QRect(50, 50, 111, 22));
+        FiltrerReqSv = new QComboBox(groupBox1);
+        FiltrerReqSv->setObjectName(QStringLiteral("FiltrerReqSv"));
+        FiltrerReqSv->setGeometry(QRect(170, 50, 121, 22));
+        RechercheReq = new QPushButton(groupBox1);
+        RechercheReq->setObjectName(QStringLiteral("RechercheReq"));
+        RechercheReq->setGeometry(QRect(590, 37, 93, 41));
+        ActualiserReq = new QPushButton(groupBox1);
+        ActualiserReq->setObjectName(QStringLiteral("ActualiserReq"));
+        ActualiserReq->setGeometry(QRect(590, 337, 93, 41));
+        DeleteReq = new QPushButton(groupBox1);
+        DeleteReq->setObjectName(QStringLiteral("DeleteReq"));
+        DeleteReq->setGeometry(QRect(470, 337, 93, 41));
+        ModifReq = new QPushButton(groupBox1);
+        ModifReq->setObjectName(QStringLiteral("ModifReq"));
+        ModifReq->setGeometry(QRect(190, 337, 93, 41));
+        ExtraiareReq = new QPushButton(groupBox1);
+        ExtraiareReq->setObjectName(QStringLiteral("ExtraiareReq"));
+        ExtraiareReq->setGeometry(QRect(70, 337, 93, 41));
+        lineEdit = new QLineEdit(groupBox1);
+        lineEdit->setObjectName(QStringLiteral("lineEdit"));
+        lineEdit->setGeometry(QRect(420, 50, 161, 21));
+        statRq = new QPushButton(groupBox1);
+        statRq->setObjectName(QStringLiteral("statRq"));
+        statRq->setGeometry(QRect(330, 334, 92, 41));
+        TrierReq = new QComboBox(groupBox1);
+        TrierReq->setObjectName(QStringLiteral("TrierReq"));
+        TrierReq->setGeometry(QRect(300, 50, 111, 24));
+        groupBox_21 = new QGroupBox(Requettes);
+        groupBox_21->setObjectName(QStringLiteral("groupBox_21"));
+        groupBox_21->setGeometry(QRect(90, 420, 571, 111));
+        AjouterReq = new QPushButton(groupBox_21);
+        AjouterReq->setObjectName(QStringLiteral("AjouterReq"));
+        AjouterReq->setGeometry(QRect(380, 27, 93, 41));
+        Retour = new QPushButton(groupBox_21);
+        Retour->setObjectName(QStringLiteral("Retour"));
+        Retour->setGeometry(QRect(90, 27, 93, 41));
+        TabReqAndEquipes->addTab(Requettes, QString());
+        Equipes = new QWidget();
+        Equipes->setObjectName(QStringLiteral("Equipes"));
+        groupBox_31 = new QGroupBox(Equipes);
+        groupBox_31->setObjectName(QStringLiteral("groupBox_31"));
+        groupBox_31->setGeometry(QRect(50, 20, 671, 391));
+        tableView_2 = new QTableView(groupBox_31);
+        tableView_2->setObjectName(QStringLiteral("tableView_2"));
+        tableView_2->setGeometry(QRect(25, 80, 611, 211));
+        FiltrerEq = new QComboBox(groupBox_31);
+        FiltrerEq->setObjectName(QStringLiteral("FiltrerEq"));
+        FiltrerEq->setGeometry(QRect(30, 40, 111, 22));
+        lineEdit_2 = new QLineEdit(groupBox_31);
+        lineEdit_2->setObjectName(QStringLiteral("lineEdit_2"));
+        lineEdit_2->setGeometry(QRect(290, 40, 171, 22));
+        RechercheEq = new QPushButton(groupBox_31);
+        RechercheEq->setObjectName(QStringLiteral("RechercheEq"));
+        RechercheEq->setGeometry(QRect(470, 40, 93, 28));
+        TrierEq = new QComboBox(groupBox_31);
+        TrierEq->setObjectName(QStringLiteral("TrierEq"));
+        TrierEq->setGeometry(QRect(160, 40, 121, 22));
+        ExtraireEq = new QPushButton(groupBox_31);
+        ExtraireEq->setObjectName(QStringLiteral("ExtraireEq"));
+        ExtraireEq->setGeometry(QRect(20, 320, 93, 28));
+        ModifEq = new QPushButton(groupBox_31);
+        ModifEq->setObjectName(QStringLiteral("ModifEq"));
+        ModifEq->setGeometry(QRect(150, 320, 93, 28));
+        DelEq = new QPushButton(groupBox_31);
+        DelEq->setObjectName(QStringLiteral("DelEq"));
+        DelEq->setGeometry(QRect(420, 320, 93, 28));
+        ActualiserEq = new QPushButton(groupBox_31);
+        ActualiserEq->setObjectName(QStringLiteral("ActualiserEq"));
+        ActualiserEq->setGeometry(QRect(550, 320, 93, 28));
+        statEq = new QPushButton(groupBox_31);
+        statEq->setObjectName(QStringLiteral("statEq"));
+        statEq->setGeometry(QRect(290, 320, 92, 25));
+        groupBox_41 = new QGroupBox(Equipes);
+        groupBox_41->setObjectName(QStringLiteral("groupBox_41"));
+        groupBox_41->setGeometry(QRect(130, 420, 511, 81));
+        RetourEq = new QPushButton(groupBox_41);
+        RetourEq->setObjectName(QStringLiteral("RetourEq"));
+        RetourEq->setGeometry(QRect(80, 40, 93, 28));
+        AjouterEq = new QPushButton(groupBox_41);
+        AjouterEq->setObjectName(QStringLiteral("AjouterEq"));
+        AjouterEq->setGeometry(QRect(350, 40, 93, 28));
+        TabReqAndEquipes->addTab(Equipes, QString());
+        stackedWidget->addWidget(page_4);
 
         horizontalLayout->addWidget(stackedWidget);
 
@@ -2771,7 +2903,7 @@ public:
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QStringLiteral("menubar"));
-        menubar->setGeometry(QRect(0, 0, 1158, 21));
+        menubar->setGeometry(QRect(0, 0, 1158, 25));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName(QStringLiteral("statusbar"));
@@ -2779,9 +2911,10 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(2);
+        stackedWidget->setCurrentIndex(3);
         tabWidget->setCurrentIndex(1);
         tabWidget_2->setCurrentIndex(2);
+        TabReqAndEquipes->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -2925,6 +3058,65 @@ public:
         tabWidget_2->setTabText(tabWidget_2->indexOf(tab_4), QApplication::translate("MainWindow", "Tab 2", Q_NULLPTR));
         label_35->setText(QApplication::translate("MainWindow", "BPM", Q_NULLPTR));
         tabWidget_2->setTabText(tabWidget_2->indexOf(tab_5), QApplication::translate("MainWindow", "Page", Q_NULLPTR));
+        groupBox1->setTitle(QApplication::translate("MainWindow", "Liste de Requettes", Q_NULLPTR));
+        FiltrerReqEtat->clear();
+        FiltrerReqEtat->insertItems(0, QStringList()
+         << QApplication::translate("MainWindow", "Filter etat", Q_NULLPTR)
+         << QApplication::translate("MainWindow", "Resolu", Q_NULLPTR)
+         << QApplication::translate("MainWindow", "Non Resolu", Q_NULLPTR)
+        );
+        FiltrerReqSv->clear();
+        FiltrerReqSv->insertItems(0, QStringList()
+         << QApplication::translate("MainWindow", "Filtrer Serivce", Q_NULLPTR)
+         << QApplication::translate("MainWindow", "Urgence", Q_NULLPTR)
+         << QApplication::translate("MainWindow", "Pediatrie", Q_NULLPTR)
+         << QApplication::translate("MainWindow", "Secretariat", Q_NULLPTR)
+         << QApplication::translate("MainWindow", "Cardio", Q_NULLPTR)
+         << QApplication::translate("MainWindow", "Neurologie", Q_NULLPTR)
+         << QApplication::translate("MainWindow", "Psychiatrie", Q_NULLPTR)
+        );
+        RechercheReq->setText(QApplication::translate("MainWindow", "Rechercher", Q_NULLPTR));
+        ActualiserReq->setText(QApplication::translate("MainWindow", "Actualiser", Q_NULLPTR));
+        DeleteReq->setText(QApplication::translate("MainWindow", "Supprimer", Q_NULLPTR));
+        ModifReq->setText(QApplication::translate("MainWindow", "Modifier", Q_NULLPTR));
+        ExtraiareReq->setText(QApplication::translate("MainWindow", "Eextraire", Q_NULLPTR));
+        statRq->setText(QApplication::translate("MainWindow", "Statistiques", Q_NULLPTR));
+        TrierReq->clear();
+        TrierReq->insertItems(0, QStringList()
+         << QApplication::translate("MainWindow", "Trier", Q_NULLPTR)
+         << QApplication::translate("MainWindow", "Reference", Q_NULLPTR)
+         << QApplication::translate("MainWindow", "Date", Q_NULLPTR)
+        );
+        groupBox_21->setTitle(QString());
+        AjouterReq->setText(QApplication::translate("MainWindow", "Ajouter", Q_NULLPTR));
+        Retour->setText(QApplication::translate("MainWindow", "Retour", Q_NULLPTR));
+        TabReqAndEquipes->setTabText(TabReqAndEquipes->indexOf(Requettes), QApplication::translate("MainWindow", "Requettes", Q_NULLPTR));
+        groupBox_31->setTitle(QApplication::translate("MainWindow", "Equipes de Maintenance", Q_NULLPTR));
+        FiltrerEq->clear();
+        FiltrerEq->insertItems(0, QStringList()
+         << QApplication::translate("MainWindow", "Filtrer", Q_NULLPTR)
+         << QApplication::translate("MainWindow", "Informatique", Q_NULLPTR)
+         << QApplication::translate("MainWindow", "Biomedicale", Q_NULLPTR)
+         << QApplication::translate("MainWindow", "Installation", Q_NULLPTR)
+         << QApplication::translate("MainWindow", "Reparation", Q_NULLPTR)
+         << QApplication::translate("MainWindow", "Electricite", Q_NULLPTR)
+        );
+        RechercheEq->setText(QApplication::translate("MainWindow", "Rechercher", Q_NULLPTR));
+        TrierEq->clear();
+        TrierEq->insertItems(0, QStringList()
+         << QApplication::translate("MainWindow", "Trier", Q_NULLPTR)
+         << QApplication::translate("MainWindow", "Nom", Q_NULLPTR)
+         << QApplication::translate("MainWindow", "Requettes", Q_NULLPTR)
+        );
+        ExtraireEq->setText(QApplication::translate("MainWindow", "Extraire", Q_NULLPTR));
+        ModifEq->setText(QApplication::translate("MainWindow", "Modifier", Q_NULLPTR));
+        DelEq->setText(QApplication::translate("MainWindow", "Supprimer", Q_NULLPTR));
+        ActualiserEq->setText(QApplication::translate("MainWindow", "Actualiser", Q_NULLPTR));
+        statEq->setText(QApplication::translate("MainWindow", "Statistiques", Q_NULLPTR));
+        groupBox_41->setTitle(QString());
+        RetourEq->setText(QApplication::translate("MainWindow", "Retour", Q_NULLPTR));
+        AjouterEq->setText(QApplication::translate("MainWindow", "Ajouter", Q_NULLPTR));
+        TabReqAndEquipes->setTabText(TabReqAndEquipes->indexOf(Equipes), QApplication::translate("MainWindow", "Equipes", Q_NULLPTR));
     } // retranslateUi
 
 };
