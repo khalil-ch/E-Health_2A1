@@ -88,7 +88,7 @@ MainWindow::MainWindow(QWidget *parent)
         ui->dateEditModifP->setMinimumDate(QDate::currentDate());
         int const n=0;
                QMediaPlayer *player = new QMediaPlayer;
-               player->setMedia(QUrl::fromLocalFile("C:/Users/hp/Desktop/qt/Piano-melancholy-music-short.mp3"));
+               player->setMedia(QUrl::fromLocalFile("C:\\Users\\hp\\Desktop\\integration eya!\\E-Health_2A1\\Integration_Ehealth\\Piano-melancholy-music-short.mp3"));
                player->setVolume(n);
                player->play();
                ui->spinBox->setRange(0,100);
@@ -574,7 +574,7 @@ void MainWindow::on_pushButton_suppchambre_clicked()
 void MainWindow::on_pushButton_rechpatient_clicked()
 {
     QMediaPlayer *sound =new QMediaPlayer();
-       sound-> setMedia(QUrl("C:/Users/hp/Downloads/Mouse-Click-03-m-FesliyanStudios.com.mp3"));
+       sound-> setMedia(QUrl("C:\\Users\\hp\\Desktop\\integration eya!\\E-Health_2A1\\Integration_Ehealth\\Mouse-Click-03-m-FesliyanStudios.com.mp3"));
        sound ->play();
        QString cin= ui->lineEdit_recherchecin->text();
        QString nom= ui->lineEdit_rechnomp->text();
@@ -594,7 +594,7 @@ void MainWindow::on_pushButton_rechpatient_clicked()
 void MainWindow::on_pushButton_rechchambre_clicked()
 {
     QMediaPlayer *sound =new QMediaPlayer();
-        sound-> setMedia(QUrl("C:/Users/hp/Downloads/Mouse-Click-03-m-FesliyanStudios.com.mp3"));
+        sound-> setMedia(QUrl("C:\\Users\\hp\\Desktop\\integration eya!\\E-Health_2A1\\Integration_Ehealth\\Mouse-Click-03-m-FesliyanStudios.com.mp3"));
         sound ->play();
         QString id=ui->lineEdit_idrech->text();
         int numero_chambre=ui->lineEdit_numrech->text().toInt();
@@ -613,7 +613,7 @@ void MainWindow::on_pushButton_rechchambre_clicked()
 void MainWindow::on_checkBox_rechercheage_clicked()
 {
     QMediaPlayer *sound =new QMediaPlayer();
-      sound-> setMedia(QUrl("C:/Users/hp/Downloads/Mouse-Click-03-m-FesliyanStudios.com.mp3"));
+      sound-> setMedia(QUrl("C:\\Users\\hp\\Desktop\\integration eya!\\E-Health_2A1\\Integration_Ehealth\\Mouse-Click-03-m-FesliyanStudios.com.mp3"));
       sound ->play();
       if (ui->checkBox_rechercheage->isChecked())
       {
@@ -627,7 +627,7 @@ void MainWindow::on_checkBox_rechercheage_clicked()
 void MainWindow::on_checkBoxchambre_clicked()
 {
     QMediaPlayer *sound =new QMediaPlayer();
-       sound-> setMedia(QUrl("C:/Users/hp/Downloads/Mouse-Click-03-m-FesliyanStudios.com.mp3"));
+       sound-> setMedia(QUrl("C:\\Users\\hp\\Desktop\\integration eya!\\E-Health_2A1\\Integration_Ehealth\\Mouse-Click-03-m-FesliyanStudios.com.mp3"));
        sound ->play();
        if (ui->checkBoxchambre->isChecked())
        {
@@ -641,7 +641,7 @@ void MainWindow::on_checkBoxchambre_clicked()
 void MainWindow::on_pushButton_PDFchambre_clicked()
 {
     QMediaPlayer *sound =new QMediaPlayer();
-        sound-> setMedia(QUrl("C:/Users/hp/Downloads/Mouse-Click-03-m-FesliyanStudios.com.mp3"));
+        sound-> setMedia(QUrl("C:\\Users\\hp\\Desktop\\integration eya!\\E-Health_2A1\\Integration_Ehealth\\Mouse-Click-03-m-FesliyanStudios.com.mp3"));
         sound ->play();
         QString strStream;
             QTextStream out(&strStream);
@@ -699,7 +699,7 @@ void MainWindow::on_pushButton_PDFchambre_clicked()
 void MainWindow::on_pushButton_pdff_clicked()
 {
     QMediaPlayer *sound =new QMediaPlayer();
-       sound-> setMedia(QUrl("C:/Users/hp/Downloads/Mouse-Click-03-m-FesliyanStudios.com.mp3"));
+       sound-> setMedia(QUrl("C:\\Users\\hp\\Desktop\\integration eya!\\E-Health_2A1\\Integration_Ehealth\\Mouse-Click-03-m-FesliyanStudios.com.mp3"));
        sound ->play();
        QString strStream;
                QTextStream out(&strStream);
@@ -757,7 +757,7 @@ void MainWindow::on_pushButton_pdff_clicked()
 void MainWindow::on_pushButton_Exelchambre_clicked()
 {
     QMediaPlayer *sound =new QMediaPlayer();
-        sound-> setMedia(QUrl("C:/Users/hp/Downloads/Mouse-Click-03-m-FesliyanStudios.com.mp3"));
+        sound-> setMedia(QUrl("C:\\Users\\hp\\Desktop\\integration eya!\\E-Health_2A1\\Integration_Ehealth\\Mouse-Click-03-m-FesliyanStudios.com.mp3"));
         sound ->play();
 
         tmpChambre.exporter(ui->tableView_chambre);
@@ -766,7 +766,7 @@ void MainWindow::on_pushButton_Exelchambre_clicked()
 void MainWindow::on_pushButton_ExcelP_clicked()
 {
     QMediaPlayer *sound =new QMediaPlayer();
-     sound-> setMedia(QUrl("C:/Users/hp/Downloads/Mouse-Click-03-m-FesliyanStudios.com.mp3"));
+     sound-> setMedia(QUrl("C:\\Users\\hp\\Desktop\\integration eya!\\E-Health_2A1\\Integration_Ehealth\\Mouse-Click-03-m-FesliyanStudios.com.mp3"));
      sound ->play();
       tmpPatient.exporter(ui->tableView_Patient);
 }
@@ -774,7 +774,7 @@ void MainWindow::on_pushButton_ExcelP_clicked()
 void MainWindow::on_pushButton_affichertoutP_clicked()
 {
     QMediaPlayer *sound =new QMediaPlayer();
-        sound-> setMedia(QUrl("C:/Users/hp/Downloads/Mouse-Click-03-m-FesliyanStudios.com.mp3"));
+        sound-> setMedia(QUrl("C:\\Users\\hp\\Desktop\\integration eya!\\E-Health_2A1\\Integration_Ehealth\\Mouse-Click-03-m-FesliyanStudios.com.mp3"));
         sound ->play();
         ui->tableView_Patient->setModel(tmpPatient.afficher());
 }
@@ -782,7 +782,7 @@ void MainWindow::on_pushButton_affichertoutP_clicked()
 void MainWindow::on_pushButton_afficherchambre_clicked()
 {
     QMediaPlayer *sound =new QMediaPlayer();
-       sound-> setMedia(QUrl("C:/Users/hp/Downloads/Mouse-Click-03-m-FesliyanStudios.com.mp3"));
+       sound-> setMedia(QUrl("C:\\Users\\hp\\Desktop\\integration eya!\\E-Health_2A1\\Integration_Ehealth\\Mouse-Click-03-m-FesliyanStudios.com.mp3"));
        sound ->play();
        ui->tableView_chambre->setModel(tmpChambre.afficher());
 }
