@@ -105,7 +105,7 @@ void update_label();
 
     void on_ModifReq_clicked();
 
-    void on_tableView_doubleClicked(const QModelIndex &index);
+    void on_tableView_Rq_doubleClicked(const QModelIndex &index);
 
     void on_RechercheReq_clicked();
 
@@ -129,7 +129,7 @@ void update_label();
 
     void on_FiltrerEq_currentIndexChanged(const QString &arg1);
 
-    void on_tableView_2_doubleClicked(const QModelIndex &index);
+    void on_tableView_Eq_doubleClicked(const QModelIndex &index);
 
     void on_ExtraireEq_clicked();
 

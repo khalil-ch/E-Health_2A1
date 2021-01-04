@@ -54,8 +54,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->tableView_Patient->setModel(tmpPatient.afficher());
     ui->tableView_chambre->setModel(tmpChambre.afficher());
     //khalil
-    ui->tableView->setModel(requettetmp.AfficherReq());
-    ui->tableView_2->setModel(equipetmp.AfficherEq());
+    ui->tableView_Rq->setModel(requettetmp.AfficherReq());
+    ui->tableView_Eq->setModel(equipetmp.AfficherEq());
     //
        //this->setStyleSheet("background-color: rgb(0, 0, 100);");
         ui->lineEdit_CINpatient->setMaxLength(8);
@@ -799,17 +799,17 @@ void MainWindow::on_AjouterReq_clicked()
     widgetajout.setWindowTitle("Ajouter Requette");
     widgetajout.setModal(true);
     widgetajout.exec();
-    ui->tableView->setModel(requettetmp.AfficherReq());
+    ui->tableView_Rq->setModel(requettetmp.AfficherReq());
 }
 //Actualise l affichage de requettes
 void MainWindow::on_ActualiserReq_clicked()
 {
-    ui->tableView->setModel(requettetmp.AfficherReq());
+    ui->tableView_Rq->setModel(requettetmp.AfficherReq());
 }
 //Supression de requettes
 void MainWindow::on_DeleteReq_clicked()
 {
-    QString ref=ui->lineEdit->text();
+    QString ref=ui->lineEdit_Rq->text();
     bool test=requettetmp.SupprimerReq(ref);
     if (test)
     {
@@ -822,49 +822,49 @@ void MainWindow::on_DeleteReq_clicked()
                 QObject::tr("suppression non effectuee\n"
                             "click cancel to exit"),QMessageBox::Cancel);
     }
-    ui->tableView->setModel(requettetmp.AfficherReq());
+    ui->tableView_Rq->setModel(requettetmp.AfficherReq());
 }
 //modification de requette
 void MainWindow::on_ModifReq_clicked()
 {
     ModW WidgetMod;
     WidgetMod.setWindowTitle("Modifier Requette");
-    WidgetMod.SetReftmp(ui->lineEdit->text());
+    WidgetMod.SetReftmp(ui->lineEdit_Rq->text());
     WidgetMod.setModal(true);
     WidgetMod.exec();
 }
 // tableview
-void MainWindow::on_tableView_doubleClicked(const QModelIndex &index)
+void MainWindow::on_tableView_Rq_doubleClicked(const QModelIndex &index)
 {
     //int col=ui->tableView->model()->columnCount(index);
-    int row=ui->tableView->model()->rowCount(index);
-    ui->lineEdit->clear();
+    int row=ui->tableView_Rq->model()->rowCount(index);
+    ui->lineEdit_Rq->clear();
     QString infoint=QString::number(row);
     QModelIndex idx;
     QString info = QVariant(index.data()).toString();
-    ui->lineEdit->insert(info);
+    ui->lineEdit_Rq->insert(info);
 }
 /*------------Recherche de requette-----------------*/
 void MainWindow::on_RechercheReq_clicked()
 {
 
-    requettetmp.SetInfotmp(ui->lineEdit->text());
-    ui->tableView->setModel(requettetmp.RechercheReqbyRef());
+    requettetmp.SetInfotmp(ui->lineEdit_Rq->text());
+    ui->tableView_Rq->setModel(requettetmp.RechercheReqbyRef());
 }
 
 void MainWindow::on_FiltrerReqSv_currentIndexChanged(const QString &arg1)
 {
     //filtre
     requettetmp.SetInfotmp(ui->FiltrerReqSv->currentText());
-    ui->tableView->setModel(requettetmp.RechercheReqbyService());
+    ui->tableView_Rq->setModel(requettetmp.RechercheReqbyService());
 }
 
 void MainWindow::on_TrierReq_currentIndexChanged(const QString &arg1)
 {
     if(ui->TrierReq->currentText()=="Reference")
-        ui->tableView->setModel(requettetmp.TrierParREF());
+        ui->tableView_Rq->setModel(requettetmp.TrierParREF());
     else if(ui->TrierReq->currentText()=="Date")
-        ui->tableView->setModel(requettetmp.TrierParDATE());
+        ui->tableView_Rq->setModel(requettetmp.TrierParDATE());
     else
         return;
 }
@@ -881,10 +881,10 @@ void MainWindow::on_ExtraiareReq_clicked()
     QString *html = new QString();
     QStringList info;
     int i=0;
-    for (int row = 0; row < ui->tableView->model()->rowCount(); ++row) {
+    for (int row = 0; row < ui->tableView_Rq->model()->rowCount(); ++row) {
 
-        for (int col = 0; col < ui->tableView->model()->columnCount(); ++col) {
-            info<<ui->tableView->model()->data(ui->tableView->model()->index(row,col)).toString();//(row,col)
+        for (int col = 0; col < ui->tableView_Rq->model()->columnCount(); ++col) {
+            info<<ui->tableView_Rq->model()->data(ui->tableView_Rq->model()->index(row,col)).toString();//(row,col)
             *html=*html+info.at(i)+"\t";
             i++;
         }*html+="<br> ";
@@ -905,39 +905,39 @@ void MainWindow::on_AjouterEq_clicked()
     widgetequipeadd.setModal(true);
     widgetequipeadd.setWindowTitle("Ajouter Equipe");
     widgetequipeadd.exec();
-    ui->tableView_2->setModel(equipetmp.AfficherEq());
+    ui->tableView_Eq->setModel(equipetmp.AfficherEq());
 }
 //Actualise l affichage
 void MainWindow::on_ActualiserEq_clicked()
 {
-    ui->tableView_2->setModel(equipetmp.AfficherEq());
+    ui->tableView_Eq->setModel(equipetmp.AfficherEq());
 }
 //recherche simple equipe
 void MainWindow::on_RechercheEq_clicked()
 {
-    equipetmp.SetInfotmp2(ui->lineEdit_2->text());
-    ui->tableView_2->setModel(equipetmp.RechercheEqbyId());
+    equipetmp.SetInfotmp2(ui->lineEdit_Eq->text());
+    ui->tableView_Eq->setModel(equipetmp.RechercheEqbyId());
 }
 //Midfier equipe
 void MainWindow::on_ModifEq_clicked()
 {
     WidMod2 widmodeq;
-    widmodeq.setIDeqtmp(ui->lineEdit_2->text());
+    widmodeq.setIDeqtmp(ui->lineEdit_Eq->text());
     widmodeq.setWindowTitle("Modifier Equipe");
     widmodeq.exec();
 }
 //Suppression Equipe
 void MainWindow::on_DelEq_clicked()
 {
-    equipetmp.SupprimerEq(ui->lineEdit_2->text());
+    equipetmp.SupprimerEq(ui->lineEdit_Eq->text());
 }
 //tri equipe
 void MainWindow::on_TrierEq_currentIndexChanged(const QString &arg1)
 {
     if(ui->TrierEq->currentText()=="Nom")
-        ui->tableView_2->setModel(equipetmp.TrierNom());
+        ui->tableView_Eq->setModel(equipetmp.TrierNom());
     else if(ui->TrierEq->currentText()=="Requettes")
-        ui->tableView_2->setModel(equipetmp.TrierRequettes());
+        ui->tableView_Eq->setModel(equipetmp.TrierRequettes());
     else
         return;
 }
@@ -945,16 +945,16 @@ void MainWindow::on_TrierEq_currentIndexChanged(const QString &arg1)
 void MainWindow::on_FiltrerEq_currentIndexChanged(const QString &arg1)
 {
     equipetmp.SetInfotmp2(ui->FiltrerEq->currentText());
-    ui->tableView_2->setModel(equipetmp.RechercheEqbySpec());
+    ui->tableView_Eq->setModel(equipetmp.RechercheEqbySpec());
 }
 
-void MainWindow::on_tableView_2_doubleClicked(const QModelIndex &index)
+void MainWindow::on_tableView_Eq_doubleClicked(const QModelIndex &index)
 {
-    int row=ui->tableView_2->model()->rowCount(index);
-    ui->lineEdit_2->clear();
+    int row=ui->tableView_Eq->model()->rowCount(index);
+    ui->lineEdit_Eq->clear();
     QString infoint=QString::number(row);
     QString info = QVariant(index.data()).toString();
-    ui->lineEdit_2->insert(info);
+    ui->lineEdit_Eq->insert(info);
 }
 
 void MainWindow::on_ExtraireEq_clicked()
@@ -969,10 +969,10 @@ void MainWindow::on_ExtraireEq_clicked()
     QString *html = new QString();
     QStringList info;
     int i=0;
-    for (int row = 0; row < ui->tableView_2->model()->rowCount(); ++row) {
+    for (int row = 0; row < ui->tableView_Eq->model()->rowCount(); ++row) {
 
-        for (int col = 0; col < ui->tableView_2->model()->columnCount(); ++col) {
-            info<<ui->tableView_2->model()->data(ui->tableView_2->model()->index(row,col)).toString();//(row,col)
+        for (int col = 0; col < ui->tableView_Eq->model()->columnCount(); ++col) {
+            info<<ui->tableView_Eq->model()->data(ui->tableView_Eq->model()->index(row,col)).toString();//(row,col)
             *html=*html+info.at(i)+"\t";
             i++;
         }*html+="<br> ";
@@ -988,18 +988,18 @@ void MainWindow::on_ExtraireEq_clicked()
 
 void MainWindow::on_statEq_clicked()
 {
-    QString info = ui->tableView->model()->data(ui->tableView->model()->index(1,2)).toString();
+    QString info = ui->tableView_Eq->model()->data(ui->tableView_Eq->model()->index(1,2)).toString();
     QStringList Employees;
-    for (int i = 0; i < ui->tableView_2->model()->rowCount(); ++i) {
-        info = ui->tableView_2->model()->data(ui->tableView_2->model()->index(i,1)).toString();
+    for (int i = 0; i < ui->tableView_Eq->model()->rowCount(); ++i) {
+        info = ui->tableView_Eq->model()->data(ui->tableView_Eq->model()->index(i,1)).toString();
         Employees<<info;
     }
     QStringList values;
-    for (int i = 0; i < ui->tableView_2->model()->rowCount(); ++i) {
-        info = ui->tableView_2->model()->data(ui->tableView_2->model()->index(i,3)).toString();
+    for (int i = 0; i < ui->tableView_Eq->model()->rowCount(); ++i) {
+        info = ui->tableView_Eq->model()->data(ui->tableView_Eq->model()->index(i,3)).toString();
         values<<info;
     }
-    ui->lineEdit_2->insert(info);
+    ui->lineEdit_Eq->insert(info);
 
     //values<<"35"<<"45"<<"58";
     StatChart stat;
@@ -1011,15 +1011,15 @@ void MainWindow::on_statEq_clicked()
 
 void MainWindow::on_statRq_clicked()
 {
-    QString info = ui->tableView->model()->data(ui->tableView->model()->index(1,2)).toString();
+    QString info = ui->tableView_Rq->model()->data(ui->tableView_Rq->model()->index(1,2)).toString();
     QStringList Services;
     Services<<"Urgence"<<"Pediatrie"<<"Secretariat"<<"Cardio"<<"Neurologie"<<"Psychiatrie";
     int freq[Services.length()];
     for (int i = 0; i < Services.length(); ++i) {
         freq[i]=0;
     }
-    for (int i = 0; i < ui->tableView->model()->rowCount(); ++i) {
-        info = ui->tableView->model()->data(ui->tableView->model()->index(i,4)).toString();
+    for (int i = 0; i < ui->tableView_Rq->model()->rowCount(); ++i) {
+        info = ui->tableView_Rq->model()->data(ui->tableView_Rq->model()->index(i,4)).toString();
         for(int j=0;j<Services.length();j++)
         {
             if(info==Services.at(j))
@@ -1027,7 +1027,7 @@ void MainWindow::on_statRq_clicked()
         }
 
     }
-    ui->lineEdit_2->insert(info);
+    ui->lineEdit_Eq->insert(info);
 
     //values<<"35"<<"45"<<"58";
     DsikStat diskstat;

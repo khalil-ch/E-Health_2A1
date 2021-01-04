@@ -1202,7 +1202,7 @@ QStatusBar
            <string notr="true"/>
           </property>
           <property name="currentIndex">
-           <number>1</number>
+           <number>0</number>
           </property>
           <widget class="QWidget" name="tab">
            <attribute name="title">
@@ -6612,13 +6612,13 @@ QLineEdit:focus { background-color:rgb(192, 192, 255);}</string>
            </rect>
           </property>
           <property name="currentIndex">
-           <number>0</number>
+           <number>1</number>
           </property>
           <widget class="QWidget" name="Requettes">
            <attribute name="title">
             <string>Requettes</string>
            </attribute>
-           <widget class="QGroupBox" name="groupBox">
+           <widget class="QGroupBox" name="groupBox_15">
             <property name="geometry">
              <rect>
               <x>10</x>
@@ -6630,7 +6630,7 @@ QLineEdit:focus { background-color:rgb(192, 192, 255);}</string>
             <property name="title">
              <string>Liste de Requettes</string>
             </property>
-            <widget class="QTableView" name="tableView">
+            <widget class="QTableView" name="tableView_Rq">
              <property name="geometry">
               <rect>
                <x>50</x>
@@ -6775,7 +6775,7 @@ QLineEdit:focus { background-color:rgb(192, 192, 255);}</string>
               <string>Eextraire</string>
              </property>
             </widget>
-            <widget class="QLineEdit" name="lineEdit">
+            <widget class="QLineEdit" name="lineEdit_Rq">
              <property name="geometry">
               <rect>
                <x>420</x>
@@ -6880,7 +6880,7 @@ QLineEdit:focus { background-color:rgb(192, 192, 255);}</string>
             <property name="title">
              <string>Equipes de Maintenance</string>
             </property>
-            <widget class="QTableView" name="tableView_2">
+            <widget class="QTableView" name="tableView_Eq">
              <property name="geometry">
               <rect>
                <x>25</x>
@@ -6930,7 +6930,7 @@ QLineEdit:focus { background-color:rgb(192, 192, 255);}</string>
               </property>
              </item>
             </widget>
-            <widget class="QLineEdit" name="lineEdit_2">
+            <widget class="QLineEdit" name="lineEdit_Eq">
              <property name="geometry">
               <rect>
                <x>360</x>
