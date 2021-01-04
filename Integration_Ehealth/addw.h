@@ -15,6 +15,9 @@ public:
     explicit AddW(QWidget *parent = nullptr);
     ~AddW();
 
+private slots:
+    void on_ConfirmerAddRq_clicked();
+
 private:
     Ui::AddW *ui;
 };

@@ -26,6 +26,7 @@
 #include <widadd2.h>
 #include <widmod2.h>
 #include <statchart.h>
+#include <dsikstat.h>
 //
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -790,6 +791,7 @@ void MainWindow::update_label()
    qDebug()<< data;
 ui->lineEdit_bpm->setText(heartRateBPM);
    }
+//code khalil
 //Ajoute une requette avec appel a un autre widget
 void MainWindow::on_AjouterReq_clicked()
 {
@@ -1006,3 +1008,32 @@ void MainWindow::on_statEq_clicked()
     stat.afficherStats(Employees,values);
     stat.exec();
 }
+
+void MainWindow::on_statRq_clicked()
+{
+    QString info = ui->tableView->model()->data(ui->tableView->model()->index(1,2)).toString();
+    QStringList Services;
+    Services<<"Urgence"<<"Pediatrie"<<"Secretariat"<<"Cardio"<<"Neurologie"<<"Psychiatrie";
+    int freq[Services.length()];
+    for (int i = 0; i < Services.length(); ++i) {
+        freq[i]=0;
+    }
+    for (int i = 0; i < ui->tableView->model()->rowCount(); ++i) {
+        info = ui->tableView->model()->data(ui->tableView->model()->index(i,4)).toString();
+        for(int j=0;j<Services.length();j++)
+        {
+            if(info==Services.at(j))
+                freq[j]+=1;
+        }
+
+    }
+    ui->lineEdit_2->insert(info);
+
+    //values<<"35"<<"45"<<"58";
+    DsikStat diskstat;
+    diskstat.setModal(true);
+    diskstat.setWindowTitle("Statistiques");
+    diskstat.afficherStatDisk(Services,freq);
+    diskstat.exec();
+}
+//

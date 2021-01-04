@@ -18,6 +18,7 @@ SOURCES += \
     arduino.cpp \
     chambre.cpp \
     connection.cpp \
+    dsikstat.cpp \
     equipemaintenance.cpp \
     fournisseur.cpp \
     main.cpp \
@@ -37,6 +38,7 @@ HEADERS += \
     arduino.h \
     chambre.h \
     connection.h \
+    dsikstat.h \
     equipemaintenance.h \
     fournisseur.h \
     mainwindow.h \
@@ -52,6 +54,7 @@ HEADERS += \
 
 FORMS += \
     addw.ui \
+    dsikstat.ui \
     mainwindow.ui \
     modw.ui \
     statchart.ui \

@@ -135,6 +135,8 @@ void update_label();
 
     void on_statEq_clicked();
 
+    void on_statRq_clicked();
+
 private:
     Ui::MainWindow *ui;
     Medicament temp;

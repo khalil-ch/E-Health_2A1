@@ -1,13 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>StatChart</class>
- <widget class="QDialog" name="StatChart">
+ <class>DsikStat</class>
+ <widget class="QDialog" name="DsikStat">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>588</width>
-    <height>445</height>
+    <width>400</width>
+    <height>300</height>
    </rect>
   </property>
   <property name="windowTitle">
