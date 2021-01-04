@@ -20,6 +20,8 @@
 #include <QMediaPlayer>
 #include  <QSound>
 #include<QString>
+#include <QTranslator>
+
 //khalil
 #include <addw.h>
 #include <modw.h>
@@ -1037,3 +1039,22 @@ void MainWindow::on_statRq_clicked()
     diskstat.exec();
 }
 //
+
+void MainWindow::on_english_clicked()
+{
+
+     if (ui->english->isChecked())
+    {
+
+        translator->load("C:\\Users\\hp\\Desktop\\integration eya!\\E-Health_2A1\\Integration_Ehealth\\english.qm");
+
+        qApp->installTranslator(translator);
+        ui->retranslateUi(this);
+        QSystemTrayIcon * notifyIcon = new QSystemTrayIcon;
+                   notifyIcon-> show ();
+                    notifyIcon-> showMessage ( " GESTION PATIENT ET CHAMBRE " , "langue modifié " , QSystemTrayIcon :: Information, 15000 );
+
+    }
+}
+
+

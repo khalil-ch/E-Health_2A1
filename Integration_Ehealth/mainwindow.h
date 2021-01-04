@@ -9,6 +9,8 @@
 #include <QMainWindow>
 #include <QStatusBar>
 #include <QString>
+#include <QTranslator>
+
 //
 #include "requette.h"
 #include"equipemaintenance.h"
@@ -137,6 +139,8 @@ void update_label();
 
     void on_statRq_clicked();
 
+    void on_english_clicked();
+
 private:
     Ui::MainWindow *ui;
     Medicament temp;
@@ -145,6 +149,7 @@ private:
       chambre tmpChambre;
       QByteArray data;
      QString heartRateBPM="";
+         QTranslator *translator=new QTranslator;
      //
      Requette requettetmp;
      EquipeMaintenance equipetmp;
