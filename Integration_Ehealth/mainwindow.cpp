@@ -120,6 +120,26 @@ MainWindow::MainWindow(QWidget *parent)
                QObject::connect(ui->horizontalSlider,SIGNAL(valueChanged(int)),player,SLOT(setVolume(int)));
                QObject::connect(ui->spinBox,SIGNAL(valueChanged(int)),player,SLOT(setVolume(int)));
 
+               //arduino khalil
+
+                   ret=A.connect_arduino();
+
+
+                   switch (ret)
+                   {
+                   case 0:
+                       qDebug() << "arduino is available and connected to:" << A.getarduino_port_name();
+                       break;
+                   case 1:
+                       qDebug() << "arduino is available but not connected to:" << A.getarduino_port_name();
+                       break;
+                   case -1:
+                       qDebug() << "arduino is not available";
+                       break;
+                   }
+
+                   QObject::connect(A.getserial(),SIGNAL(readyRead()),this,SLOT(update_label_khalil()));
+
 }
 //arduinoaziz
 

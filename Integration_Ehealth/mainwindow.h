@@ -199,5 +199,11 @@ private:
      //arduino
        QByteArray data;
       arduino A;
+      //arduino khalil
+      /*
+            arduino A;
+            bool test=false;
+            QString myid;*/
+
 };
 #endif // MAINWINDOW_H
