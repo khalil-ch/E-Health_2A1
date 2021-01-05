@@ -3,6 +3,7 @@ QT +=printsupport
 QT += sql
 QT += multimedia
 QT        += core gui serialport
+QT       += sql network
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets printsupport
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
@@ -19,6 +20,7 @@ SOURCES += \
     chambre.cpp \
     connection.cpp \
     dsikstat.cpp \
+    email.cpp \
     equipemaintenance.cpp \
     fournisseur.cpp \
     main.cpp \
@@ -26,8 +28,11 @@ SOURCES += \
     medicament.cpp \
     modw.cpp \
     patient.cpp \
+    personnel.cpp \
     qcustomplot.cpp \
     requette.cpp \
+    service.cpp \
+    smtp.cpp \
     statchart.cpp \
     stats.cpp \
     widadd2.cpp \
@@ -39,14 +44,18 @@ HEADERS += \
     chambre.h \
     connection.h \
     dsikstat.h \
+    email.h \
     equipemaintenance.h \
     fournisseur.h \
     mainwindow.h \
     medicament.h \
     modw.h \
     patient.h \
+    personnel.h \
     qcustomplot.h \
     requette.h \
+    service.h \
+    smtp.h \
     statchart.h \
     stats.h \
     widadd2.h \
@@ -55,6 +64,7 @@ HEADERS += \
 FORMS += \
     addw.ui \
     dsikstat.ui \
+    email.ui \
     mainwindow.ui \
     modw.ui \
     statchart.ui \

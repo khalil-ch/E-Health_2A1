@@ -10,7 +10,9 @@
 #include <QStatusBar>
 #include <QString>
 #include <QTranslator>
-
+#include "personnel.h"
+#include "service.h"
+#include "smtp.h"
 //
 #include "requette.h"
 #include"equipemaintenance.h"
@@ -21,6 +23,7 @@
 #include <QTextDocument>
 #include <QPropertyAnimation>
 #include <QFileDialog>
+#include <QSound>
 //
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -33,7 +36,7 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-
+int led,alert,messageboxactive;
 private slots:
 
 void update_label();
@@ -141,7 +144,39 @@ void update_label();
 
     void on_english_clicked();
 
-    void update_label_khalil();
+    void on_ajouter_vehicule_clicked();
+
+    void on_supprimer_vehicule_clicked();
+
+    void on_modifier_vehicule_clicked();
+
+    void on_ajouter_vehicule_2_clicked();
+
+    void on_supprimer_panne_clicked();
+
+
+    void on_modifier_service_clicked();
+
+    void on_rb_clicked();
+
+    void on_tri_clicked();
+
+    void on_rb_2_clicked();
+
+    void on_tri_2_clicked();
+
+    void on_pdf_clicked();
+
+    void on_mail_clicked();
+
+    void on_play_clicked();
+
+    void on_mute_clicked();
+
+    void on_mail_2_clicked();
+    //arduino
+         void update_label_aziz();
+         //finarduino
 
 private:
     Ui::MainWindow *ui;
@@ -149,7 +184,7 @@ private:
     fournisseur tempo;
       patient tmpPatient;
       chambre tmpChambre;
-      QByteArray data;
+
      QString heartRateBPM="";
          QTranslator *translator=new QTranslator;
      //
@@ -158,9 +193,11 @@ private:
      QPropertyAnimation* animation;
      QPropertyAnimation* animation2;
      //
-
+     personnel tmppersonnel;
+     service tmpservice;
+     QSound *son;
+     //arduino
+       QByteArray data;
       arduino A;
-      bool test=false;
-      QString myid;
 };
 #endif // MAINWINDOW_H

@@ -21,8 +21,14 @@
 #include  <QSound>
 #include<QString>
 #include <QTranslator>
-
-//khalil new code
+#include <QtWidgets>
+#include "email.h"
+#include <QMessageBox>
+#include <QPrinter>
+#include <QPrintDialog>
+#include <QTextDocument>
+#include <QTextStream>
+//khalil
 #include <addw.h>
 #include <modw.h>
 #include <widadd2.h>
@@ -35,15 +41,16 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    son=new QSound("C:/Users/AZYZ/Desktop/Azyzprojet/music.wav");
     int ret=A.connect_arduino();
     switch (ret)
     {
-    case(0):qDebug()<<"arduino is available and connected to :"<<A.getarduino_port_name();
+     case(0):qDebug()<<"arduino is available and connected to :"<<A.getarduino_port_name();
         break;
     case(1):qDebug()<<"arduino is available but not connected to :"<<A.getarduino_port_name();
-        break;
+       break;
     case(-1):qDebug()<<"arduino is not available and connected to :"<<A.getarduino_port_name();
-        break;
+       break;
     }
     QObject::connect(A.getserial(),SIGNAL(readyRead()),this,SLOT(update_label()));
     ui->stackedWidget->setCurrentIndex(1);
@@ -59,83 +66,103 @@ MainWindow::MainWindow(QWidget *parent)
     ui->tableView_Rq->setModel(requettetmp.AfficherReq());
     ui->tableView_Eq->setModel(equipetmp.AfficherEq());
     //
-    //this->setStyleSheet("background-color: rgb(0, 0, 100);");
-    ui->lineEdit_CINpatient->setMaxLength(8);
-    ui->lineEdit_cinp->setMaxLength(8);
-    ui->lineEdit_cin_supp->setMaxLength(8);
-    ui->lineEdit_recherchecin->setMaxLength(8);
-    ui->lineEdit_nomp->setMaxLength(10);
-    ui->lineEdit_prenomp->setMaxLength(10);
-    ui->lineEdit_nompatient->setMaxLength(10);
-    ui->lineEdit_prenompatient->setMaxLength(10);
-    ui->lineEdit_idchambre->setMaxLength(4);
-    ui->lineEdit_agep->setMaxLength(2);
-    ui->lineEdit_numchambre->setMaxLength(2);
-    ui->lineEdit_etage->setMaxLength(1);
-    ui->lineEdit_2id->setMaxLength(4);
-    ui->lineEdit_2num->setMaxLength(2);
-    ui->dateEdit_Modifchambre->setMaxLength(1);
-    ui->lineEdit_rechnomp->setMaxLength(10);
-    ui->lineEdit_rechprenomp->setMaxLength(10);
-    ui->lineEdit_idrech->setMaxLength(4);
-    ui->lineEdit_numrech->setMaxLength(2);
-    ui->lineEdit_etagerech->setMaxLength(1);
-    ui->lineEdit_csupp->setMaxLength(4);
-    ui->lineEdit_idajoutp->setMaxLength(4);
-    ui->lineEdit_age->setMaxLength(2);
-    ui->lineEdit_idpatient->setMaxLength(4);
-    ui-> dateEditajoutp->setMinimumDate(QDate::currentDate());
-    ui->dateEditModifP->setMinimumDate(QDate::currentDate());
-    int const n=0;
-    QMediaPlayer *player = new QMediaPlayer;
-    player->setMedia(QUrl::fromLocalFile("C:\\Users\\hp\\Desktop\\integration eya!\\E-Health_2A1\\Integration_Ehealth\\Piano-melancholy-music-short.mp3"));
-    player->setVolume(n);
-    player->play();
-    ui->spinBox->setRange(0,100);
-    ui->spinBox->setValue(n);
-    ui->horizontalSlider->setRange(0,100);
-    ui->horizontalSlider->setValue(n);
-    QObject::connect(ui->horizontalSlider,SIGNAL(valueChanged(int)),ui->spinBox,SLOT(setValue(int)));
-    QObject::connect(ui->spinBox,SIGNAL(valueChanged(int)),ui->horizontalSlider,SLOT(setValue(int)));
-    QObject::connect(ui->horizontalSlider,SIGNAL(valueChanged(int)),player,SLOT(setVolume(int)));
-    QObject::connect(ui->spinBox,SIGNAL(valueChanged(int)),player,SLOT(setVolume(int)));
+    //AZIZ KAHLOUL
+    ui->tabpersonnel->setModel(tmppersonnel.afficher());
+     ui->tabservice->setModel(tmpservice.afficher());
+    ui->cin_per->setValidator(new QIntValidator(0,9999,this));
+     ui->cin_chef->setValidator(new QIntValidator(0,9999,this));
+      ui->id_service->setValidator(new QIntValidator(0,9999,this));
+      ui->id_service_sup->setValidator(new QIntValidator(0,9999,this));
+     ui->type_service->setMaxLength(9);
+     ui->nom_per->setMaxLength(9);
+     ui->prenom_per->setMaxLength(9);
+     ui->type_per->setMaxLength(9);
+
+     //
+       //this->setStyleSheet("background-color: rgb(0, 0, 100);");
+        ui->lineEdit_CINpatient->setMaxLength(8);
+        ui->lineEdit_cinp->setMaxLength(8);
+        ui->lineEdit_cin_supp->setMaxLength(8);
+        ui->lineEdit_recherchecin->setMaxLength(8);
+        ui->lineEdit_nomp->setMaxLength(10);
+        ui->lineEdit_prenomp->setMaxLength(10);
+        ui->lineEdit_nompatient->setMaxLength(10);
+        ui->lineEdit_prenompatient->setMaxLength(10);
+        ui->lineEdit_idchambre->setMaxLength(4);
+        ui->lineEdit_agep->setMaxLength(2);
+        ui->lineEdit_numchambre->setMaxLength(2);
+        ui->lineEdit_etage->setMaxLength(1);
+        ui->lineEdit_2id->setMaxLength(4);
+        ui->lineEdit_2num->setMaxLength(2);
+        ui->dateEdit_Modifchambre->setMaxLength(1);
+        ui->lineEdit_rechnomp->setMaxLength(10);
+        ui->lineEdit_rechprenomp->setMaxLength(10);
+        ui->lineEdit_idrech->setMaxLength(4);
+        ui->lineEdit_numrech->setMaxLength(2);
+        ui->lineEdit_etagerech->setMaxLength(1);
+        ui->lineEdit_csupp->setMaxLength(4);
+        ui->lineEdit_idajoutp->setMaxLength(4);
+        ui->lineEdit_age->setMaxLength(2);
+        ui->lineEdit_idpatient->setMaxLength(4);
+        ui-> dateEditajoutp->setMinimumDate(QDate::currentDate());
+        ui->dateEditModifP->setMinimumDate(QDate::currentDate());
+        int const n=0;
+               QMediaPlayer *player = new QMediaPlayer;
+               player->setMedia(QUrl::fromLocalFile("C:\\Users\\hp\\Desktop\\integration eya!\\E-Health_2A1\\Integration_Ehealth\\Piano-melancholy-music-short.mp3"));
+               player->setVolume(n);
+               player->play();
+               ui->spinBox->setRange(0,100);
+               ui->spinBox->setValue(n);
+               ui->horizontalSlider->setRange(0,100);
+               ui->horizontalSlider->setValue(n);
+               QObject::connect(ui->horizontalSlider,SIGNAL(valueChanged(int)),ui->spinBox,SLOT(setValue(int)));
+               QObject::connect(ui->spinBox,SIGNAL(valueChanged(int)),ui->horizontalSlider,SLOT(setValue(int)));
+               QObject::connect(ui->horizontalSlider,SIGNAL(valueChanged(int)),player,SLOT(setVolume(int)));
+               QObject::connect(ui->spinBox,SIGNAL(valueChanged(int)),player,SLOT(setVolume(int)));
+
+}
+//arduinoaziz
+
+void MainWindow::update_label_aziz()
+{
+    data=A.read_from_arduino();
+    QString DataAsString = QString(data);
+    qDebug()<< data;
+
+     ui->label_2->setText("temp : "+data);
+
+    if (data=="21"||data=="22"||data=="23"||data=="24"||data=="25"||data=="26"||data=="27"){
+        if (messageboxactive==0){
+            alert=1;
+        }
 
 
-    ret=A.connect_arduino();
+    }
+    if (alert==1){
+         alert=0;
+         messageboxactive=1;
+        int reponse = QMessageBox::question(this, "led", "allumer led", QMessageBox::Yes |  QMessageBox::No);
+                                   if (reponse == QMessageBox::Yes)
+                                   {
+                                     led=1;
+                                   }
+                                   if (reponse == QMessageBox::No)
+                                   {
+                                      led=0;
+                                   }
 
-
-    switch (ret)
-    {
-    case 0:
-        qDebug() << "arduino is available and connected to:" << A.getarduino_port_name();
-        break;
-    case 1:
-        qDebug() << "arduino is available but not connected to:" << A.getarduino_port_name();
-        break;
-    case -1:
-        qDebug() << "arduino is not available";
-        break;
+    }
+    if (led==1){
+        A.write_to_arduino("1");
+    }
+    if (data=="20"||data=="19"||data=="18"||data=="17"||data=="16"||data=="15"||data=="14 "){
+        A.write_to_arduino("0");
+        led=0;
     }
 
-    QObject::connect(A.getserial(),SIGNAL(readyRead()),this,SLOT(update_label_aziz()));
-
 }
 
-void MainWindow::update_label_khalil(){
-    data=A.read_from_arduino();
-
-    qDebug()<<data;
-
-    myid+=data;
-
-            int pos=myid.toStdString().find("key");
-            qDebug() << myid;
-            qDebug() << myid.mid(pos+5,17);
-
-
-
-}
-
+//fin arduino
 
 MainWindow::~MainWindow()
 {
@@ -212,12 +239,12 @@ void MainWindow::on_rechmed_clicked()
                                               "Click Cancel to exit."), QMessageBox::Cancel);
             ui->tablemed->setModel(test);
         }}
-    else
-    {
-        ui->rechmed->setText("Recherche");
-        ui->tablemed->setModel(temp.afficher());
+        else
+        {
+            ui->rechmed->setText("Recherche");
+            ui->tablemed->setModel(temp.afficher());
 
-    }
+        }
 }
 
 void MainWindow::on_statsmed_clicked()
@@ -266,25 +293,25 @@ void MainWindow::on_excelmed_clicked()
 void MainWindow::on_trierfour_clicked()
 {
     if(ui->radionom->isChecked())
+       {
+            if(ui->ordrefour->currentText()=="Ordre croissant")
+                 ui->tablefour->setModel(tempo.trier_four("NOM",1));
+            else
+                 ui->tablefour->setModel(tempo.trier_four("NOM",2));
+       }
+       else if(ui->radiomat->isChecked())
     {
-        if(ui->ordrefour->currentText()=="Ordre croissant")
-            ui->tablefour->setModel(tempo.trier_four("NOM",1));
-        else
-            ui->tablefour->setModel(tempo.trier_four("NOM",2));
+         if(ui->ordrefour->currentText()=="Ordre croissant")
+              ui->tablefour->setModel(tempo.trier_four("MATRICULE",1));
+         else
+              ui->tablefour->setModel(tempo.trier_four("MATRICULE",2));
     }
-    else if(ui->radiomat->isChecked())
+       else if(ui->radioad->isChecked())
     {
-        if(ui->ordrefour->currentText()=="Ordre croissant")
-            ui->tablefour->setModel(tempo.trier_four("MATRICULE",1));
-        else
-            ui->tablefour->setModel(tempo.trier_four("MATRICULE",2));
-    }
-    else if(ui->radioad->isChecked())
-    {
-        if(ui->ordrefour->currentText()=="Ordre croissant")
-            ui->tablefour->setModel(tempo.trier_four("ADRESSE",1));
-        else
-            ui->tablefour->setModel(tempo.trier_four("ADRESSE",2));
+         if(ui->ordrefour->currentText()=="Ordre croissant")
+              ui->tablefour->setModel(tempo.trier_four("ADRESSE",1));
+         else
+              ui->tablefour->setModel(tempo.trier_four("ADRESSE",2));
     }
 }
 
@@ -327,8 +354,8 @@ void MainWindow::on_pdffour_clicked()
           <<  "</head>\n"
            <<"<body bgcolor=#ffffff link=#5000A0>\n"
 
-             //     "<align='right'> " << datefich << "</align>"
-          <<"<center> <H1>Liste des fournisseurs </H1></br></br><table border=1 cellspacing=0 cellpadding=2>\n";
+           //     "<align='right'> " << datefich << "</align>"
+           <<"<center> <H1>Liste des fournisseurs </H1></br></br><table border=1 cellspacing=0 cellpadding=2>\n";
 
 
     // headers
@@ -355,24 +382,24 @@ void MainWindow::on_pdffour_clicked()
 
 
 
-    QString fileName = QFileDialog::getSaveFileName((QWidget* )0, "Sauvegarder en PDF", QString(), "*.pdf");
-    if (QFileInfo(fileName).suffix().isEmpty()) { fileName.append(".pdf"); }
-    QPrinter *printer=new  QPrinter(QPrinter::PrinterResolution);
-    printer->setOutputFormat(QPrinter::PdfFormat);
-    printer->setPaperSize(QPrinter::A4);
-    printer->setOutputFileName(fileName);
+        QString fileName = QFileDialog::getSaveFileName((QWidget* )0, "Sauvegarder en PDF", QString(), "*.pdf");
+        if (QFileInfo(fileName).suffix().isEmpty()) { fileName.append(".pdf"); }
+        QPrinter *printer=new  QPrinter(QPrinter::PrinterResolution);
+        printer->setOutputFormat(QPrinter::PdfFormat);
+        printer->setPaperSize(QPrinter::A4);
+        printer->setOutputFileName(fileName);
 
-    QTextDocument doc;
-    doc.setHtml(strStream);
-    doc.setPageSize(printer->pageRect().size()); // This is necessary if you want to hide the page number
-    doc.print(printer);
+        QTextDocument doc;
+        doc.setHtml(strStream);
+        doc.setPageSize(printer->pageRect().size()); // This is necessary if you want to hide the page number
+        doc.print(printer);
 
-    QPrinter *p=new QPrinter();
-    QPrintDialog dialog(p,this);
-    if(dialog.exec()== QDialog::Rejected)
-    {
-        return;
-    }
+        QPrinter *p=new QPrinter();
+        QPrintDialog dialog(p,this);
+        if(dialog.exec()== QDialog::Rejected)
+        {
+            return;
+        }
 }
 
 void MainWindow::on_modiffour_clicked()
@@ -408,87 +435,89 @@ void MainWindow::on_suppfour_clicked()
 void MainWindow::on_Login_clicked()
 {
     if(ui->loginLineEdit->text()=="firas")
-        ui->stackedWidget->setCurrentIndex(0);
+            ui->stackedWidget->setCurrentIndex(0);
     if (ui->loginLineEdit->text()=="eya")
         ui->stackedWidget->setCurrentIndex(2);
     if (ui->loginLineEdit->text()=="khalil")
         ui->stackedWidget->setCurrentIndex(3);
+    if (ui->loginLineEdit->text()=="aziz")
+        ui->stackedWidget->setCurrentIndex(4);
 }
 
 void MainWindow::on_pushButtonAjoutP_clicked()
 {
-    QString cin = ui->lineEdit_CINpatient->text();
-    QString id= ui->lineEdit_idajoutp->text();
-    int age= ui-> lineEdit_age->text().toInt();
-    int duree= ui-> lineEdit_duree->text().toInt();
-    QDate Date_entrer= ui->dateEditajoutp->date();
-    QString nom= ui->lineEdit_nompatient->text();
-    QString prenom= ui->lineEdit_prenompatient->text();
-    patient p(cin,id,age,duree,Date_entrer,nom,prenom);
-    if ((age!=0)&&(cin.length()!=0) &&(duree!=0)&&(nom.length()!=0)&&
-            (prenom.length()!=0)&&(id.length()!=0)
-            &&(nom>='a'&&nom<='z' ) &&(prenom>='a'&&nom<='z' ))
-    {
-        bool test=p.ajouter();
+QString cin = ui->lineEdit_CINpatient->text();
+   QString id= ui->lineEdit_idajoutp->text();
+   int age= ui-> lineEdit_age->text().toInt();
+   int duree= ui-> lineEdit_duree->text().toInt();
+   QDate Date_entrer= ui->dateEditajoutp->date();
+   QString nom= ui->lineEdit_nompatient->text();
+   QString prenom= ui->lineEdit_prenompatient->text();
+   patient p(cin,id,age,duree,Date_entrer,nom,prenom);
+     if ((age!=0)&&(cin.length()!=0) &&(duree!=0)&&(nom.length()!=0)&&
+             (prenom.length()!=0)&&(id.length()!=0)
+           &&(nom>='a'&&nom<='z' ) &&(prenom>='a'&&nom<='z' ))
+     {
+         bool test=p.ajouter();
 
-        if(test)
-        { ui->tableView_Patient->setModel(tmpPatient.afficher());
-            QSystemTrayIcon * notifyIcon = new QSystemTrayIcon;
-            notifyIcon-> show ();
-            notifyIcon-> showMessage ( " GESTION PATIENT " , " Patient ajouté " , QSystemTrayIcon :: Information, 15000 );
-            QMessageBox::information(nullptr, QObject::tr("Ajouter Patient"),
-                                     QObject::tr("Patient ajuter.\n""Click Cancel to exit."), QMessageBox::Cancel);
+if(test)
+  { ui->tableView_Patient->setModel(tmpPatient.afficher());
+    QSystemTrayIcon * notifyIcon = new QSystemTrayIcon;
+               notifyIcon-> show ();
+                notifyIcon-> showMessage ( " GESTION PATIENT " , " Patient ajouté " , QSystemTrayIcon :: Information, 15000 );
+   QMessageBox::information(nullptr, QObject::tr("Ajouter Patient"),
+               QObject::tr("Patient ajuter.\n""Click Cancel to exit."), QMessageBox::Cancel);
 
-        }
-    }
-    else
+   }
+     }
+else
 
-    {
-        QMessageBox::critical(nullptr, QObject::tr("Ajouter Patient"),
-                              QObject::tr("Ajout echoué.\n""Click Cancel to exit."), QMessageBox::Cancel);
+{
+   QMessageBox::critical(nullptr, QObject::tr("Ajouter Patient"),
+               QObject::tr("Ajout echoué.\n""Click Cancel to exit."), QMessageBox::Cancel);
 
-    }
+}
 
 
 
-    foreach(QLineEdit *widget, this->findChildren<QLineEdit*>()) {
-        widget->clear();
-    }
+foreach(QLineEdit *widget, this->findChildren<QLineEdit*>()) {
+       widget->clear();
+   }
 
 }
 
 void MainWindow::on_pushButton_updatepatient_clicked()
 {
     QString cin= ui->lineEdit_cinp->text();
-    QString id= ui->lineEdit_idpatient->text();
-    int age= ui->lineEdit_agep->text().toInt();
-    int duree= ui->lineEdit_dureep->text().toInt();
-    QDate Date_entrer=ui->dateEditModifP->date();
-    QString nom=ui->lineEdit_nomp->text();
-    QString prenom=ui->lineEdit_prenomp->text();
+       QString id= ui->lineEdit_idpatient->text();
+       int age= ui->lineEdit_agep->text().toInt();
+       int duree= ui->lineEdit_dureep->text().toInt();
+       QDate Date_entrer=ui->dateEditModifP->date();
+       QString nom=ui->lineEdit_nomp->text();
+       QString prenom=ui->lineEdit_prenomp->text();
 
-    if ((age!=0)&&(duree!=0)&&(nom.length()!=0)&&(prenom.length()!=0)&&
-            (id.length()!=0)
-            &&(nom>='a'&&nom<='z' ) &&(prenom>='a'&&nom<='z' )  )
-    {
+       if ((age!=0)&&(duree!=0)&&(nom.length()!=0)&&(prenom.length()!=0)&&
+               (id.length()!=0)
+              &&(nom>='a'&&nom<='z' ) &&(prenom>='a'&&nom<='z' )  )
+       {
 
-        bool test = tmpPatient.update(cin,id,age,duree,Date_entrer,nom,prenom);
+           bool test = tmpPatient.update(cin,id,age,duree,Date_entrer,nom,prenom);
 
-        if(test)
+           if(test)
 
-        {
-            ui->tableView_Patient->setModel(tmpPatient.afficher());
-            QSystemTrayIcon * notifyIcon = new QSystemTrayIcon;
-            notifyIcon-> show ();
-            notifyIcon-> showMessage ( " GESTION PATIENT " , " Patient Modifié " , QSystemTrayIcon :: Information, 15000 );
+           {
+               ui->tableView_Patient->setModel(tmpPatient.afficher());
+               QSystemTrayIcon * notifyIcon = new QSystemTrayIcon;
+                          notifyIcon-> show ();
+                           notifyIcon-> showMessage ( " GESTION PATIENT " , " Patient Modifié " , QSystemTrayIcon :: Information, 15000 );
 
-            QMessageBox::information(nullptr, QObject::tr("update "),
-                                     QObject::tr("Patient modifie\n"
-                                                 "Click Cancel to exit."), QMessageBox::Cancel);}
-    }
-    foreach(QLineEdit *widget, this->findChildren<QLineEdit*>()) {
-        widget->clear();
-    }
+               QMessageBox::information(nullptr, QObject::tr("update "),
+                           QObject::tr("Patient modifie\n"
+           "Click Cancel to exit."), QMessageBox::Cancel);}
+       }
+           foreach(QLineEdit *widget, this->findChildren<QLineEdit*>()) {
+                   widget->clear();
+               }
 }
 
 
@@ -496,338 +525,338 @@ void MainWindow::on_pushButton_suppP_clicked()
 {
     QString cin = ui -> lineEdit_cin_supp->text() ;
 
-    bool test=tmpPatient.supprimer(cin);
+       bool test=tmpPatient.supprimer(cin);
 
-    if(test)
-    { ui->tableView_Patient->setModel(tmpPatient.afficher());
-        QSystemTrayIcon * notifyIcon = new QSystemTrayIcon;
-        notifyIcon-> show ();
-        notifyIcon-> showMessage ( " GESTION PATIENT " , " Patient Supprimé " , QSystemTrayIcon :: Information, 15000 );
-        QMessageBox::information(nullptr, QObject::tr("supprimer Patient"),
+       if(test)
+          { ui->tableView_Patient->setModel(tmpPatient.afficher());
+           QSystemTrayIcon * notifyIcon = new QSystemTrayIcon;
+                      notifyIcon-> show ();
+                       notifyIcon-> showMessage ( " GESTION PATIENT " , " Patient Supprimé " , QSystemTrayIcon :: Information, 15000 );
+           QMessageBox::information(nullptr, QObject::tr("supprimer Patient"),
 
-                                 QObject::tr("Patient supprimer.\n""Click Cancel to exit."), QMessageBox::Cancel);
-    }
+                       QObject::tr("Patient supprimer.\n""Click Cancel to exit."), QMessageBox::Cancel);
+       }
 
-    else
+       else
 
-    {
-        QMessageBox::critical(nullptr, QObject::tr("supprimer Patient"),
-                              QObject::tr("suppression echoué.\n""Click Cancel to exit."), QMessageBox::Cancel);
+       {
+           QMessageBox::critical(nullptr, QObject::tr("supprimer Patient"),
+                       QObject::tr("suppression echoué.\n""Click Cancel to exit."), QMessageBox::Cancel);
 
-    }
-    foreach(QLineEdit *widget, this->findChildren<QLineEdit*>()) {
-        widget->clear();
-    }
+       }
+       foreach(QLineEdit *widget, this->findChildren<QLineEdit*>()) {
+               widget->clear();
+           }
 }
 
 void MainWindow::on_pushButton_ajoutchambre_clicked()
 {
     int etage= ui-> lineEdit_etage->text().toInt();
-    int numero_chambre= ui-> lineEdit_numchambre->text().toInt();
-    QString id= ui-> lineEdit_idchambre->text();
-    QString type=ui->comboBoxchambre->currentText();
+        int numero_chambre= ui-> lineEdit_numchambre->text().toInt();
+        QString id= ui-> lineEdit_idchambre->text();
+        QString type=ui->comboBoxchambre->currentText();
 
-    chambre ch(id ,etage,numero_chambre,type);
-    if ((etage>=0)&&(numero_chambre>0)&&(id.length()!=0)&&(type.length()!=0))
-    {
+        chambre ch(id ,etage,numero_chambre,type);
+        if ((etage>=0)&&(numero_chambre>0)&&(id.length()!=0)&&(type.length()!=0))
+        {
 
-        bool test=ch.ajouter();
-        if(test)
-        { ui->tableView_chambre->setModel(tmpChambre.afficher());
-            QSystemTrayIcon * notifyIcon = new QSystemTrayIcon;
-            notifyIcon-> show ();
-            notifyIcon-> showMessage ( " GESTION CHAMBRE " , " chambre ajouté " , QSystemTrayIcon :: Information, 15000 );
-            QMessageBox::information(nullptr, QObject::tr("Ajouter chambre"),
-                                     QObject::tr("chambre ajouter.\n""Click Cancel to exit."), QMessageBox::Cancel);
-        }
+    bool test=ch.ajouter();
+    if(test)
+       { ui->tableView_chambre->setModel(tmpChambre.afficher());
+        QSystemTrayIcon * notifyIcon = new QSystemTrayIcon;
+                   notifyIcon-> show ();
+                    notifyIcon-> showMessage ( " GESTION CHAMBRE " , " chambre ajouté " , QSystemTrayIcon :: Information, 15000 );
+        QMessageBox::information(nullptr, QObject::tr("Ajouter chambre"),
+                    QObject::tr("chambre ajouter.\n""Click Cancel to exit."), QMessageBox::Cancel);
+    }
     }
     else
 
     {
         QMessageBox::critical(nullptr, QObject::tr("Ajouter chambre"),
-                              QObject::tr("Ajout echoué.\n""Click Cancel to exit."), QMessageBox::Cancel);
+                    QObject::tr("Ajout echoué.\n""Click Cancel to exit."), QMessageBox::Cancel);
 
     }
     foreach(QLineEdit *widget, this->findChildren<QLineEdit*>()) {
-        widget->clear();
-    }
+            widget->clear();
+        }
 }
 
 void MainWindow::on_pushButton_upatechambre_clicked()
 {
     QString id= ui->lineEdit_2id->text();
 
-    int numero_chambre= ui->lineEdit_2num->text().toInt();
-    int etage=ui->dateEdit_Modifchambre->text().toInt();
-    QString type=ui->comboBox_modiftypchambre->currentText();
+        int numero_chambre= ui->lineEdit_2num->text().toInt();
+        int etage=ui->dateEdit_Modifchambre->text().toInt();
+        QString type=ui->comboBox_modiftypchambre->currentText();
     if((etage>=0)&&(numero_chambre>0)&&(type!=""))
     {
-        bool test = tmpChambre.update(id,etage,numero_chambre,type);
+            bool test = tmpChambre.update(id,etage,numero_chambre,type);
 
-        if(test)
+            if(test)
 
-        {
-            ui->tableView_chambre->setModel(tmpChambre.afficher());
-            QSystemTrayIcon * notifyIcon = new QSystemTrayIcon;
-            notifyIcon-> show ();
-            notifyIcon-> showMessage ( " GESTION CHAMBRE " , " chambre modifié " , QSystemTrayIcon :: Information, 15000 );
-            QMessageBox::information(nullptr, QObject::tr("update "),
-                                     QObject::tr("Chambre modifie\n"
-                                                 "Click Cancel to exit."), QMessageBox::Cancel);}
-        foreach(QLineEdit *widget, this->findChildren<QLineEdit*>()) {
-            widget->clear();
-        }
+            {
+                ui->tableView_chambre->setModel(tmpChambre.afficher());
+                QSystemTrayIcon * notifyIcon = new QSystemTrayIcon;
+                           notifyIcon-> show ();
+                            notifyIcon-> showMessage ( " GESTION CHAMBRE " , " chambre modifié " , QSystemTrayIcon :: Information, 15000 );
+                QMessageBox::information(nullptr, QObject::tr("update "),
+                            QObject::tr("Chambre modifie\n"
+            "Click Cancel to exit."), QMessageBox::Cancel);}
+            foreach(QLineEdit *widget, this->findChildren<QLineEdit*>()) {
+                    widget->clear();
+                }
     }
 }
 
 void MainWindow::on_pushButton_suppchambre_clicked()
 {
     QString id = ui -> lineEdit_csupp->text();
-    bool test=tmpChambre.supprimer(id);
+       bool test=tmpChambre.supprimer(id);
 
-    if(test)
-    { ui->tableView_chambre->setModel(tmpChambre.afficher());
-        QSystemTrayIcon * notifyIcon = new QSystemTrayIcon;
-        notifyIcon-> show ();
-        notifyIcon-> showMessage ( " GESTION CHAMBRE " , " Chambre Supprimé " , QSystemTrayIcon :: Information, 15000 );
-        QMessageBox::information(nullptr, QObject::tr("supprimer Chambre"),
-                                 QObject::tr("Chambre supprimer.\n""Click Cancel to exit."), QMessageBox::Cancel);
-    }
+       if(test)
+          { ui->tableView_chambre->setModel(tmpChambre.afficher());
+           QSystemTrayIcon * notifyIcon = new QSystemTrayIcon;
+                      notifyIcon-> show ();
+                       notifyIcon-> showMessage ( " GESTION CHAMBRE " , " Chambre Supprimé " , QSystemTrayIcon :: Information, 15000 );
+           QMessageBox::information(nullptr, QObject::tr("supprimer Chambre"),
+                       QObject::tr("Chambre supprimer.\n""Click Cancel to exit."), QMessageBox::Cancel);
+       }
 
-    else
+       else
 
-    {
-        QMessageBox::critical(nullptr, QObject::tr("supprimer Chambre"),
-                              QObject::tr("suppression echoué.\n""Click Cancel to exit."), QMessageBox::Cancel);
+       {
+           QMessageBox::critical(nullptr, QObject::tr("supprimer Chambre"),
+                       QObject::tr("suppression echoué.\n""Click Cancel to exit."), QMessageBox::Cancel);
 
-    }
-    foreach(QLineEdit *widget, this->findChildren<QLineEdit*>()) {
-        widget->clear();
-    }
+       }
+       foreach(QLineEdit *widget, this->findChildren<QLineEdit*>()) {
+               widget->clear();
+           }
 }
 
 void MainWindow::on_pushButton_rechpatient_clicked()
 {
     QMediaPlayer *sound =new QMediaPlayer();
-    sound-> setMedia(QUrl("C:\\Users\\hp\\Desktop\\integration eya!\\E-Health_2A1\\Integration_Ehealth\\Mouse-Click-03-m-FesliyanStudios.com.mp3"));
-    sound ->play();
-    QString cin= ui->lineEdit_recherchecin->text();
-    QString nom= ui->lineEdit_rechnomp->text();
-    QString prenom= ui->lineEdit_rechprenomp->text();
+       sound-> setMedia(QUrl("C:\\Users\\hp\\Desktop\\integration eya!\\E-Health_2A1\\Integration_Ehealth\\Mouse-Click-03-m-FesliyanStudios.com.mp3"));
+       sound ->play();
+       QString cin= ui->lineEdit_recherchecin->text();
+       QString nom= ui->lineEdit_rechnomp->text();
+       QString prenom= ui->lineEdit_rechprenomp->text();
 
-    QSqlQueryModel *test=tmpPatient.rechercher_patient(cin,nom,prenom);
-    if (test)
-    {
-        ui->tableView_Patient->setModel(test);
-    }
-    foreach(QLineEdit *widget, this->findChildren<QLineEdit*>()) {
-        widget->clear();
-    }
+       QSqlQueryModel *test=tmpPatient.rechercher_patient(cin,nom,prenom);
+   if (test)
+   {
+      ui->tableView_Patient->setModel(test);
+   }
+   foreach(QLineEdit *widget, this->findChildren<QLineEdit*>()) {
+           widget->clear();
+       }
 }
 
 
 void MainWindow::on_pushButton_rechchambre_clicked()
 {
     QMediaPlayer *sound =new QMediaPlayer();
-    sound-> setMedia(QUrl("C:\\Users\\hp\\Desktop\\integration eya!\\E-Health_2A1\\Integration_Ehealth\\Mouse-Click-03-m-FesliyanStudios.com.mp3"));
-    sound ->play();
-    QString id=ui->lineEdit_idrech->text();
-    int numero_chambre=ui->lineEdit_numrech->text().toInt();
-    int etage=ui->lineEdit_etagerech->text().toInt();
+        sound-> setMedia(QUrl("C:\\Users\\hp\\Desktop\\integration eya!\\E-Health_2A1\\Integration_Ehealth\\Mouse-Click-03-m-FesliyanStudios.com.mp3"));
+        sound ->play();
+        QString id=ui->lineEdit_idrech->text();
+        int numero_chambre=ui->lineEdit_numrech->text().toInt();
+        int etage=ui->lineEdit_etagerech->text().toInt();
 
-    QSqlQueryModel *rech=tmpChambre.rechercher_chambre(id,numero_chambre,etage);
+        QSqlQueryModel *rech=tmpChambre.rechercher_chambre(id,numero_chambre,etage);
     if (rech)
     {
-        ui->tableView_chambre->setModel(rech);
+       ui->tableView_chambre->setModel(rech);
     }
     foreach(QLineEdit *widget, this->findChildren<QLineEdit*>()) {
-        widget->clear();
-    }
+            widget->clear();
+        }
 }
 
 void MainWindow::on_checkBox_rechercheage_clicked()
 {
     QMediaPlayer *sound =new QMediaPlayer();
-    sound-> setMedia(QUrl("C:\\Users\\hp\\Desktop\\integration eya!\\E-Health_2A1\\Integration_Ehealth\\Mouse-Click-03-m-FesliyanStudios.com.mp3"));
-    sound ->play();
-    if (ui->checkBox_rechercheage->isChecked())
-    {
-        ui->tableView_Patient->setModel(tmpPatient.trier("age"));
-        QSystemTrayIcon * notifyIcon = new QSystemTrayIcon;
-        notifyIcon-> show ();
-        notifyIcon-> showMessage ( " GESTION PATIENT " , " Patient Trié " , QSystemTrayIcon :: Information, 15000 );
-    }
+      sound-> setMedia(QUrl("C:\\Users\\hp\\Desktop\\integration eya!\\E-Health_2A1\\Integration_Ehealth\\Mouse-Click-03-m-FesliyanStudios.com.mp3"));
+      sound ->play();
+      if (ui->checkBox_rechercheage->isChecked())
+      {
+          ui->tableView_Patient->setModel(tmpPatient.trier("age"));
+          QSystemTrayIcon * notifyIcon = new QSystemTrayIcon;
+                     notifyIcon-> show ();
+                      notifyIcon-> showMessage ( " GESTION PATIENT " , " Patient Trié " , QSystemTrayIcon :: Information, 15000 );
+      }
 }
 
 void MainWindow::on_checkBoxchambre_clicked()
 {
     QMediaPlayer *sound =new QMediaPlayer();
-    sound-> setMedia(QUrl("C:\\Users\\hp\\Desktop\\integration eya!\\E-Health_2A1\\Integration_Ehealth\\Mouse-Click-03-m-FesliyanStudios.com.mp3"));
-    sound ->play();
-    if (ui->checkBoxchambre->isChecked())
-    {
-        ui->tableView_chambre->setModel(tmpChambre.trier("numero_chambre"));
-        QSystemTrayIcon * notifyIcon = new QSystemTrayIcon;
-        notifyIcon-> show ();
-        notifyIcon-> showMessage ( " GESTION CHAMBRE " , " Chambre Trié " , QSystemTrayIcon :: Information, 15000 );
-    }
+       sound-> setMedia(QUrl("C:\\Users\\hp\\Desktop\\integration eya!\\E-Health_2A1\\Integration_Ehealth\\Mouse-Click-03-m-FesliyanStudios.com.mp3"));
+       sound ->play();
+       if (ui->checkBoxchambre->isChecked())
+       {
+           ui->tableView_chambre->setModel(tmpChambre.trier("numero_chambre"));
+           QSystemTrayIcon * notifyIcon = new QSystemTrayIcon;
+                      notifyIcon-> show ();
+                       notifyIcon-> showMessage ( " GESTION CHAMBRE " , " Chambre Trié " , QSystemTrayIcon :: Information, 15000 );
+       }
 }
 
 void MainWindow::on_pushButton_PDFchambre_clicked()
 {
     QMediaPlayer *sound =new QMediaPlayer();
-    sound-> setMedia(QUrl("C:\\Users\\hp\\Desktop\\integration eya!\\E-Health_2A1\\Integration_Ehealth\\Mouse-Click-03-m-FesliyanStudios.com.mp3"));
-    sound ->play();
-    QString strStream;
-    QTextStream out(&strStream);
-    const int rowCount = ui->tableView_chambre->model()->rowCount();
-    const int columnCount =ui->tableView_chambre->model()->columnCount();
-    out << "<h2 align=left> E HEALTH APPLICATION  </h2>";
-    out << "<h2 align=right> UTOPIA SOFTWARES </h2>";
+        sound-> setMedia(QUrl("C:\\Users\\hp\\Desktop\\integration eya!\\E-Health_2A1\\Integration_Ehealth\\Mouse-Click-03-m-FesliyanStudios.com.mp3"));
+        sound ->play();
+        QString strStream;
+            QTextStream out(&strStream);
+            const int rowCount = ui->tableView_chambre->model()->rowCount();
+            const int columnCount =ui->tableView_chambre->model()->columnCount();
+            out << "<h2 align=left> E HEALTH APPLICATION  </h2>";
+            out << "<h2 align=right> UTOPIA SOFTWARES </h2>";
 
-    out <<  "<html>\n"
-            "<head>\n"
-            "<meta Content=\"Text/html; charset=Windows-1251\">\n"
-         <<  QString("<title>%1</title>\n").arg("chambre")
-          <<  "</head>\n"
-              "<body bgcolor=lightblue link=#5000A0>\n"
+            out <<  "<html>\n"
+                    "<head>\n"
+                    "<meta Content=\"Text/html; charset=Windows-1251\">\n"
+                    <<  QString("<title>%1</title>\n").arg("chambre")
+                    <<  "</head>\n"
+                    "<body bgcolor=lightblue link=#5000A0>\n"
 
-              "<h1>Liste des chambre</h1>"
-
-
-
-              "<table border=1 cellspacing=0 cellpadding=2>\n";
+                        "<h1>Liste des chambre</h1>"
 
 
-    // headers
-    out << "<thead><tr bgcolor=#f0f0f0>";
-    for (int column = 0; column < columnCount; column++)
-        if (!ui->tableView_chambre->isColumnHidden(column))
-            out << QString("<th>%1</th>").arg(ui->tableView_chambre->model()->headerData(column, Qt::Horizontal).toString());
-    out << "</tr></thead>\n";
-    // data table
-    for (int row = 0; row < rowCount; row++) {
-        out << "<tr>";
-        for (int column = 0; column < columnCount; column++) {
-            if (!ui->tableView_chambre->isColumnHidden(column)) {
-                QString data = ui->tableView_chambre->model()->data(ui->tableView_chambre->model()->index(row, column)).toString().simplified();
-                out << QString("<td bkcolor=0>%1</td>").arg((!data.isEmpty()) ? data : QString("&nbsp;"));
-            }
-        }
-        out << "</tr>\n";
-    }
-    out <<  "</table>\n"
-            "</body>\n"
-            "</html>\n";
 
-    QTextDocument *document = new QTextDocument();
-    document->setHtml(strStream);
+                        "<table border=1 cellspacing=0 cellpadding=2>\n";
 
-    QPrinter printer;
 
-    QPrintDialog *dialog = new QPrintDialog(&printer, NULL);
-    if (dialog->exec() == QDialog::Accepted) {
-        document->print(&printer);
-    }
+            // headers
+                    out << "<thead><tr bgcolor=#f0f0f0>";
+                    for (int column = 0; column < columnCount; column++)
+                        if (!ui->tableView_chambre->isColumnHidden(column))
+                            out << QString("<th>%1</th>").arg(ui->tableView_chambre->model()->headerData(column, Qt::Horizontal).toString());
+                    out << "</tr></thead>\n";
+                    // data table
+                       for (int row = 0; row < rowCount; row++) {
+                           out << "<tr>";
+                           for (int column = 0; column < columnCount; column++) {
+                               if (!ui->tableView_chambre->isColumnHidden(column)) {
+                                   QString data = ui->tableView_chambre->model()->data(ui->tableView_chambre->model()->index(row, column)).toString().simplified();
+                                   out << QString("<td bkcolor=0>%1</td>").arg((!data.isEmpty()) ? data : QString("&nbsp;"));
+                               }
+                           }
+                           out << "</tr>\n";
+                       }
+                       out <<  "</table>\n"
+                           "</body>\n"
+                           "</html>\n";
+
+                       QTextDocument *document = new QTextDocument();
+                       document->setHtml(strStream);
+
+                       QPrinter printer;
+
+                       QPrintDialog *dialog = new QPrintDialog(&printer, NULL);
+                       if (dialog->exec() == QDialog::Accepted) {
+                           document->print(&printer);
+                    }
 }
 
 void MainWindow::on_pushButton_pdff_clicked()
 {
     QMediaPlayer *sound =new QMediaPlayer();
-    sound-> setMedia(QUrl("C:\\Users\\hp\\Desktop\\integration eya!\\E-Health_2A1\\Integration_Ehealth\\Mouse-Click-03-m-FesliyanStudios.com.mp3"));
-    sound ->play();
-    QString strStream;
-    QTextStream out(&strStream);
-    const int rowCount = ui->tableView_Patient->model()->rowCount();
-    const int columnCount =ui->tableView_Patient->model()->columnCount();
-    out << "<h2 align=left> E HEALTH APPLICATION  </h2>";
-    out << "<h2 align=right> UTOPIA SOFTWARES </h2>";
+       sound-> setMedia(QUrl("C:\\Users\\hp\\Desktop\\integration eya!\\E-Health_2A1\\Integration_Ehealth\\Mouse-Click-03-m-FesliyanStudios.com.mp3"));
+       sound ->play();
+       QString strStream;
+               QTextStream out(&strStream);
+               const int rowCount = ui->tableView_Patient->model()->rowCount();
+               const int columnCount =ui->tableView_Patient->model()->columnCount();
+               out << "<h2 align=left> E HEALTH APPLICATION  </h2>";
+               out << "<h2 align=right> UTOPIA SOFTWARES </h2>";
 
-    out <<  "<html>\n"
-            "<head>\n"
-            "<meta Content=\"Text/html; charset=Windows-1251\">\n"
-         <<  QString("<title>%1</title>\n").arg("patient")
-          <<  "</head>\n"
-              "<body bgcolor=lightblue link=#5000A0>\n"
+               out <<  "<html>\n"
+                       "<head>\n"
+                       "<meta Content=\"Text/html; charset=Windows-1251\">\n"
+                       <<  QString("<title>%1</title>\n").arg("patient")
+                       <<  "</head>\n"
+                       "<body bgcolor=lightblue link=#5000A0>\n"
 
-              "<h1>Liste des patient</h1>"
-
-
-
-              "<table border=1 cellspacing=0 cellpadding=2>\n";
+                           "<h1>Liste des patient</h1>"
 
 
-    // headers
-    out << "<thead><tr bgcolor=#f0f0f0>";
-    for (int column = 0; column < columnCount; column++)
-        if (!ui->tableView_Patient->isColumnHidden(column))
-            out << QString("<th>%1</th>").arg(ui->tableView_Patient->model()->headerData(column, Qt::Horizontal).toString());
-    out << "</tr></thead>\n";
-    // data table
-    for (int row = 0; row < rowCount; row++) {
-        out << "<tr>";
-        for (int column = 0; column < columnCount; column++) {
-            if (!ui->tableView_Patient->isColumnHidden(column)) {
-                QString data = ui->tableView_Patient->model()->data(ui->tableView_Patient->model()->index(row, column)).toString().simplified();
-                out << QString("<td bkcolor=0>%1</td>").arg((!data.isEmpty()) ? data : QString("&nbsp;"));
-            }
-        }
-        out << "</tr>\n";
-    }
-    out <<  "</table>\n"
-            "</body>\n"
-            "</html>\n";
 
-    QTextDocument *document = new QTextDocument();
-    document->setHtml(strStream);
+                           "<table border=1 cellspacing=0 cellpadding=2>\n";
 
-    QPrinter printer;
 
-    QPrintDialog *dialog = new QPrintDialog(&printer, NULL);
-    if (dialog->exec() == QDialog::Accepted) {
-        document->print(&printer);
-    }
+               // headers
+                       out << "<thead><tr bgcolor=#f0f0f0>";
+                       for (int column = 0; column < columnCount; column++)
+                           if (!ui->tableView_Patient->isColumnHidden(column))
+                               out << QString("<th>%1</th>").arg(ui->tableView_Patient->model()->headerData(column, Qt::Horizontal).toString());
+                       out << "</tr></thead>\n";
+                       // data table
+                          for (int row = 0; row < rowCount; row++) {
+                              out << "<tr>";
+                              for (int column = 0; column < columnCount; column++) {
+                                  if (!ui->tableView_Patient->isColumnHidden(column)) {
+                                      QString data = ui->tableView_Patient->model()->data(ui->tableView_Patient->model()->index(row, column)).toString().simplified();
+                                      out << QString("<td bkcolor=0>%1</td>").arg((!data.isEmpty()) ? data : QString("&nbsp;"));
+                                  }
+                              }
+                              out << "</tr>\n";
+                          }
+                          out <<  "</table>\n"
+                              "</body>\n"
+                              "</html>\n";
+
+                          QTextDocument *document = new QTextDocument();
+                          document->setHtml(strStream);
+
+                          QPrinter printer;
+
+                          QPrintDialog *dialog = new QPrintDialog(&printer, NULL);
+                          if (dialog->exec() == QDialog::Accepted) {
+                              document->print(&printer);
+                       }
 }
 
 void MainWindow::on_pushButton_Exelchambre_clicked()
 {
     QMediaPlayer *sound =new QMediaPlayer();
-    sound-> setMedia(QUrl("C:\\Users\\hp\\Desktop\\integration eya!\\E-Health_2A1\\Integration_Ehealth\\Mouse-Click-03-m-FesliyanStudios.com.mp3"));
-    sound ->play();
+        sound-> setMedia(QUrl("C:\\Users\\hp\\Desktop\\integration eya!\\E-Health_2A1\\Integration_Ehealth\\Mouse-Click-03-m-FesliyanStudios.com.mp3"));
+        sound ->play();
 
-    tmpChambre.exporter(ui->tableView_chambre);
+        tmpChambre.exporter(ui->tableView_chambre);
 }
 
 void MainWindow::on_pushButton_ExcelP_clicked()
 {
     QMediaPlayer *sound =new QMediaPlayer();
-    sound-> setMedia(QUrl("C:\\Users\\hp\\Desktop\\integration eya!\\E-Health_2A1\\Integration_Ehealth\\Mouse-Click-03-m-FesliyanStudios.com.mp3"));
-    sound ->play();
-    tmpPatient.exporter(ui->tableView_Patient);
+     sound-> setMedia(QUrl("C:\\Users\\hp\\Desktop\\integration eya!\\E-Health_2A1\\Integration_Ehealth\\Mouse-Click-03-m-FesliyanStudios.com.mp3"));
+     sound ->play();
+      tmpPatient.exporter(ui->tableView_Patient);
 }
 
 void MainWindow::on_pushButton_affichertoutP_clicked()
 {
     QMediaPlayer *sound =new QMediaPlayer();
-    sound-> setMedia(QUrl("C:\\Users\\hp\\Desktop\\integration eya!\\E-Health_2A1\\Integration_Ehealth\\Mouse-Click-03-m-FesliyanStudios.com.mp3"));
-    sound ->play();
-    ui->tableView_Patient->setModel(tmpPatient.afficher());
+        sound-> setMedia(QUrl("C:\\Users\\hp\\Desktop\\integration eya!\\E-Health_2A1\\Integration_Ehealth\\Mouse-Click-03-m-FesliyanStudios.com.mp3"));
+        sound ->play();
+        ui->tableView_Patient->setModel(tmpPatient.afficher());
 }
 
 void MainWindow::on_pushButton_afficherchambre_clicked()
 {
     QMediaPlayer *sound =new QMediaPlayer();
-    sound-> setMedia(QUrl("C:\\Users\\hp\\Desktop\\integration eya!\\E-Health_2A1\\Integration_Ehealth\\Mouse-Click-03-m-FesliyanStudios.com.mp3"));
-    sound ->play();
-    ui->tableView_chambre->setModel(tmpChambre.afficher());
+       sound-> setMedia(QUrl("C:\\Users\\hp\\Desktop\\integration eya!\\E-Health_2A1\\Integration_Ehealth\\Mouse-Click-03-m-FesliyanStudios.com.mp3"));
+       sound ->play();
+       ui->tableView_chambre->setModel(tmpChambre.afficher());
 }
 void MainWindow::update_label()
 {
-    data=A.read_from_arduino();
-    heartRateBPM+=data;
-    qDebug()<< data;
-    ui->lineEdit_bpm->setText(heartRateBPM);
-}
+   data=A.read_from_arduino();
+   heartRateBPM+=data;
+   qDebug()<< data;
+ui->lineEdit_bpm->setText(heartRateBPM);
+   }
 //code khalil
 //Ajoute une requette avec appel a un autre widget
 void MainWindow::on_AjouterReq_clicked()
@@ -856,8 +885,8 @@ void MainWindow::on_DeleteReq_clicked()
     }
     else {
         QMessageBox::critical(nullptr,QObject::tr("not ok"),
-                              QObject::tr("suppression non effectuee\n"
-                                          "click cancel to exit"),QMessageBox::Cancel);
+                QObject::tr("suppression non effectuee\n"
+                            "click cancel to exit"),QMessageBox::Cancel);
     }
     ui->tableView_Rq->setModel(requettetmp.AfficherReq());
 }
@@ -1078,18 +1107,283 @@ void MainWindow::on_statRq_clicked()
 void MainWindow::on_english_clicked()
 {
 
-    if (ui->english->isChecked())
+     if (ui->english->isChecked())
     {
 
-        translator->load("C:\\Users\\khali\\Desktop\\backup\\backup eya\\E-Health_2A1\\Integration_Ehealth\\english.qm");
+        translator->load("C:\\Users\\hp\\Desktop\\integration eya!\\E-Health_2A1\\Integration_Ehealth\\english.qm");
 
         qApp->installTranslator(translator);
         ui->retranslateUi(this);
         QSystemTrayIcon * notifyIcon = new QSystemTrayIcon;
-        notifyIcon-> show ();
-        notifyIcon-> showMessage ( " GESTION PATIENT ET CHAMBRE " , "langue modifié " , QSystemTrayIcon :: Information, 15000 );
+                   notifyIcon-> show ();
+                    notifyIcon-> showMessage ( " GESTION PATIENT ET CHAMBRE " , "langue modifié " , QSystemTrayIcon :: Information, 15000 );
 
     }
 }
+//AZIZ KAHLOUL
+//
+//
+//
+void MainWindow::on_ajouter_vehicule_clicked()
+{
+    int cin = ui->cin_per->text().toInt();
+   QString type= ui->type_per->text();
+     QString nom= ui->nom_per->text();
+       QString prenom= ui->prenom_per->text();
+  personnel p(cin,nom,prenom ,type);
+  bool test=p.ajouter();
+  if(test)
+{ui->tabpersonnel->setModel(tmppersonnel.afficher());//refresh
+      QSystemTrayIcon *notifyIcon = new QSystemTrayIcon;
+             notifyIcon->show();
+             notifyIcon->setIcon(QIcon("icone.png"));
+
+             notifyIcon->showMessage("GESTION PERSONNEL ","Personnel Ajouté",QSystemTrayIcon::Information,15000);
+QMessageBox::information(nullptr, QObject::tr("Ajouter un personnel"),
+                  QObject::tr("personnel ajouté.\n"
+                              "Click Cancel to exit."), QMessageBox::Cancel);
+
+}
+  else
+      QMessageBox::critical(nullptr, QObject::tr("Ajouter un personnel"),
+                  QObject::tr("Erreur !.\n"
+                              "Click Cancel to exit."), QMessageBox::Cancel);
 
 
+}
+
+void MainWindow::on_supprimer_vehicule_clicked()
+{
+    int cin = ui->cin_pers->text().toInt();
+        bool test=tmppersonnel.supprimer(cin);
+        if(test)
+        {ui->tabpersonnel->setModel(tmppersonnel.afficher());//refresh
+            QSystemTrayIcon *notifyIcon = new QSystemTrayIcon;
+                   notifyIcon->show();
+                   notifyIcon->setIcon(QIcon("icone.png"));
+
+                   notifyIcon->showMessage("GESTION PERSONNEL ","Personnel Supprimé",QSystemTrayIcon::Information,15000);
+
+            QMessageBox::information(nullptr, QObject::tr("Supprimer un personnel"),
+                        QObject::tr("personnel supprimé.\n"
+                                    "Click Cancel to exit."), QMessageBox::Cancel);
+
+        }
+        else
+            QMessageBox::critical(nullptr, QObject::tr("Supprimer un personnel"),
+                        QObject::tr("Erreur !.\n"
+                                    "Click Cancel to exit."), QMessageBox::Cancel);
+             }
+
+
+
+
+
+void MainWindow::on_ajouter_vehicule_2_clicked()
+{
+    int idservice = ui->id_service->text().toInt();
+    int cinchef= ui->cin_chef->text().toInt();
+     QString typeservice= ui->type_service->text();
+
+  service s (idservice,cinchef ,typeservice);
+  bool test=s.ajouter();
+  if(test)
+{ui->tabservice->setModel(tmpservice.afficher());//refresh
+
+      QSystemTrayIcon *notifyIcon = new QSystemTrayIcon;
+             notifyIcon->show();
+             notifyIcon->setIcon(QIcon("icone.png"));
+
+             notifyIcon->showMessage("GESTION SERVICE ","Service Ajouté",QSystemTrayIcon::Information,15000);
+
+QMessageBox::information(nullptr, QObject::tr("Ajouter un service"),
+                  QObject::tr("service ajouté.\n"
+                              "Click Cancel to exit."), QMessageBox::Cancel);
+
+}
+  else
+      QMessageBox::critical(nullptr, QObject::tr("Ajouter un service"),
+                  QObject::tr("Erreur !.\n"
+                              "Click Cancel to exit."), QMessageBox::Cancel);
+
+}
+
+void MainWindow::on_supprimer_panne_clicked()
+{
+    long idservice=ui->id_service_sup->text().toLong();
+    bool test=tmpservice.supprimer(idservice);
+    if(test)
+    {ui->tabservice->setModel(tmpservice.afficher());//refresh
+
+        QSystemTrayIcon *notifyIcon = new QSystemTrayIcon;
+               notifyIcon->show();
+               notifyIcon->setIcon(QIcon("icone.png"));
+
+               notifyIcon->showMessage("GESTION SERVICE ","Service Supprimé",QSystemTrayIcon::Information,15000);
+        QMessageBox::information(nullptr, QObject::tr("Supprimer un service"),
+                    QObject::tr(" service supprimé.\n"
+                                "Click Cancel to exit."), QMessageBox::Cancel);
+
+    }
+    else
+        QMessageBox::critical(nullptr, QObject::tr("Supprimer un service"),
+                    QObject::tr("Erreur !.\n"
+                                "Click Cancel to exit."), QMessageBox::Cancel);
+}
+
+
+//modifierperso
+void MainWindow::on_modifier_vehicule_clicked()
+{
+
+
+            if (ui->modifier_vehicule->isChecked())
+            {
+
+                ui->modifier_vehicule->setText("Modifiable");
+                QSqlTableModel *tableModel= new QSqlTableModel();
+                tableModel->setTable("PERSONNEL");
+                tableModel->select();
+                ui->tabpersonnel->setModel(tableModel);
+            }
+            else
+            {
+                ui->modifier_vehicule->setText("Modifier");
+                ui->tabpersonnel->setModel(tmppersonnel.afficher());
+
+                QSystemTrayIcon *notifyIcon = new QSystemTrayIcon;
+                       notifyIcon->show();
+                       notifyIcon->setIcon(QIcon("icone.png"));
+
+                       notifyIcon->showMessage("GESTION PERSONNEL ","Personnel Modifié",QSystemTrayIcon::Information,15000);
+            }
+
+
+
+
+}
+//modifierservice
+void MainWindow::on_modifier_service_clicked()
+{
+    if (ui->modifier_service->isChecked())
+    {
+
+        ui->modifier_service->setText("Modifiable");
+        QSqlTableModel *tableModel= new QSqlTableModel();
+        tableModel->setTable("SERVICE");
+        tableModel->select();
+        ui->tabservice->setModel(tableModel);
+
+    }
+    else
+    {
+        ui->modifier_service->setText("Modifier");
+        ui->tabservice->setModel(tmpservice.afficher());
+
+        QSystemTrayIcon *notifyIcon = new QSystemTrayIcon;
+           notifyIcon->show();
+           notifyIcon->setIcon(QIcon("icone.png"));
+
+           notifyIcon->showMessage("GESTION SERVICE ","Service Modifié",QSystemTrayIcon::Information,15000);
+    }
+
+}
+// rechercher
+
+void MainWindow::on_rb_clicked()
+{
+    QString rech =ui->rechline->text();
+        ui->tabpersonnel->setModel(tmppersonnel.rechercher(rech));
+}
+
+void MainWindow::on_tri_clicked()
+{
+    personnel *r = new personnel();
+    ui->tabpersonnel->setModel(r->tri());
+}
+//service
+void MainWindow::on_rb_2_clicked()
+{
+    QString rech =ui->rechline_2->text();
+        ui->tabservice->setModel(tmpservice.rechercher(rech));
+}
+
+void MainWindow::on_tri_2_clicked()
+{
+    service *r = new service();
+    ui->tabservice->setModel(r->tri());
+
+}
+
+void MainWindow::on_pdf_clicked()
+{
+            QString strStream;
+                    QTextStream out(&strStream);
+                    const int rowCount = ui->tabpersonnel->model()->rowCount();
+                    const int columnCount =ui->tabpersonnel->model()->columnCount();
+
+                    out <<  "<html>\n"
+                            "<head>\n"
+                            "<meta Content=\"Text/html; charset=Windows-1251\">\n"
+                            <<  QString("<title>%1</title>\n").arg("PERSONNEL")
+                            <<  "</head>\n"
+                            "<body bgcolor=#CFC4E1 link=#5000A0>\n"
+                                "<img src='C:/Users/AZYZ/Desktop/Azyzprojet/5739.PNG' width='100' height='100'>\n"
+                                "<h1>Liste des personnels</h1>"
+
+
+
+                                "<table border=1 cellspacing=0 cellpadding=2>\n";
+
+
+                    // headers
+                        out << "<thead><tr bgcolor=#f0f0f0>";
+                        for (int column = 0; column < columnCount; column++)
+                            if (!ui->tabpersonnel->isColumnHidden(column))
+                                out << QString("<th>%1</th>").arg(ui->tabpersonnel->model()->headerData(column, Qt::Horizontal).toString());
+                        out << "</tr></thead>\n";
+                        // data table
+                           for (int row = 0; row < rowCount; row++) {
+                               out << "<tr>";
+                               for (int column = 0; column < columnCount; column++) {
+                                   if (!ui->tabpersonnel->isColumnHidden(column)) {
+                                       QString data = ui->tabpersonnel->model()->data(ui->tabpersonnel->model()->index(row, column)).toString().simplified();
+                                       out << QString("<td bkcolor=0>%1</td>").arg((!data.isEmpty()) ? data : QString("&nbsp;"));
+                                   }
+                               }
+                               out << "</tr>\n";
+                           }
+                           out <<  "</table>\n"
+                               "</body>\n"
+                               "</html>\n";
+
+                           QTextDocument *document = new QTextDocument();
+                           document->setHtml(strStream);
+
+                           QPrinter printer;
+
+                           QPrintDialog *dialog = new QPrintDialog(&printer, NULL);
+                           if (dialog->exec() == QDialog::Accepted) {
+                               document->print(&printer);
+                        }
+}
+
+
+void MainWindow::on_play_clicked()
+{
+    son->play();
+
+}
+
+void MainWindow::on_mute_clicked()
+{
+    son->stop();
+
+}
+
+
+void MainWindow::on_mail_2_clicked()
+{
+    email e;
+    e.exec();
+}
