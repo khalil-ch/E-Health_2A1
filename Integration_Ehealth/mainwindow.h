@@ -10,7 +10,8 @@
 #include <QStatusBar>
 #include <QString>
 #include <QTranslator>
-
+#include <equipement.h>
+#include <vehicule.h>
 //
 #include "requette.h"
 #include"equipemaintenance.h"
@@ -140,6 +141,32 @@ void update_label();
     void on_statRq_clicked();
 
     void on_english_clicked();
+    void on_Add_veh_clicked();
+
+    void on_Addeqp_clicked();
+
+    void on_vehsearch_3_clicked();
+    void on_Add_veh_2_clicked();
+
+    void on_Supprimervehicule_clicked();
+
+    void on_nomveh_textChanged(const QString &arg1);
+
+    void on_Searcheqp_3_clicked();
+
+    void on_DELCAR_clicked();
+
+    void on_Addeqp_2_clicked();
+
+    void on_Searcheqpnum_textChanged(const QString &arg1);
+
+    void SortByHeader(int);
+
+    void SortByHeader2(int);
+
+    void on_export_3_clicked();
+
+    void on_export_4_clicked();
 
 private:
     Ui::MainWindow *ui;
@@ -147,6 +174,8 @@ private:
     fournisseur tempo;
       patient tmpPatient;
       chambre tmpChambre;
+      vehicule tmpveh;
+      equipement tmpeqp;
       QByteArray data;
      QString heartRateBPM="";
          QTranslator *translator=new QTranslator;

@@ -2,6 +2,8 @@
 #include "ui_mainwindow.h"
 #include "medicament.h"
 #include"fournisseur.h"
+#include"equipement.h"
+#include"vehicule.h"
 #include "stats.h"
 #include "patient.h"
 #include "chambre.h"
@@ -55,6 +57,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->tablefour->setSelectionMode(QAbstractItemView::SingleSelection);
     ui->tableView_Patient->setModel(tmpPatient.afficher());
     ui->tableView_chambre->setModel(tmpChambre.afficher());
+    ui->AffichervehTab->setModel(tmpveh.Affichervehicule("nom"));
+    ui->AfficherTabeqp->setModel(tmpeqp.Afficherequipement("numdeserie"));
     //khalil
     ui->tableView_Rq->setModel(requettetmp.AfficherReq());
     ui->tableView_Eq->setModel(equipetmp.AfficherEq());
@@ -86,6 +90,21 @@ MainWindow::MainWindow(QWidget *parent)
         ui->lineEdit_idpatient->setMaxLength(4);
         ui-> dateEditajoutp->setMinimumDate(QDate::currentDate());
         ui->dateEditModifP->setMinimumDate(QDate::currentDate());
+        ui->categorie->addItem("A");
+        ui->categorie->addItem("B");
+        ui->categorie->addItem("C");
+        ui->categorie_2->addItem("A");
+        ui->categorie_2->addItem("B");
+        ui->categorie_2->addItem("C");
+        ui->desinfectation->addItem("protocole fait");
+        ui->desinfectation->addItem("protocole non fait");
+        ui->desinfectation_2->addItem("protocole fait");
+        ui->desinfectation_2->addItem("protocle non fait");
+
+
+        flip=0;
+        QObject::connect(ui->AfficherTabeqp->horizontalHeader(), SIGNAL(sectionClicked(int)),this, SLOT(SortByHeader(int)));
+        QObject::connect(ui->AffichervehTab->horizontalHeader(), SIGNAL(sectionClicked(int)),this, SLOT(SortByHeader2(int)));
         int const n=0;
                QMediaPlayer *player = new QMediaPlayer;
                player->setMedia(QUrl::fromLocalFile("C:\\Users\\hp\\Desktop\\integration eya!\\E-Health_2A1\\Integration_Ehealth\\Piano-melancholy-music-short.mp3"));
@@ -1055,6 +1074,543 @@ void MainWindow::on_english_clicked()
                     notifyIcon-> showMessage ( " GESTION PATIENT ET CHAMBRE " , "langue modifié " , QSystemTrayIcon :: Information, 15000 );
 
     }
-}
+  void MainWindow::on_Add_veh_clicked()
+     {
+         vehicule v;
+         if(ui->modeleveh->text().length()!=13)
+         {
+             QMessageBox msgBox;
+             msgBox.setText("modele Invalide!");
+             msgBox.exec();
+         }
+         else{
+                 v.setnom(ui->nom->text());
+                 v.setcategorie(ui->categorie->currentText());
+                 v.setmodele(ui->modeleveh->text());
+                 v.setdesinfectation(ui->desinfectation->currentText());
+                 v.setdescription(ui->DESC->text());
+                 if(v.Ajoutervehicule())
+                 {
+                     ui->AffichervehTab->setModel(tmpveh.Affichervehicule("nom"));
+                     QMessageBox msgBox;
+                     msgBox.setText("Ajout Avec Success!");
+                     msgBox.exec();
+                     ui->stackedWidget->setCurrentIndex(5);
+                 }
+                 else
+                 {
+                     QMessageBox msgBox;
+                     msgBox.setText("Echec! Champ(s) Manquant(s)!");
+                     msgBox.exec();
+                     ui->stackedWidget->setCurrentIndex(5);
+                 }
+         }
+     }
 
+
+     void MainWindow::on_Addeqp_clicked()
+     {
+         equipement e;
+         if(ui->numdeserie->text().length()!=10)
+         {
+             QMessageBox msgBox;
+             msgBox.setText("numdeserie Invalide!");
+             msgBox.exec();
+         }
+         else
+         {
+             e.setnumdeserie(ui->numdeserie->text());
+             e.setnom(ui->nomeqp->text());
+             e.setmodele(ui->MODELE->text());
+             e.settype(ui->type->text());
+             e.setcondition(ui->condition->text());
+             e.setdescription(ui->descequipement->text());
+             if(e.Ajouterequipement())
+             {
+                 ui->AfficherTabeqp->setModel(tmpeqp.Afficherequipement("numdeserie"));
+                 QMessageBox msgBox;
+                 msgBox.setText("Ajout Avec Success!");
+                 msgBox.exec();
+                 ui->stackedWidget->setCurrentIndex(5);
+             }
+             else
+             {
+                 QMessageBox msgBox;
+                 msgBox.setText("Echec! Champ(s) Manquant(s)!");
+                 msgBox.exec();
+                 ui->stackedWidget->setCurrentIndex(5);
+             }
+
+         }
+
+     }
+
+
+
+
+
+
+
+
+
+
+
+     void MainWindow::on_vehsearch_3_clicked()
+     {
+             ui->AffichervehTab->setModel(tmpveh.Affichervehicule("NOM"));
+
+
+
+     }
+
+     void MainWindow::on_Supprimervehicule_clicked()
+     {
+
+
+         QModelIndexList selection = ui->AffichervehTab->selectionModel()->selectedRows(0);
+
+         if (!selection.empty()) {
+
+             QModelIndex idIndex = selection.at(0);
+             QString id = idIndex.data().toString();
+         if(tmpveh.Supprimervehicule(id))
+                {
+             ui->AffichervehTab->setModel(tmpveh.Affichervehicule("NOM"));
+             QMessageBox msgBox;
+             msgBox.setText("Suppression avec Success!");
+             msgBox.exec();
+             ui->stackedWidget->setCurrentIndex(5);
+         }
+         else
+         {
+             QMessageBox msgBox;
+             msgBox.setText("Echec de Suppression! ");
+             msgBox.exec();
+             ui->stackedWidget->setCurrentIndex(5);
+             }
+         }
+     }
+
+
+
+
+     void MainWindow::on_Add_veh_2_clicked()
+     {
+         vehicule v;
+                 v.setnom(ui->vehSearch->text());
+                 v.setcategorie(ui->categorie_2->currentText());
+                 v.setmodele(ui->modeleveh_2->text());
+                 v.setdesinfectation(ui->desinfectation_2->currentText());
+                 v.setdescription(ui->DESC_2->text());
+                 if(v.modifiervehicule(ui->vehSearch->text()))
+                 {
+                     ui->AffichervehTab->setModel(tmpveh.Affichervehicule("NOM"));
+                     QMessageBox msgBox;
+                     msgBox.setText("Modification Avec Success!");
+                     msgBox.exec();
+                     ui->stackedWidget->setCurrentIndex(5);
+                 }
+                 else
+                 {
+                     QMessageBox msgBox;
+                     msgBox.setText("Echec! Champ(s) Manquant(s)!");
+                     msgBox.exec();
+                     ui->stackedWidget->setCurrentIndex(5);
+                 }
+     }
+
+
+
+
+
+
+
+
+     void MainWindow::on_nomveh_textChanged(const QString &arg1)
+     {
+         if (arg1=="")
+             ui->AffichervehTab->setModel(tmpveh.Affichervehicule("NOM"));
+        else
+            this->ui->AffichervehTab->setModel(tmpveh.Searchvehicule(arg1));
+     }
+
+
+
+
+
+
+
+     /*--------------------------------------*/
+
+
+
+     void MainWindow::on_Searcheqp_3_clicked()
+     {
+             ui->AfficherTabeqp->setModel(tmpeqp.Afficherequipement("NUMDESERIE"));
+     }
+
+     void MainWindow::on_DELCAR_clicked()
+     {
+
+
+         QModelIndexList selection = ui->AfficherTabeqp->selectionModel()->selectedRows(0);
+
+         if (!selection.empty()) {
+
+             QModelIndex idIndex = selection.at(0);
+             QString mat = idIndex.data().toString();
+
+         if(tmpeqp.Supprimerequipement(mat))
+                {
+             ui->AfficherTabeqp->setModel(tmpeqp.Afficherequipement("NUMDESERIE"));
+             QMessageBox msgBox;
+             msgBox.setText("Suppression avec Success!");
+             msgBox.exec();
+             ui->stackedWidget->setCurrentIndex(5);
+         }
+         else
+         {
+             QMessageBox msgBox;
+             msgBox.setText("Echec de Suppression! ");
+             msgBox.exec();
+             ui->stackedWidget->setCurrentIndex(5);
+             }
+         }
+     }
+
+
+     void MainWindow::on_Addeqp_2_clicked()
+     {
+         equipement e;
+
+
+             e.setnumdeserie(ui->Searcheqpnum->text());
+             e.setnom(ui->nomeqp_2->text());
+             e.setmodele(ui->MODELE_2->text());
+             e.settype(ui->type_2->text());
+             e.setcondition(ui->condition_2->text());
+             e.setdescription(ui->descequipement_2->text());
+
+
+
+             if(e.modifierequipement(ui->Searcheqpnum->text()))
+             {
+                 ui->AfficherTabeqp->setModel(tmpeqp.Afficherequipement("NUMDESERIE"));
+                 QMessageBox msgBox;
+                 msgBox.setText("Modification Avec Success!");
+                 msgBox.exec();
+                 ui->stackedWidget->setCurrentIndex(5);
+             }
+             else
+             {
+                 QMessageBox msgBox;
+                 msgBox.setText("Echec! Champ(s) Manquant(s)!");
+                 msgBox.exec();
+                 ui->stackedWidget->setCurrentIndex(5);
+             }
+
+         }
+
+
+      void MainWindow::on_Searcheqpnum_textChanged(const QString &arg1)
+     {
+         if (arg1=="")
+             ui->AfficherTabeqp->setModel(tmpeqp.Afficherequipement("NUMDESERIE"));
+        else
+            this->ui->AfficherTabeqp->setModel(tmpeqp.Searchequipement(arg1));
+
+     }
+
+
+
+     void MainWindow::SortByHeader(int logicalIndex)
+     {
+
+         switch (logicalIndex) {
+             case 0:
+                 if(flip==0)
+                 {
+                     flip++;
+                     ui->AfficherTabeqp->setModel(tmpeqp.Afficherequipement("NUMDESERIE ASC"));
+
+                 }
+                 else
+                 {
+                     flip--;
+                     ui->AfficherTabeqp->setModel(tmpeqp.Afficherequipement("NUMDESERIE DESC"));
+                 }
+
+             break;
+             case 1:
+             if(flip==0)
+             {
+                 flip++;
+                 ui->AfficherTabeqp->setModel(tmpeqp.Afficherequipement("NOM ASC"));
+             }
+             else
+             {
+                 flip--;
+                 ui->AfficherTabeqp->setModel(tmpeqp.Afficherequipement("NOM DESC"));
+             }
+             break;
+             case 2:
+             if(flip==0)
+             {
+                 flip++;
+                ui->AfficherTabeqp->setModel(tmpeqp.Afficherequipement("TYPE ASC"));
+             }
+             else
+             {
+                 flip--;
+                  ui->AfficherTabeqp->setModel(tmpeqp.Afficherequipement("TYPE DESC"));
+             }
+             break;
+             case 3:
+             if(flip==0)
+             {
+                 flip++;
+                 ui->AfficherTabeqp->setModel(tmpeqp.Afficherequipement("CONDITION ASC"));
+             }
+             else
+             {
+                 flip--;
+                 ui->AfficherTabeqp->setModel(tmpeqp.Afficherequipement("CONDITION DESC"));
+             }
+                 break;
+             case 4:
+             if(flip==0)
+             {
+                 flip++;
+               ui->AfficherTabeqp->setModel(tmpeqp.Afficherequipement("MODELE ASC"));
+             }
+             else
+             {
+                 flip--;
+                  ui->AfficherTabeqp->setModel(tmpeqp.Afficherequipement("MODELE DESC"));
+             }
+                 break;
+             case 5:
+             if(flip==0)
+             {
+                 flip++;
+                 ui->AfficherTabeqp->setModel(tmpeqp.Afficherequipement("DESCRIPTION ASC"));
+             }
+             else
+             {
+                 flip--;
+                  ui->AfficherTabeqp->setModel(tmpeqp.Afficherequipement("DESCRIPTION DESC"));
+             }
+                 break;
+
+     }
+
+
+     }
+
+
+     void MainWindow::SortByHeader2(int logicalIndex)
+     {
+
+         switch (logicalIndex) {
+             case 0:
+                 if(flip==0)
+                 {
+                     flip++;
+                     ui->AffichervehTab->setModel(tmpveh.Affichervehicule("NOM ASC"));
+
+                 }
+                 else
+                 {
+                     flip--;
+                    ui->AffichervehTab->setModel(tmpveh.Affichervehicule("NOM DESC"));
+                 }
+
+             break;
+             case 1:
+             if(flip==0)
+             {
+                 flip++;
+                ui->AffichervehTab->setModel(tmpveh.Affichervehicule("CATEGORIE ASC"));
+             }
+             else
+             {
+                 flip--;
+                 ui->AffichervehTab->setModel(tmpveh.Affichervehicule("CATEGORIE DESC"));
+             }
+             break;
+             case 2:
+             if(flip==0)
+             {
+                 flip++;
+                 ui->AffichervehTab->setModel(tmpveh.Affichervehicule("MODELE ASC"));
+             }
+             else
+             {
+                 flip--;
+                ui->AffichervehTab->setModel(tmpveh.Affichervehicule("MODELE DESC"));
+             }
+             break;
+
+             case 3:
+             if(flip==0)
+             {
+                 flip++;
+                 ui->AffichervehTab->setModel(tmpveh.Affichervehicule("DESINFECTATION ASC"));
+             }
+             else
+             {
+                 flip--;
+                 ui->AffichervehTab->setModel(tmpveh.Affichervehicule("DESINFECTATION DESC"));
+             }
+                 break;
+
+             case 4:
+             if(flip==0)
+             {
+                 flip++;
+                 ui->AffichervehTab->setModel(tmpveh.Affichervehicule("DESCRIPTION ASC"));
+             }
+             else
+             {
+                 flip--;
+                 ui->AffichervehTab->setModel(tmpveh.Affichervehicule("DESCRIPTION DESC"));
+             }
+                 break;
+
+
+         }
+         }
+
+
+
+
+
+
+     void MainWindow::on_export_3_clicked()
+     {
+         {
+             {
+                 QString strStream;
+                     QTextStream out(&strStream);
+                     const int rowCount = ui->AffichervehTab->model()->rowCount();
+                     const int columnCount =ui->AffichervehTab->model()->columnCount();
+                     out << "<h2 align=left> UTOPIA SOFTWARES  </h2>";
+                     out << "<h2 align=right> EHEALTH APPLICATION </h2>";
+
+                     out <<  "<html>\n"
+                             "<head>\n"
+                             "<meta Content=\"Text/html; charset=Windows-1251\">\n"
+                             <<  QString("<title>%1</title>\n").arg("EQUIPEMENT")
+                             <<  "</head>\n"
+                             "<body bgcolor=lightpink link=#5000A0>\n"
+
+                                 "<h1>Liste des vehicules</h1>"
+
+
+
+                                 "<table border=1 cellspacing=0 cellpadding=2>\n";
+
+
+                     // headers
+                             out << "<thead><tr bgcolor=#f0f0f0>";
+                             for (int column = 0; column < columnCount; column++)
+                                 if (!ui->AfficherTabeqp->isColumnHidden(column))
+                                     out << QString("<th>%1</th>").arg(ui->AfficherTabeqp->model()->headerData(column, Qt::Horizontal).toString());
+                             out << "</tr></thead>\n";
+                             // data table
+                                for (int row = 0; row < rowCount; row++) {
+                                    out << "<tr>";
+                                    for (int column = 0; column < columnCount; column++) {
+                                        if (!ui->AfficherTabeqp->isColumnHidden(column)) {
+                                            QString data = ui->AfficherTabeqp->model()->data(ui->AfficherTabeqp->model()->index(row, column)).toString().simplified();
+                                            out << QString("<td bkcolor=0>%1</td>").arg((!data.isEmpty()) ? data : QString("&nbsp;"));
+                                        }
+                                    }
+                                    out << "</tr>\n";
+                                }
+                                out <<  "</table>\n"
+                                    "</body>\n"
+                                    "</html>\n";
+
+                                QTextDocument *document = new QTextDocument();
+                                document->setHtml(strStream);
+
+                                QPrinter printer;
+
+                                QPrintDialog *dialog = new QPrintDialog(&printer, NULL);
+                                if (dialog->exec() == QDialog::Accepted) {
+                                    document->print(&printer);
+                             }
+
+
+     }
+
+
+
+
+
+
+
+     }
+     }
+     void MainWindow::on_export_4_clicked()
+     {
+         {
+             QString strStream;
+                 QTextStream out(&strStream);
+                 const int rowCount = ui->AffichervehTab->model()->rowCount();
+                 const int columnCount =ui->AffichervehTab->model()->columnCount();
+                 out << "<h2 align=left> EHEALTH APPLICATION  </h2>";
+                 out << "<h2 align=right> UTOPIA SOFTWARES </h2>";
+
+                 out <<  "<html>\n"
+                         "<head>\n"
+                         "<meta Content=\"Text/html; charset=Windows-1251\">\n"
+                         <<  QString("<title>%1</title>\n").arg("VEHICULE")
+                         <<  "</head>\n"
+                         "<body bgcolor=lightpink link=#5000A0>\n"
+
+                             "<h1>Liste des vehicules</h1>"
+
+
+
+                             "<table border=1 cellspacing=0 cellpadding=2>\n";
+
+
+                 // headers
+                         out << "<thead><tr bgcolor=#f0f0f0>";
+                         for (int column = 0; column < columnCount; column++)
+                             if (!ui->AffichervehTab->isColumnHidden(column))
+                                 out << QString("<th>%1</th>").arg(ui->AffichervehTab->model()->headerData(column, Qt::Horizontal).toString());
+                         out << "</tr></thead>\n";
+                         // data table
+                            for (int row = 0; row < rowCount; row++) {
+                                out << "<tr>";
+                                for (int column = 0; column < columnCount; column++) {
+                                    if (!ui->AffichervehTab->isColumnHidden(column)) {
+                                        QString data = ui->AffichervehTab->model()->data(ui->AffichervehTab->model()->index(row, column)).toString().simplified();
+                                        out << QString("<td bkcolor=0>%1</td>").arg((!data.isEmpty()) ? data : QString("&nbsp;"));
+                                    }
+                                }
+                                out << "</tr>\n";
+                            }
+                            out <<  "</table>\n"
+                                "</body>\n"
+                                "</html>\n";
+
+                            QTextDocument *document = new QTextDocument();
+                            document->setHtml(strStream);
+
+                            QPrinter printer;
+
+                            QPrintDialog *dialog = new QPrintDialog(&printer, NULL);
+                            if (dialog->exec() == QDialog::Accepted) {
+                                document->print(&printer);
+                         }
+
+
+     }
+
+
+}
 
