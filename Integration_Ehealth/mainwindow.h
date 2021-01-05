@@ -141,6 +141,8 @@ void update_label();
 
     void on_english_clicked();
 
+    void update_label_khalil();
+
 private:
     Ui::MainWindow *ui;
     Medicament temp;
@@ -158,5 +160,7 @@ private:
      //
 
       arduino A;
+      bool test=false;
+      QString myid;
 };
 #endif // MAINWINDOW_H
