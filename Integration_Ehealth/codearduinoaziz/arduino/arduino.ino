@@ -1,4 +1,6 @@
-#include <SimpleDHT.h>
+#include <dht11.h>
+
+ 
 int pinDHT11 = 4;
 int pinled = 7;
 int incomingByte =0;

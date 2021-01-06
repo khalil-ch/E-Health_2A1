@@ -167,7 +167,7 @@ void update_label();
 
     void on_pdf_clicked();
 
-    void on_mail_clicked();
+
 
     void on_play_clicked();
 
@@ -176,7 +176,20 @@ void update_label();
     void on_mail_2_clicked();
     //arduino
          void update_label_aziz();
+         void update_label_khalil();
          //finarduino
+
+         void on_AcceptArd_clicked();
+
+         void on_RefuseArd_clicked();
+
+         void on_resetlogin_clicked();
+
+         void on_tradangaziz_clicked();
+
+         void on_tradang2_clicked();
+
+         void on_excelaziz_clicked();
 
 private:
     Ui::MainWindow *ui;
@@ -198,7 +211,9 @@ private:
      QSound *son;
      //arduino
        QByteArray data;
+       QByteArray xdata;
       arduino A;
+      QString uid;
       //arduino khalil
       /*
             arduino A;

@@ -3,6 +3,10 @@
 #include <QString>
 #include <QSqlQuery>
 #include <QSqlQueryModel>
+#include <QFileDialog>
+#include <QDir>
+#include <QApplication>
+#include<QTableView>
 
 
 
@@ -22,6 +26,7 @@ class service
     bool modifier(int , QString  );
     QSqlQueryModel * rechercher(QString);
     QSqlQueryModel *tri();
+    void excelaziz(QTableView *table);
 
 private:
 

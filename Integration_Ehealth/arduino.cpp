@@ -6,6 +6,7 @@
 arduino::arduino()
 {
     data ="";
+    xdata="";
     arduino_port_name="";
     arduino_is_available=false;
     serial=new QSerialPort;
@@ -74,3 +75,26 @@ QByteArray arduino:: read_from_arduino()
        return data;
    }
 }
+//
+//Arduino Firqs khalil
+
+int arduino::string_to_arduino(const char * msg)
+{
+    if (serial->isWritable())
+    {
+
+        serial->write(msg);
+
+    }
+    else
+        qDebug() << "Couldn't write to serial!";
+}
+
+/*QByteArray arduino:: read_from_arduino_khalil()
+{
+   if (serial->isReadable())
+   {
+       xdata=serial->readAll();
+       return xdata;
+   }
+}*/

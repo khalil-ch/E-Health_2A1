@@ -1186,7 +1186,7 @@ QStatusBar
       <item>
        <widget class="QStackedWidget" name="stackedWidget">
         <property name="currentIndex">
-         <number>2</number>
+         <number>0</number>
         </property>
         <widget class="QWidget" name="page">
          <widget class="QTabWidget" name="tabWidget">
@@ -4548,7 +4548,7 @@ QPushButton:pressed
              </font>
             </property>
             <property name="text">
-             <string>                                                         Veuillez entrer vos données:</string>
+             <string>                                 Veuillez entrer vos données:</string>
             </property>
            </widget>
           </item>
@@ -7110,7 +7110,7 @@ QLineEdit:focus { background-color:rgb(192, 192, 255);}</string>
            </rect>
           </property>
           <property name="currentIndex">
-           <number>0</number>
+           <number>1</number>
           </property>
           <widget class="QWidget" name="tab_6">
            <attribute name="title">
@@ -7397,6 +7397,19 @@ QLineEdit:focus { background-color:rgb(192, 192, 255);}</string>
                 <string>Temp</string>
                </property>
               </widget>
+              <widget class="QPushButton" name="tradangaziz">
+               <property name="geometry">
+                <rect>
+                 <x>20</x>
+                 <y>400</y>
+                 <width>151</width>
+                 <height>25</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Traduction en Anglais</string>
+               </property>
+              </widget>
              </widget>
             </widget>
             <widget class="QWidget" name="tab_8">
@@ -7584,7 +7597,7 @@ QLineEdit:focus { background-color:rgb(192, 192, 255);}</string>
              </rect>
             </property>
             <property name="currentIndex">
-             <number>3</number>
+             <number>2</number>
             </property>
             <widget class="QWidget" name="tab_11">
              <attribute name="title">
@@ -7727,6 +7740,19 @@ QLineEdit:focus { background-color:rgb(192, 192, 255);}</string>
                </property>
                <property name="text">
                 <string>ajouter</string>
+               </property>
+              </widget>
+              <widget class="QPushButton" name="tradang2">
+               <property name="geometry">
+                <rect>
+                 <x>40</x>
+                 <y>410</y>
+                 <width>151</width>
+                 <height>31</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Traduction en Anglais</string>
                </property>
               </widget>
              </widget>
@@ -7886,6 +7912,19 @@ QLineEdit:focus { background-color:rgb(192, 192, 255);}</string>
                <string>Tri</string>
               </property>
              </widget>
+             <widget class="QPushButton" name="excelaziz">
+              <property name="geometry">
+               <rect>
+                <x>90</x>
+                <y>390</y>
+                <width>121</width>
+                <height>41</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>EXPORT EXCEL</string>
+              </property>
+             </widget>
             </widget>
             <widget class="QWidget" name="tab_15">
              <attribute name="title">
@@ -7909,6 +7948,92 @@ QLineEdit:focus { background-color:rgb(192, 192, 255);}</string>
           </widget>
          </widget>
         </widget>
+        <widget class="QWidget" name="page_6"/>
+        <widget class="QWidget" name="page_7">
+         <widget class="QLabel" name="label_46">
+          <property name="geometry">
+           <rect>
+            <x>450</x>
+            <y>160</y>
+            <width>201</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Authentification avec carte:</string>
+          </property>
+         </widget>
+         <widget class="QWidget" name="horizontalLayoutWidget">
+          <property name="geometry">
+           <rect>
+            <x>210</x>
+            <y>360</y>
+            <width>661</width>
+            <height>80</height>
+           </rect>
+          </property>
+          <layout class="QHBoxLayout" name="horizontalLayout_14">
+           <item>
+            <widget class="QPushButton" name="AcceptArd">
+             <property name="text">
+              <string>Accept</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="RefuseArd">
+             <property name="text">
+              <string>Refuse</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="horizontalLayoutWidget_2">
+          <property name="geometry">
+           <rect>
+            <x>209</x>
+            <y>260</y>
+            <width>661</width>
+            <height>80</height>
+           </rect>
+          </property>
+          <layout class="QHBoxLayout" name="horizontalLayout_15">
+           <item>
+            <widget class="QLabel" name="label_48">
+             <property name="text">
+              <string>Code RFID :</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="Outputlabel">
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_16">
+      <item>
+       <widget class="QPushButton" name="Previous">
+        <property name="text">
+         <string>Previous</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="Next">
+        <property name="text">
+         <string>Next</string>
+        </property>
        </widget>
       </item>
      </layout>

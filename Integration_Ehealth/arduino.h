@@ -11,7 +11,8 @@ class arduino
     static const quint16 arduino_uno_product_id=67;
     QString arduino_port_name;
     bool arduino_is_available;
-    QByteArray data;    // donnees sur 8 bits
+    QByteArray data;
+    QByteArray xdata; // donnees sur 8 bits
 
 public:
     arduino();
@@ -21,6 +22,8 @@ public:
     QByteArray read_from_arduino();
     QSerialPort *getserial(){return serial;}
     QString getarduino_port_name(){return arduino_port_name;}
+    int string_to_arduino(const char *);
+   // QByteArray read_from_arduino_khalil();
 
 };
 
