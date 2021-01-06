@@ -35,7 +35,10 @@
 #include <widmod2.h>
 #include <statchart.h>
 #include <dsikstat.h>
-//
+#include "changetheme.h"
+//fatma
+#include "vehicule.h"
+#include "equipement.h"
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -52,6 +55,15 @@ MainWindow::MainWindow(QWidget *parent)
     case(-1):qDebug()<<"arduino is not available and connected to :"<<A.getarduino_port_name();
         break;
     }
+    //
+    this->setStyleSheet("");
+    QFile file("C:\\Users\\khali\\Desktop\\integration finaleee!!!\\E-Health_2A1\\Integration_Ehealth\\stylesheets\\Irrorater.qss");
+    file.open(QFile::ReadOnly);
+    QString styleSheet = QLatin1String(file.readAll());
+    //MainWindow.setStyleSheet(styl);
+    qApp->setStyleSheet(styleSheet);
+    this->indexpage=0;
+    //
     QObject::connect(A.getserial(),SIGNAL(readyRead()),this,SLOT(update_label()));
     ui->stackedWidget->setCurrentIndex(1);
     ui->tablemed->setModel(temp.afficher());
@@ -65,6 +77,9 @@ MainWindow::MainWindow(QWidget *parent)
     //khalil
     ui->tableView_Rq->setModel(requettetmp.AfficherReq());
     ui->tableView_Eq->setModel(equipetmp.AfficherEq());
+    this->AdminAccess=false;
+    ui->Previous->hide();
+    ui->Next->hide();
     //
     //AZIZ KAHLOUL
     ui->tabpersonnel->setModel(tmppersonnel.afficher());
@@ -77,9 +92,27 @@ MainWindow::MainWindow(QWidget *parent)
     ui->nom_per->setMaxLength(9);
     ui->prenom_per->setMaxLength(9);
     ui->type_per->setMaxLength(9);
+    //fatma
+    ui->AffichervehTab->setModel(tmpveh.Affichervehicule("nom"));
+    ui->AfficherTabeqp->setModel(tmpeqp.Afficherequipement("numdeserie"));
+    ui->categorie->addItem("A");
+    ui->categorie->addItem("B");
+    ui->categorie->addItem("C");
+    ui->categorie_2->addItem("A");
+    ui->categorie_2->addItem("B");
+    ui->categorie_2->addItem("C");
+    ui->desinfectation->addItem("protocole fait");
+    ui->desinfectation->addItem("protocole non fait");
+    ui->desinfectation_2->addItem("protocole fait");
+    ui->desinfectation_2->addItem("protocle non fait");
+    flip=0;
+
+    //
 
     //
     //this->setStyleSheet("background-color: rgb(0, 0, 100);");
+    //khalil hide buttons
+    //
     ui->lineEdit_CINpatient->setMaxLength(8);
     ui->lineEdit_cinp->setMaxLength(8);
     ui->lineEdit_cin_supp->setMaxLength(8);
@@ -108,7 +141,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->dateEditModifP->setMinimumDate(QDate::currentDate());
     int const n=0;
     QMediaPlayer *player = new QMediaPlayer;
-    player->setMedia(QUrl::fromLocalFile("C:\\Users\\hp\\Desktop\\integration eya!\\E-Health_2A1\\Integration_Ehealth\\Piano-melancholy-music-short.mp3"));
+    player->setMedia(QUrl::fromLocalFile("C:\\Users\\khali\\Desktop\\integration finaleee!!!\\E-Health_2A1\\Integration_Ehealth\\Piano-melancholy-music-short.mp3"));
     player->setVolume(n);
     player->play();
     ui->spinBox->setRange(0,100);
@@ -146,12 +179,13 @@ MainWindow::MainWindow(QWidget *parent)
 void MainWindow::update_label_aziz()
 {
     data=A.read_from_arduino();
+    //
     QString DataAsString = QString(data);
     qDebug()<< data;
 
-    ui->label_2->setText("temp : "+data);
+    ui->label_40->setText("temp : " +data);
 
-    if (data=="21"||data=="22"||data=="23"||data=="24"||data=="25"||data=="26"||data=="27"){
+   /* if (data=="21"||data=="22"||data=="23"||data=="24"||data=="25"||data=="26"||data=="27"){
         if (messageboxactive==0){
             alert=1;
         }
@@ -178,7 +212,7 @@ void MainWindow::update_label_aziz()
     if (data=="20"||data=="19"||data=="18"||data=="17"||data=="16"||data=="15"||data=="14 "){
         A.write_to_arduino("0");
         led=0;
-    }
+    }*/
 
 }
 
@@ -224,6 +258,9 @@ void MainWindow::on_ajoutmed_clicked()
     else {
         QMessageBox::warning(this,"Erreur lors de l ajout du medicament","Veuillez remplir tous les champs à nouveau");
     }
+    QSystemTrayIcon * notifyIcon = new QSystemTrayIcon;
+    notifyIcon-> show ();
+    notifyIcon-> showMessage ( " Medicament " , " Medicament Ajouté " , QSystemTrayIcon :: Information, 15000 );
 }
 
 void MainWindow::on_rechmed_clicked()
@@ -302,6 +339,9 @@ void MainWindow::on_suppmed_clicked()
         ui->tablemed->setModel(temp.afficher());
         ui->statusbar->showMessage("Medicament supprimé");
     }
+    QSystemTrayIcon * notifyIcon = new QSystemTrayIcon;
+    notifyIcon-> show ();
+    notifyIcon-> showMessage ( " Medicament " , " Medicament Supprimé " , QSystemTrayIcon :: Information, 15000 );
 }
 
 void MainWindow::on_excelmed_clicked()
@@ -357,10 +397,16 @@ void MainWindow::on_ajoutfour_clicked()
     else {
         QMessageBox::warning(this,"Erreur lors de l ajout du fournisseur","Veuillez remplir tous les champs à nouveau");
     }
+    QSystemTrayIcon * notifyIcon = new QSystemTrayIcon;
+    notifyIcon-> show ();
+    notifyIcon-> showMessage ( " Fournisseur " , " Fournisseur Ajouté " , QSystemTrayIcon :: Information, 15000 );
 }
 
 void MainWindow::on_pdffour_clicked()
 {
+    QSystemTrayIcon * notifyIcon = new QSystemTrayIcon;
+    notifyIcon-> show ();
+    notifyIcon-> showMessage ( " Fournisseur " , " Génération PDF " , QSystemTrayIcon :: Information, 15000 );
     QString strStream;
     QTextStream out(&strStream);
 
@@ -450,18 +496,36 @@ void MainWindow::on_suppfour_clicked()
         ui->tablefour->setModel(tempo.afficher());
         ui->statusbar->showMessage("Fournisseur supprimé");
     }
+    QSystemTrayIcon * notifyIcon = new QSystemTrayIcon;
+    notifyIcon-> show ();
+    notifyIcon-> showMessage ( " Fournisseur " , " Fournisseur Supprimé " , QSystemTrayIcon :: Information, 15000 );
 }
 
 void MainWindow::on_Login_clicked()
 {
-    if(ui->loginLineEdit->text()=="firas")
+    if((ui->loginLineEdit->text()=="firas")&&(ui->motDePasseLineEdit->text()=="esprit"))
         ui->stackedWidget->setCurrentIndex(0);
-    if (ui->loginLineEdit->text()=="eya")
+    if ((ui->loginLineEdit->text()=="eya")&&(ui->motDePasseLineEdit->text()=="esprit"))
         ui->stackedWidget->setCurrentIndex(2);
-    if (ui->loginLineEdit->text()=="khalil")
+    if ((ui->loginLineEdit->text()=="khalil")&&(ui->motDePasseLineEdit->text()=="esprit"))
         ui->stackedWidget->setCurrentIndex(3);
-    if (ui->loginLineEdit->text()=="aziz")
+    if ((ui->loginLineEdit->text()=="aziz")&&(ui->motDePasseLineEdit->text()=="esprit"))
         ui->stackedWidget->setCurrentIndex(4);
+    if ((ui->loginLineEdit->text()=="fatma")&&(ui->motDePasseLineEdit->text()=="esprit"))
+        ui->stackedWidget->setCurrentIndex(5);
+    //login avec la base de donnees equipemaintenance
+    int password = ui->motDePasseLineEdit->text().toInt();
+    QString chefequipe=ui->loginLineEdit->text();
+    bool testing=equipetmp.Login(password,chefequipe);
+    if (testing)
+    {
+       ui->AjouterReq->hide();
+       ui->DeleteReq->hide();
+       ui->stackedWidget->setCurrentIndex(3);
+    }
+    //
+
+    indexpage=ui->stackedWidget->currentIndex();
 }
 
 void MainWindow::on_pushButtonAjoutP_clicked()
@@ -658,7 +722,7 @@ void MainWindow::on_pushButton_suppchambre_clicked()
 void MainWindow::on_pushButton_rechpatient_clicked()
 {
     QMediaPlayer *sound =new QMediaPlayer();
-    sound-> setMedia(QUrl("C:\\Users\\hp\\Desktop\\integration eya!\\E-Health_2A1\\Integration_Ehealth\\Mouse-Click-03-m-FesliyanStudios.com.mp3"));
+    sound-> setMedia(QUrl("C:\\Users\\khali\\Desktop\\integration finaleee!!!\\E-Health_2A1\\Integration_Ehealth\\Mouse-Click-03-m-FesliyanStudios.com.mp3"));
     sound ->play();
     QString cin= ui->lineEdit_recherchecin->text();
     QString nom= ui->lineEdit_rechnomp->text();
@@ -678,7 +742,7 @@ void MainWindow::on_pushButton_rechpatient_clicked()
 void MainWindow::on_pushButton_rechchambre_clicked()
 {
     QMediaPlayer *sound =new QMediaPlayer();
-    sound-> setMedia(QUrl("C:\\Users\\hp\\Desktop\\integration eya!\\E-Health_2A1\\Integration_Ehealth\\Mouse-Click-03-m-FesliyanStudios.com.mp3"));
+    sound-> setMedia(QUrl("C:\\Users\\khali\\Desktop\\integration finaleee!!!\\E-Health_2A1\\Integration_Ehealth\\Mouse-Click-03-m-FesliyanStudios.com.mp3"));
     sound ->play();
     QString id=ui->lineEdit_idrech->text();
     int numero_chambre=ui->lineEdit_numrech->text().toInt();
@@ -697,7 +761,7 @@ void MainWindow::on_pushButton_rechchambre_clicked()
 void MainWindow::on_checkBox_rechercheage_clicked()
 {
     QMediaPlayer *sound =new QMediaPlayer();
-    sound-> setMedia(QUrl("C:\\Users\\hp\\Desktop\\integration eya!\\E-Health_2A1\\Integration_Ehealth\\Mouse-Click-03-m-FesliyanStudios.com.mp3"));
+    sound-> setMedia(QUrl("C:\\Users\\khali\\Desktop\\integration finaleee!!!\\E-Health_2A1\\Integration_Ehealth\\Mouse-Click-03-m-FesliyanStudios.com.mp3"));
     sound ->play();
     if (ui->checkBox_rechercheage->isChecked())
     {
@@ -711,7 +775,7 @@ void MainWindow::on_checkBox_rechercheage_clicked()
 void MainWindow::on_checkBoxchambre_clicked()
 {
     QMediaPlayer *sound =new QMediaPlayer();
-    sound-> setMedia(QUrl("C:\\Users\\hp\\Desktop\\integration eya!\\E-Health_2A1\\Integration_Ehealth\\Mouse-Click-03-m-FesliyanStudios.com.mp3"));
+    sound-> setMedia(QUrl("C:\\Users\\khali\\Desktop\\integration finaleee!!!\\E-Health_2A1\\Integration_Ehealth\\Mouse-Click-03-m-FesliyanStudios.com.mp3"));
     sound ->play();
     if (ui->checkBoxchambre->isChecked())
     {
@@ -725,7 +789,7 @@ void MainWindow::on_checkBoxchambre_clicked()
 void MainWindow::on_pushButton_PDFchambre_clicked()
 {
     QMediaPlayer *sound =new QMediaPlayer();
-    sound-> setMedia(QUrl("C:\\Users\\hp\\Desktop\\integration eya!\\E-Health_2A1\\Integration_Ehealth\\Mouse-Click-03-m-FesliyanStudios.com.mp3"));
+    sound-> setMedia(QUrl("C:\\Users\\khali\\Desktop\\integration finaleee!!!\\E-Health_2A1\\Integration_Ehealth\\Mouse-Click-03-m-FesliyanStudios.com.mp3"));
     sound ->play();
     QString strStream;
     QTextStream out(&strStream);
@@ -783,7 +847,7 @@ void MainWindow::on_pushButton_PDFchambre_clicked()
 void MainWindow::on_pushButton_pdff_clicked()
 {
     QMediaPlayer *sound =new QMediaPlayer();
-    sound-> setMedia(QUrl("C:\\Users\\hp\\Desktop\\integration eya!\\E-Health_2A1\\Integration_Ehealth\\Mouse-Click-03-m-FesliyanStudios.com.mp3"));
+    sound-> setMedia(QUrl("C:\\Users\\khali\\Desktop\\integration finaleee!!!\\E-Health_2A1\\Integration_Ehealth\\Mouse-Click-03-m-FesliyanStudios.com.mp3"));
     sound ->play();
     QString strStream;
     QTextStream out(&strStream);
@@ -841,7 +905,7 @@ void MainWindow::on_pushButton_pdff_clicked()
 void MainWindow::on_pushButton_Exelchambre_clicked()
 {
     QMediaPlayer *sound =new QMediaPlayer();
-    sound-> setMedia(QUrl("C:\\Users\\hp\\Desktop\\integration eya!\\E-Health_2A1\\Integration_Ehealth\\Mouse-Click-03-m-FesliyanStudios.com.mp3"));
+    sound-> setMedia(QUrl("C:\\Users\\khali\\Desktop\\integration finaleee!!!\\E-Health_2A1\\Integration_Ehealth\\Mouse-Click-03-m-FesliyanStudios.com.mp3"));
     sound ->play();
 
     tmpChambre.exporter(ui->tableView_chambre);
@@ -850,7 +914,7 @@ void MainWindow::on_pushButton_Exelchambre_clicked()
 void MainWindow::on_pushButton_ExcelP_clicked()
 {
     QMediaPlayer *sound =new QMediaPlayer();
-    sound-> setMedia(QUrl("C:\\Users\\hp\\Desktop\\integration eya!\\E-Health_2A1\\Integration_Ehealth\\Mouse-Click-03-m-FesliyanStudios.com.mp3"));
+    sound-> setMedia(QUrl("C:\\Users\\khali\\Desktop\\integration finaleee!!!\\E-Health_2A1\\Integration_Ehealth\\Mouse-Click-03-m-FesliyanStudios.com.mp3"));
     sound ->play();
     tmpPatient.exporter(ui->tableView_Patient);
 }
@@ -858,7 +922,7 @@ void MainWindow::on_pushButton_ExcelP_clicked()
 void MainWindow::on_pushButton_affichertoutP_clicked()
 {
     QMediaPlayer *sound =new QMediaPlayer();
-    sound-> setMedia(QUrl("C:\\Users\\hp\\Desktop\\integration eya!\\E-Health_2A1\\Integration_Ehealth\\Mouse-Click-03-m-FesliyanStudios.com.mp3"));
+    sound-> setMedia(QUrl("C:\\Users\\khali\\Desktop\\integration finaleee!!!\\E-Health_2A1\\Integration_Ehealth\\Mouse-Click-03-m-FesliyanStudios.com.mp3"));
     sound ->play();
     ui->tableView_Patient->setModel(tmpPatient.afficher());
 }
@@ -866,7 +930,7 @@ void MainWindow::on_pushButton_affichertoutP_clicked()
 void MainWindow::on_pushButton_afficherchambre_clicked()
 {
     QMediaPlayer *sound =new QMediaPlayer();
-    sound-> setMedia(QUrl("C:\\Users\\hp\\Desktop\\integration eya!\\E-Health_2A1\\Integration_Ehealth\\Mouse-Click-03-m-FesliyanStudios.com.mp3"));
+    sound-> setMedia(QUrl("C:\\Users\\khali\\Desktop\\integration finaleee!!!\\E-Health_2A1\\Integration_Ehealth\\Mouse-Click-03-m-FesliyanStudios.com.mp3"));
     sound ->play();
     ui->tableView_chambre->setModel(tmpChambre.afficher());
 }
@@ -878,6 +942,7 @@ void MainWindow::update_label()
    qDebug()<<"data = "<< data;
 ui->lineEdit_bpm->setText(heartRateBPM);
     //khedmet khalil
+//lezemna nhotou hedhi fil arduino AdminAccess=true;
     /*
     qDebug() <<"a=" << data;
 
@@ -898,6 +963,7 @@ ui->lineEdit_bpm->setText(heartRateBPM);
 
 
     }*/
+
 }
 //code khalil
 //Ajoute une requette avec appel a un autre widget
@@ -908,11 +974,18 @@ void MainWindow::on_AjouterReq_clicked()
     widgetajout.setModal(true);
     widgetajout.exec();
     ui->tableView_Rq->setModel(requettetmp.AfficherReq());
+    QSystemTrayIcon * notifyIcon = new QSystemTrayIcon;
+    notifyIcon-> show ();
+    notifyIcon-> showMessage ( " Requettes " , " Requette Ajout " , QSystemTrayIcon :: Information, 15000 );
 }
 //Actualise l affichage de requettes
 void MainWindow::on_ActualiserReq_clicked()
 {
     ui->tableView_Rq->setModel(requettetmp.AfficherReq());
+    //icon
+    QSystemTrayIcon * notifyIcon = new QSystemTrayIcon;
+    notifyIcon-> show ();
+    notifyIcon-> showMessage ( " Requettes " , " Requette Actualisation " , QSystemTrayIcon :: Information, 15000 );
 }
 //Supression de requettes
 void MainWindow::on_DeleteReq_clicked()
@@ -931,6 +1004,9 @@ void MainWindow::on_DeleteReq_clicked()
                                           "click cancel to exit"),QMessageBox::Cancel);
     }
     ui->tableView_Rq->setModel(requettetmp.AfficherReq());
+    QSystemTrayIcon * notifyIcon = new QSystemTrayIcon;
+    notifyIcon-> show ();
+    notifyIcon-> showMessage ( " Requettes " , " Requette Suppression " , QSystemTrayIcon :: Information, 15000 );
 }
 //modification de requette
 void MainWindow::on_ModifReq_clicked()
@@ -1014,11 +1090,17 @@ void MainWindow::on_AjouterEq_clicked()
     widgetequipeadd.setWindowTitle("Ajouter Equipe");
     widgetequipeadd.exec();
     ui->tableView_Eq->setModel(equipetmp.AfficherEq());
+    QSystemTrayIcon * notifyIcon = new QSystemTrayIcon;
+    notifyIcon-> show ();
+    notifyIcon-> showMessage ( " Equipe " , " Equipe Ajout " , QSystemTrayIcon :: Information, 15000 );
 }
 //Actualise l affichage
 void MainWindow::on_ActualiserEq_clicked()
 {
     ui->tableView_Eq->setModel(equipetmp.AfficherEq());
+    QSystemTrayIcon * notifyIcon = new QSystemTrayIcon;
+    notifyIcon-> show ();
+    notifyIcon-> showMessage ( " Equipe " , " Equipe Actualisation " , QSystemTrayIcon :: Information, 15000 );
 }
 //recherche simple equipe
 void MainWindow::on_RechercheEq_clicked()
@@ -1038,6 +1120,9 @@ void MainWindow::on_ModifEq_clicked()
 void MainWindow::on_DelEq_clicked()
 {
     equipetmp.SupprimerEq(ui->lineEdit_Eq->text());
+    QSystemTrayIcon * notifyIcon = new QSystemTrayIcon;
+    notifyIcon-> show ();
+    notifyIcon-> showMessage ( " Equipe " , " Equipe Suppression " , QSystemTrayIcon :: Information, 15000 );
 }
 //tri equipe
 void MainWindow::on_TrierEq_currentIndexChanged(const QString &arg1)
@@ -1439,6 +1524,12 @@ void MainWindow::on_AcceptArd_clicked()
     const char * pa= msg2.toStdString().c_str();
 
     A.write_to_arduino(pa);
+//if (AdminAcess){
+    ui->Previous->show();
+    ui->Next->show();
+    ui->stackedWidget->setCurrentIndex(0);
+    indexpage=0;
+//}
 }
 
 void MainWindow::on_RefuseArd_clicked()
@@ -1529,4 +1620,359 @@ void MainWindow::on_tradang2_clicked()
 void MainWindow::on_excelaziz_clicked()
 {
     tmpservice.excelaziz(ui->tabservice);
+}
+
+void MainWindow::on_Add_veh_clicked()
+{
+    vehicule v;
+    if(ui->modeleveh->text().length()!=13)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("modele Invalide!");
+        msgBox.exec();
+    }
+    else{
+            v.setnom(ui->nom->text());
+            v.setcategorie(ui->categorie->currentText());
+            v.setmodele(ui->modeleveh->text());
+            v.setdesinfectation(ui->desinfectation->currentText());
+            v.setdescription(ui->DESC->text());
+            if(v.Ajoutervehicule())
+            {
+                ui->AffichervehTab->setModel(tmpveh.Affichervehicule("nom"));
+                QMessageBox msgBox;
+                msgBox.setText("Ajout Avec Success!");
+                msgBox.exec();
+                ui->stackedWidget->setCurrentIndex(6);
+            }
+            else
+            {
+                QMessageBox msgBox;
+                msgBox.setText("Echec! Champ(s) Manquant(s)!");
+                msgBox.exec();
+                ui->stackedWidget->setCurrentIndex(6);
+            }
+    }
+}
+
+void MainWindow::on_Add_veh_2_clicked()
+{
+    vehicule v;
+            v.setnom(ui->vehSearch->text());
+            v.setcategorie(ui->categorie_2->currentText());
+            v.setmodele(ui->modeleveh_2->text());
+            v.setdesinfectation(ui->desinfectation_2->currentText());
+            v.setdescription(ui->DESC_2->text());
+            if(v.modifiervehicule(ui->vehSearch->text()))
+            {
+                ui->AffichervehTab->setModel(tmpveh.Affichervehicule("NOM"));
+                QMessageBox msgBox;
+                msgBox.setText("Modification Avec Success!");
+                msgBox.exec();
+                ui->stackedWidget->setCurrentIndex(6);
+            }
+            else
+            {
+                QMessageBox msgBox;
+                msgBox.setText("Echec! Champ(s) Manquant(s)!");
+                msgBox.exec();
+                ui->stackedWidget->setCurrentIndex(6);
+            }
+}
+
+void MainWindow::on_vehsearch_3_clicked()
+{
+    ui->AffichervehTab->setModel(tmpveh.Affichervehicule("NOM"));
+}
+
+void MainWindow::on_export_3_clicked()
+{
+            QString strStream;
+                QTextStream out(&strStream);
+                const int rowCount = ui->AffichervehTab->model()->rowCount();
+                const int columnCount =ui->AffichervehTab->model()->columnCount();
+                out << "<h2 align=left> UTOPIA SOFTWARES  </h2>";
+                out << "<h2 align=right> EHEALTH APPLICATION </h2>";
+
+                out <<  "<html>\n"
+                        "<head>\n"
+                        "<meta Content=\"Text/html; charset=Windows-1251\">\n"
+                        <<  QString("<title>%1</title>\n").arg("EQUIPEMENT")
+                        <<  "</head>\n"
+                        "<body bgcolor=lightpink link=#5000A0>\n"
+
+                            "<h1>Liste des vehicules</h1>"
+
+
+
+                            "<table border=1 cellspacing=0 cellpadding=2>\n";
+
+
+                // headers
+                        out << "<thead><tr bgcolor=#f0f0f0>";
+                        for (int column = 0; column < columnCount; column++)
+                            if (!ui->AfficherTabeqp->isColumnHidden(column))
+                                out << QString("<th>%1</th>").arg(ui->AfficherTabeqp->model()->headerData(column, Qt::Horizontal).toString());
+                        out << "</tr></thead>\n";
+                        // data table
+                           for (int row = 0; row < rowCount; row++) {
+                               out << "<tr>";
+                               for (int column = 0; column < columnCount; column++) {
+                                   if (!ui->AfficherTabeqp->isColumnHidden(column)) {
+                                       QString data = ui->AfficherTabeqp->model()->data(ui->AfficherTabeqp->model()->index(row, column)).toString().simplified();
+                                       out << QString("<td bkcolor=0>%1</td>").arg((!data.isEmpty()) ? data : QString("&nbsp;"));
+                                   }
+                               }
+                               out << "</tr>\n";
+                           }
+                           out <<  "</table>\n"
+                               "</body>\n"
+                               "</html>\n";
+
+                           QTextDocument *document = new QTextDocument();
+                           document->setHtml(strStream);
+
+                           QPrinter printer;
+
+                           QPrintDialog *dialog = new QPrintDialog(&printer, NULL);
+                           if (dialog->exec() == QDialog::Accepted) {
+                               document->print(&printer);
+                        }
+}
+
+void MainWindow::on_vehSearch_clicked()
+{
+    QModelIndexList selection = ui->AffichervehTab->selectionModel()->selectedRows(0);
+
+    if (!selection.empty()) {
+
+        QModelIndex idIndex = selection.at(0);
+        QString id = idIndex.data().toString();
+        ui->nom_2->setText(id);
+        ui->stackedWidget->setCurrentIndex(6);
+
+    }
+}
+
+void MainWindow::on_Supprimervehicule_clicked()
+{
+    QModelIndexList selection = ui->AffichervehTab->selectionModel()->selectedRows(0);
+
+    if (!selection.empty()) {
+
+        QModelIndex idIndex = selection.at(0);
+        QString id = idIndex.data().toString();
+    if(tmpveh.Supprimervehicule(id))
+           {
+        ui->AffichervehTab->setModel(tmpveh.Affichervehicule("NOM"));
+        QMessageBox msgBox;
+        msgBox.setText("Suppression avec Success!");
+        msgBox.exec();
+        ui->stackedWidget->setCurrentIndex(4);
+    }
+    else
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Echec de Suppression! ");
+        msgBox.exec();
+        }
+    }
+}
+
+void MainWindow::on_Addeqp_clicked()
+{
+    equipement e;
+    if(ui->numdeserie->text().length()!=10)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("numdeserie Invalide!");
+        msgBox.exec();
+    }
+    else
+    {
+        e.setnumdeserie(ui->numdeserie->text());
+        e.setnom(ui->nomeqp->text());
+        e.setmodele(ui->MODELE->text());
+        e.settype(ui->type->text());
+        e.setcondition(ui->condition->text());
+        e.setdescription(ui->descequipement->text());
+        if(e.Ajouterequipement())
+        {
+            ui->AfficherTabeqp->setModel(tmpeqp.Afficherequipement("numdeserie"));
+            QMessageBox msgBox;
+            msgBox.setText("Ajout Avec Success!");
+            msgBox.exec();
+            ui->stackedWidget->setCurrentIndex(6);
+        }
+        else
+        {
+            QMessageBox msgBox;
+            msgBox.setText("Echec! Champ(s) Manquant(s)!");
+            msgBox.exec();
+        }
+
+    }
+}
+
+void MainWindow::on_Addeqp_2_clicked()
+{
+    equipement e;
+
+
+        e.setnumdeserie(ui->Searcheqpnum->text());
+        e.setnom(ui->nomeqp_2->text());
+        e.setmodele(ui->MODELE_2->text());
+        e.settype(ui->type_2->text());
+        e.setcondition(ui->condition_2->text());
+        e.setdescription(ui->descequipement_2->text());
+
+
+
+        if(e.modifierequipement(ui->Searcheqpnum->text()))
+        {
+            ui->AfficherTabeqp->setModel(tmpeqp.Afficherequipement("NUMDESERIE"));
+            QMessageBox msgBox;
+            msgBox.setText("Modification Avec Success!");
+            msgBox.exec();
+            ui->stackedWidget->setCurrentIndex(6);
+        }
+        else
+        {
+            QMessageBox msgBox;
+            msgBox.setText("Echec! Champ(s) Manquant(s)!");
+            msgBox.exec();
+        }
+}
+
+void MainWindow::on_Searcheqp_3_clicked()
+{
+        ui->AfficherTabeqp->setModel(tmpeqp.Afficherequipement("NUMDESERIE"));
+}
+
+
+
+void MainWindow::on_export_4_clicked()
+{
+    QString strStream;
+        QTextStream out(&strStream);
+        const int rowCount = ui->AffichervehTab->model()->rowCount();
+        const int columnCount =ui->AffichervehTab->model()->columnCount();
+        out << "<h2 align=left> EHEALTH APPLICATION  </h2>";
+        out << "<h2 align=right> UTOPIA SOFTWARES </h2>";
+
+        out <<  "<html>\n"
+                "<head>\n"
+                "<meta Content=\"Text/html; charset=Windows-1251\">\n"
+                <<  QString("<title>%1</title>\n").arg("VEHICULE")
+                <<  "</head>\n"
+                "<body bgcolor=lightpink link=#5000A0>\n"
+
+                    "<h1>Liste des vehicules</h1>"
+
+
+
+                    "<table border=1 cellspacing=0 cellpadding=2>\n";
+
+
+        // headers
+                out << "<thead><tr bgcolor=#f0f0f0>";
+                for (int column = 0; column < columnCount; column++)
+                    if (!ui->AffichervehTab->isColumnHidden(column))
+                        out << QString("<th>%1</th>").arg(ui->AffichervehTab->model()->headerData(column, Qt::Horizontal).toString());
+                out << "</tr></thead>\n";
+                // data table
+                   for (int row = 0; row < rowCount; row++) {
+                       out << "<tr>";
+                       for (int column = 0; column < columnCount; column++) {
+                           if (!ui->AffichervehTab->isColumnHidden(column)) {
+                               QString data = ui->AffichervehTab->model()->data(ui->AffichervehTab->model()->index(row, column)).toString().simplified();
+                               out << QString("<td bkcolor=0>%1</td>").arg((!data.isEmpty()) ? data : QString("&nbsp;"));
+                           }
+                       }
+                       out << "</tr>\n";
+                   }
+                   out <<  "</table>\n"
+                       "</body>\n"
+                       "</html>\n";
+
+                   QTextDocument *document = new QTextDocument();
+                   document->setHtml(strStream);
+
+                   QPrinter printer;
+
+                   QPrintDialog *dialog = new QPrintDialog(&printer, NULL);
+                   if (dialog->exec() == QDialog::Accepted) {
+                       document->print(&printer);
+                }
+}
+
+void MainWindow::on_DELCAR_clicked()
+{
+    QModelIndexList selection = ui->AfficherTabeqp->selectionModel()->selectedRows(0);
+
+    if (!selection.empty()) {
+
+        QModelIndex idIndex = selection.at(0);
+        QString mat = idIndex.data().toString();
+
+    if(tmpeqp.Supprimerequipement(mat))
+           {
+        ui->AfficherTabeqp->setModel(tmpeqp.Afficherequipement("NUMDESERIE"));
+        QMessageBox msgBox;
+        msgBox.setText("Suppression avec Success!");
+        msgBox.exec();
+        ui->stackedWidget->setCurrentIndex(6);
+    }
+    else
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Echec de Suppression! ");
+        msgBox.exec();
+        }
+    }
+}
+//changement de theme par menu bar
+void MainWindow::on_actionChange_Theme_triggered()
+{
+    Changetheme theme;
+    QString item;
+    theme.setModal(true);
+    theme.setWindowTitle("Themes");
+    theme.exec();
+    item="Violet";
+
+
+}
+
+void MainWindow::on_Next_clicked()
+{
+    //indexpage=ui->stackedWidget->currentIndex();
+    if(indexpage==0)
+    {
+        indexpage=2;
+        ui->stackedWidget->setCurrentIndex(2);
+
+    }
+    if((indexpage<5)&&(indexpage!=0))
+    {
+        indexpage++;
+        ui->stackedWidget->setCurrentIndex(indexpage);
+    }
+}
+
+void MainWindow::on_Previous_clicked()
+{
+    //indexpage=ui->stackedWidget->currentIndex();
+
+    if(indexpage==2)
+    {
+        ui->stackedWidget->setCurrentIndex(0);
+        indexpage=0;
+    }
+    if(indexpage>2)
+    {
+    indexpage--;
+    ui->stackedWidget->setCurrentIndex(indexpage);
+    }
+
 }

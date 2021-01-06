@@ -14,6 +14,8 @@
 #include "service.h"
 #include "smtp.h"
 //
+#include "vehicule.h"
+#include "equipement.h"
 #include "requette.h"
 #include"equipemaintenance.h"
 #include <QUrl>
@@ -191,6 +193,35 @@ void update_label();
 
          void on_excelaziz_clicked();
 
+         void on_Add_veh_clicked();
+
+         void on_Add_veh_2_clicked();
+
+         void on_vehsearch_3_clicked();
+
+         void on_export_3_clicked();
+
+         void on_vehSearch_clicked();
+
+         void on_Supprimervehicule_clicked();
+
+         void on_Addeqp_clicked();
+
+         void on_Addeqp_2_clicked();
+
+         void on_Searcheqp_3_clicked();
+
+
+         void on_export_4_clicked();
+
+         void on_DELCAR_clicked();
+
+         void on_actionChange_Theme_triggered();
+
+         void on_Next_clicked();
+
+         void on_Previous_clicked();
+
 private:
     Ui::MainWindow *ui;
     Medicament temp;
@@ -205,6 +236,12 @@ private:
      EquipeMaintenance equipetmp;
      QPropertyAnimation* animation;
      QPropertyAnimation* animation2;
+     int indexpage;
+     bool AdminAccess;
+     //
+     vehicule tmpveh;
+     equipement tmpeqp;
+     int flip;
      //
      personnel tmppersonnel;
      service tmpservice;

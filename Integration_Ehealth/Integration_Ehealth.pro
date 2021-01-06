@@ -18,10 +18,12 @@ SOURCES += \
     addw.cpp \
     arduino.cpp \
     chambre.cpp \
+    changetheme.cpp \
     connection.cpp \
     dsikstat.cpp \
     email.cpp \
     equipemaintenance.cpp \
+    equipement.cpp \
     fournisseur.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -35,6 +37,7 @@ SOURCES += \
     smtp.cpp \
     statchart.cpp \
     stats.cpp \
+    vehicule.cpp \
     widadd2.cpp \
     widmod2.cpp
 
@@ -42,10 +45,12 @@ HEADERS += \
     addw.h \
     arduino.h \
     chambre.h \
+    changetheme.h \
     connection.h \
     dsikstat.h \
     email.h \
     equipemaintenance.h \
+    equipement.h \
     fournisseur.h \
     mainwindow.h \
     medicament.h \
@@ -58,11 +63,13 @@ HEADERS += \
     smtp.h \
     statchart.h \
     stats.h \
+    vehicule.h \
     widadd2.h \
     widmod2.h
 
 FORMS += \
     addw.ui \
+    changetheme.ui \
     dsikstat.ui \
     email.ui \
     mainwindow.ui \

@@ -1,6 +1,7 @@
 #include "equipemaintenance.h"
 #include <QSqlQuery>
 #include <QSqlQueryModel>
+#include <QDebug>
 EquipeMaintenance::EquipeMaintenance()
 {
     this->IdEquipe="0";
@@ -87,4 +88,29 @@ QSqlQueryModel * EquipeMaintenance::TrierRequettes()
     model->setHeaderData(2,Qt::Horizontal,QObject::tr("SPECIALITEE"));
     model->setHeaderData(3,Qt::Horizontal,QObject::tr("NOMBREREQUETTES"));
     return model;
+}
+bool EquipeMaintenance::Login(int id,QString extusername)
+{
+    QSqlQuery query;
+    bool testing;
+    query.prepare("SELECT * from EQUIPEMAINTENANCE WHERE EQUIPEID = :password AND CHEFEQUIPE = :username");
+    query.bindValue(":password", id);
+    query.bindValue(":username", extusername);
+
+    if (query.exec())
+    {
+        if (query.next() > 0)
+        {
+            // You login a user here
+            QString name = query.value(1).toString();
+            qDebug() << name << "is logged in";
+            testing=true;
+        }
+        else
+        {
+            qDebug() << "Login failed. Invalid username or password.";
+            testing=false;
+        }
+    }
+    return testing;
 }

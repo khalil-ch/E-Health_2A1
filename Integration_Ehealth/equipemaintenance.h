@@ -21,6 +21,7 @@ public:
     bool AjouterEq();
     bool SupprimerEq(QString);
     bool ModifierEq(QString,QString,QString);
+    bool Login(int,QString);
     QSqlQueryModel * RechercheEqbyId();
     QSqlQueryModel * RechercheEqbySpec();
     QSqlQueryModel * TrierNom();
