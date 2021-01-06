@@ -874,7 +874,7 @@ void MainWindow::update_label()
 {
    data=A.read_from_arduino();
    heartRateBPM+=data;
-   qDebug()<< data;
+   qDebug()<<"data = "<< data;
 ui->lineEdit_bpm->setText(heartRateBPM);
    }
 //code khalil
@@ -1129,8 +1129,8 @@ void MainWindow::on_english_clicked()
 
      if (ui->english->isChecked())
     {
-
-        translator->load("C:\\Users\\hp\\Desktop\\integration eya!\\E-Health_2A1\\Integration_Ehealth\\english.qm");
+//C:\Users\khali\Desktop\integration finaleee!!!\E-Health_2A1\Integration_Ehealth
+        translator->load("C:\\Users\\khali\\Desktop\\integration finaleee!!!\\E-Health_2A1\\Integration_Ehealth\\english.qm");
 
         qApp->installTranslator(translator);
         ui->retranslateUi(this);

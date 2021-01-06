@@ -1,5 +1,5 @@
 #include <LiquidCrystal.h>
-LiquidCrystal lcd(12,11,5,4,3,2);
+LiquidCrystal lcd(2,7,11,10,9,8);
 int contraste =70;
 int rawValue;
 
@@ -49,7 +49,7 @@ bool heartbeatDetected(int IRSensorPin, int delay)
 ////////////////////////////////////////////////////////////////////////
 // Arduino main code
 ////////////////////////////////////////////////////////////////////////
-int ledPin=13;
+
 int analogPin=0;
   
 void setup()
@@ -57,27 +57,24 @@ void setup()
   lcd.begin(16, 2);
   Serial.begin(9600);
  analogWrite(6, contraste);
- // La LED Arduino intégrée (Digital 13) est utilisée pour la sortie
- pinMode(ledPin,OUTPUT);
+
   
  // Initialisation de la sortie série
 
-Serial.println("la pulsations est :");
+Serial.println("la pulsations:");
   
 }
   
 const int delayMsec = 60; // 100msec per sample
   
 // Le programme principal a deux sorties:
-// - Si un battement de coeur est détecté, le voyant clignote
 // - L'impulsion est calculée et envoyée vers la sortie série.
   
 void loop()
 {
 
-      lcd.setCursor(0,0);
+      lcd.setCursor(2,0);
       lcd.print("BPM");
-      lcd .clear ();
       lcd.setCursor(1,2);
       lcd.print(rawValue);
       delay(300);
@@ -87,19 +84,15 @@ void loop()
 
  if (heartbeatDetected(analogPin, delayMsec)) {
  heartRateBPM = 60000 / beatMsec;
- // Sortie LED par impulsion
- digitalWrite(ledPin,1);
+
  
  // Envoi des données série
  Serial.print(rawValue);
  Serial.print("BPM, ");
- Serial.println(heartRateBPM);
+
       
 
  //beatMsec = 0;
- } else {
- digitalWrite(ledPin,0);
-   
  }
  delay(delayMsec);
  beatMsec += delayMsec;
