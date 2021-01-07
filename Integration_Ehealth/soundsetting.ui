@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Soundsetting</class>
+ <widget class="QDialog" name="Soundsetting">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>630</width>
+    <height>416</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <widget class="QWidget" name="horizontalLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>90</x>
+     <y>50</y>
+     <width>461</width>
+     <height>80</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="QPushButton" name="MuteMedia">
+      <property name="text">
+       <string>Mute</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="StopMedia">
+      <property name="text">
+       <string>Stop</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="PauseMedia">
+      <property name="text">
+       <string>Pause</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="PlayMedia">
+      <property name="text">
+       <string>Play</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="OpenMedia">
+      <property name="text">
+       <string>Open media</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="verticalLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>200</y>
+     <width>341</width>
+     <height>80</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout_2">
+    <item>
+     <widget class="QProgressBar" name="VolumeMediaDisplay">
+      <property name="value">
+       <number>24</number>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QSlider" name="VolumeMediaControl">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

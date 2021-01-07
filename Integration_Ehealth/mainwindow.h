@@ -5,6 +5,7 @@
 #include "fournisseur.h"
 #include "patient.h"
 #include "chambre.h"
+#include "soundsetting.h"
 #include "arduino.h"
 #include <QMainWindow>
 #include <QStatusBar>
@@ -221,6 +222,10 @@ void update_label();
          void on_Next_clicked();
 
          void on_Previous_clicked();
+
+         void on_actionSound_Settings_triggered();
+
+         void on_actionExit_triggered();
 
 private:
     Ui::MainWindow *ui;

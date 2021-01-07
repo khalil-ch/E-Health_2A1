@@ -44,7 +44,8 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    son=new QSound("C:/Users/AZYZ/Desktop/Azyzprojet/music.wav");
+    //C:\Users\khali\Desktop\integration finaleee!!!\E-Health_2A1\Integration_Ehealth
+    son=new QSound("C:/Users/khali/Desktop/integration finaleee!!!/E-Health_2A1/Integration_Ehealth/music.wav");
     int ret=A.connect_arduino();
     switch (ret)
     {
@@ -140,7 +141,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui-> dateEditajoutp->setMinimumDate(QDate::currentDate());
     ui->dateEditModifP->setMinimumDate(QDate::currentDate());
     int const n=0;
-    QMediaPlayer *player = new QMediaPlayer;
+    //C:\\Users\\khali\\Desktop\\integration finaleee!!!\\E-Health_2A1\\Integration_Ehealth\\Piano-melancholy-music-short.mp3
+    QMediaPlayer *player = new QMediaPlayer;//C:/Users/khali/Desktop/integration finaleee!!!/E-Health_2A1/Integration_Ehealth/
     player->setMedia(QUrl::fromLocalFile("C:\\Users\\khali\\Desktop\\integration finaleee!!!\\E-Health_2A1\\Integration_Ehealth\\Piano-melancholy-music-short.mp3"));
     player->setVolume(n);
     player->play();
@@ -513,6 +515,20 @@ void MainWindow::on_Login_clicked()
         ui->stackedWidget->setCurrentIndex(4);
     if ((ui->loginLineEdit->text()=="fatma")&&(ui->motDePasseLineEdit->text()=="esprit"))
         ui->stackedWidget->setCurrentIndex(5);
+    //login cas chef de service
+    if ((ui->loginLineEdit->text()=="chefservice")&&(ui->motDePasseLineEdit->text()=="esprit"))
+    {
+         ui->tableView_Eq->hide();
+         ui->Addeqp->hide();
+         ui->DelEq->hide();
+         ui->statEq->hide();
+         ui->ExtraireEq->hide();
+         ui->RechercheEq->hide();
+         ui->ModifEq->hide();
+
+         ui->stackedWidget->setCurrentIndex(3);
+    }
+
     //login avec la base de donnees equipemaintenance
     int password = ui->motDePasseLineEdit->text().toInt();
     QString chefequipe=ui->loginLineEdit->text();
@@ -1456,7 +1472,7 @@ void MainWindow::on_pdf_clicked()
          <<  QString("<title>%1</title>\n").arg("PERSONNEL")
           <<  "</head>\n"
               "<body bgcolor=#CFC4E1 link=#5000A0>\n"
-              "<img src='C:/Users/AZYZ/Desktop/Azyzprojet/5739.PNG' width='100' height='100'>\n"
+              "<img src='C:/Users/khali/Desktop/integration finaleee!!!/E-Health_2A1/Integration_Ehealth/5739.PNG' width='100' height='100'>\n"
               "<h1>Liste des personnels</h1>"
 
 
@@ -1975,4 +1991,16 @@ void MainWindow::on_Previous_clicked()
     ui->stackedWidget->setCurrentIndex(indexpage);
     }
 
+}
+
+void MainWindow::on_actionSound_Settings_triggered()
+{
+    Soundsetting mp3mediaplayer;
+    mp3mediaplayer.setWindowTitle("Sound Settings And Mp3");
+    mp3mediaplayer.exec();
+}
+
+void MainWindow::on_actionExit_triggered()
+{
+    this->close();
 }

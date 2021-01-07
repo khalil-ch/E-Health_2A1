@@ -35,6 +35,7 @@ SOURCES += \
     requette.cpp \
     service.cpp \
     smtp.cpp \
+    soundsetting.cpp \
     statchart.cpp \
     stats.cpp \
     vehicule.cpp \
@@ -61,6 +62,7 @@ HEADERS += \
     requette.h \
     service.h \
     smtp.h \
+    soundsetting.h \
     statchart.h \
     stats.h \
     vehicule.h \
@@ -74,6 +76,7 @@ FORMS += \
     email.ui \
     mainwindow.ui \
     modw.ui \
+    soundsetting.ui \
     statchart.ui \
     stats.ui \
     widadd2.ui \
@@ -83,3 +86,4 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+QMAKE_CXXFLAGS += -std=gnu++11

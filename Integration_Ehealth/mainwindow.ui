@@ -1186,7 +1186,7 @@ QStatusBar
       <item>
        <widget class="QStackedWidget" name="stackedWidget">
         <property name="currentIndex">
-         <number>4</number>
+         <number>3</number>
         </property>
         <widget class="QWidget" name="page">
          <widget class="QTabWidget" name="tabWidget">
@@ -6625,7 +6625,7 @@ QLineEdit:focus { background-color:rgb(192, 192, 255);}</string>
            </rect>
           </property>
           <property name="currentIndex">
-           <number>0</number>
+           <number>1</number>
           </property>
           <widget class="QWidget" name="Requettes">
            <attribute name="title">
