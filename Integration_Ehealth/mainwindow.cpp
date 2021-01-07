@@ -960,12 +960,13 @@ void MainWindow::update_label()
 {
     data=A.read_from_arduino();
     //khedmet eya
+    /*
      heartRateBPM+=data;
    qDebug()<<"data = "<< data;
-ui->lineEdit_bpm->setText(heartRateBPM);
-    //khedmet khalil
+ui->lineEdit_bpm->setText(heartRateBPM);*/
+    //khedmet khalil firas
 //lezemna nhotou hedhi fil arduino AdminAccess=true;
-    /*
+
     qDebug() <<"a=" << data;
     if (data!="#")
     {
@@ -976,7 +977,8 @@ ui->lineEdit_bpm->setText(heartRateBPM);
         int pos = uid.lastIndexOf(QChar('/'));
         qDebug() << "uid="<< uid.left(pos);
         ui->Outputlabel->setText(uid);
-        uid="";}*/
+        uid="";
+    AdminAccess=true;}
 
 }
 //code khalil
@@ -1538,12 +1540,12 @@ void MainWindow::on_AcceptArd_clicked()
     const char * pa= msg2.toStdString().c_str();
 
     A.write_to_arduino(pa);
-//if (AdminAcess){
+if (AdminAccess){
     ui->Previous->show();
     ui->Next->show();
     ui->stackedWidget->setCurrentIndex(0);
     indexpage=0;
-//}
+}
 }
 
 void MainWindow::on_RefuseArd_clicked()
