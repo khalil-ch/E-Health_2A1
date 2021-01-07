@@ -61,3 +61,8 @@ void Changetheme::on_Applytheme_clicked()
         qApp->setStyleSheet(styleSheet);
     }
 }
+
+void Changetheme::on_cancel_clicked()
+{
+    this->close();
+}

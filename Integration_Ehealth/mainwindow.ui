@@ -1186,7 +1186,7 @@ QStatusBar
       <item>
        <widget class="QStackedWidget" name="stackedWidget">
         <property name="currentIndex">
-         <number>3</number>
+         <number>2</number>
         </property>
         <widget class="QWidget" name="page">
          <widget class="QTabWidget" name="tabWidget">
@@ -7959,7 +7959,7 @@ QLineEdit:focus { background-color:rgb(192, 192, 255);}</string>
            </rect>
           </property>
           <property name="currentIndex">
-           <number>1</number>
+           <number>0</number>
           </property>
           <widget class="QWidget" name="tab_14">
            <attribute name="title">
@@ -8355,7 +8355,7 @@ QPushButton:pressed
 }</string>
              </property>
              <property name="text">
-              <string>Ajouter</string>
+              <string>Modifier</string>
              </property>
             </widget>
            </widget>
@@ -9312,6 +9312,22 @@ QPushButton:pressed
            </item>
           </layout>
          </widget>
+         <widget class="QLabel" name="logo">
+          <property name="geometry">
+           <rect>
+            <x>70</x>
+            <y>20</y>
+            <width>141</width>
+            <height>121</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="pixmap">
+           <pixmap>../../../infoshield/INFO SHIELD+++.png</pixmap>
+          </property>
+         </widget>
         </widget>
        </widget>
       </item>
@@ -9352,6 +9368,7 @@ QPushButton:pressed
     </property>
     <addaction name="actionChange_Theme"/>
     <addaction name="actionSound_Settings"/>
+    <addaction name="actionAbout"/>
     <addaction name="actionExit"/>
    </widget>
    <addaction name="menuMenu"/>
@@ -9370,6 +9387,11 @@ QPushButton:pressed
   <action name="actionExit">
    <property name="text">
     <string>Exit</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="text">
+    <string>About</string>
    </property>
   </action>
  </widget>

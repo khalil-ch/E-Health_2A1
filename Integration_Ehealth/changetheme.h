@@ -18,6 +18,8 @@ public:
 private slots:
     void on_Applytheme_clicked();
 
+    void on_cancel_clicked();
+
 private:
     Ui::Changetheme *ui;
 };

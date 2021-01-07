@@ -20,6 +20,8 @@ public:
 private slots:
     void on_ConfirmModif_clicked();
 
+    void on_CancelModif_clicked();
+
 private:
     Ui::ModW *ui;
     QString reftmp;

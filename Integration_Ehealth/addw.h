@@ -18,6 +18,8 @@ public:
 private slots:
     void on_ConfirmerAddRq_clicked();
 
+    void on_RetouraAddRq_clicked();
+
 private:
     Ui::AddW *ui;
 };

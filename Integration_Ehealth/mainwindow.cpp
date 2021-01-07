@@ -36,6 +36,8 @@
 #include <statchart.h>
 #include <dsikstat.h>
 #include "changetheme.h"
+#include <QPixmap>
+#include "aboutwid.h"
 //fatma
 #include "vehicule.h"
 #include "equipement.h"
@@ -81,6 +83,10 @@ MainWindow::MainWindow(QWidget *parent)
     this->AdminAccess=false;
     ui->Previous->hide();
     ui->Next->hide();
+    //set logo
+    QPixmap pixmapTarget = QPixmap("C:/Users/khali/Desktop/integration finaleee!!!/E-Health_2A1/Integration_Ehealth/Logo/INFOSHIELD+++.png");
+    //pixmapTarget = pixmapTarget.scaled(size-5, size-5, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    ui->logo->setPixmap(pixmapTarget);
     //
     //AZIZ KAHLOUL
     ui->tabpersonnel->setModel(tmppersonnel.afficher());
@@ -961,24 +967,16 @@ ui->lineEdit_bpm->setText(heartRateBPM);
 //lezemna nhotou hedhi fil arduino AdminAccess=true;
     /*
     qDebug() <<"a=" << data;
-
-
     if (data!="#")
     {
-
         uid+=data;
-
         //qDebug() << uid;
-
     }
     else {
         int pos = uid.lastIndexOf(QChar('/'));
         qDebug() << "uid="<< uid.left(pos);
         ui->Outputlabel->setText(uid);
-        uid="";
-
-
-    }*/
+        uid="";}*/
 
 }
 //code khalil
@@ -1074,7 +1072,7 @@ void MainWindow::on_ExtraiareReq_clicked()
     QString fileName = QFileDialog::getSaveFileName((QWidget* )0, "Export PDF", QString(), "*.pdf");
     if (QFileInfo(fileName).suffix().isEmpty()) { fileName.append(".pdf"); }
     QPrinter printer(QPrinter::PrinterResolution);
-    QString imgsource="C:/Users/khali/Desktop/Project-E-Health/RequettesMaintenances/UtopiaSft.png";
+    QString imgsource="C:/Users/khali/Desktop/integration finaleee!!!/E-Health_2A1/Integration_Ehealth/Logo/INFOSHIELD+++.png";
     printer.setOutputFormat(QPrinter::PdfFormat);
     printer.setPaperSize(QPrinter::A4);
     printer.setOutputFileName(fileName);
@@ -1171,7 +1169,7 @@ void MainWindow::on_ExtraireEq_clicked()
     QString fileName = QFileDialog::getSaveFileName((QWidget* )0, "Export PDF", QString(), "*.pdf");
     if (QFileInfo(fileName).suffix().isEmpty()) { fileName.append(".pdf"); }
     QPrinter printer(QPrinter::PrinterResolution);
-    QString imgsource="C:/Users/khali/Desktop/Project-E-Health/RequettesMaintenances/UtopiaSft.png";
+    QString imgsource="C:/Users/khali/Desktop/integration finaleee!!!/E-Health_2A1/Integration_Ehealth/Logo/INFOSHIELD+++.png";
     printer.setOutputFormat(QPrinter::PdfFormat);
     printer.setPaperSize(QPrinter::A4);
     printer.setOutputFileName(fileName);
@@ -1669,6 +1667,11 @@ void MainWindow::on_Add_veh_clicked()
                 ui->stackedWidget->setCurrentIndex(6);
             }
     }
+    QSystemTrayIcon *notifyIcon = new QSystemTrayIcon;
+    notifyIcon->show();
+    notifyIcon->setIcon(QIcon("icone.png"));
+
+    notifyIcon->showMessage("VEHICULES ","VEHICULE AJOUT",QSystemTrayIcon::Information,15000);
 }
 
 void MainWindow::on_Add_veh_2_clicked()
@@ -1694,11 +1697,21 @@ void MainWindow::on_Add_veh_2_clicked()
                 msgBox.exec();
                 ui->stackedWidget->setCurrentIndex(6);
             }
+            QSystemTrayIcon *notifyIcon = new QSystemTrayIcon;
+            notifyIcon->show();
+            notifyIcon->setIcon(QIcon("icone.png"));
+
+            notifyIcon->showMessage("VEHICULES ","VEHICULE MODIFIE",QSystemTrayIcon::Information,15000);
 }
 
 void MainWindow::on_vehsearch_3_clicked()
 {
     ui->AffichervehTab->setModel(tmpveh.Affichervehicule("NOM"));
+    QSystemTrayIcon *notifyIcon = new QSystemTrayIcon;
+    notifyIcon->show();
+    notifyIcon->setIcon(QIcon("icone.png"));
+
+    notifyIcon->showMessage("VEHICULES ","VEHICULE RECHERCHE",QSystemTrayIcon::Information,15000);
 }
 
 void MainWindow::on_export_3_clicked()
@@ -1765,7 +1778,7 @@ void MainWindow::on_vehSearch_clicked()
         QModelIndex idIndex = selection.at(0);
         QString id = idIndex.data().toString();
         ui->nom_2->setText(id);
-        ui->stackedWidget->setCurrentIndex(6);
+        //ui->stackedWidget->setCurrentIndex(6);
 
     }
 }
@@ -1784,7 +1797,7 @@ void MainWindow::on_Supprimervehicule_clicked()
         QMessageBox msgBox;
         msgBox.setText("Suppression avec Success!");
         msgBox.exec();
-        ui->stackedWidget->setCurrentIndex(4);
+        //ui->stackedWidget->setCurrentIndex(4);
     }
     else
     {
@@ -2003,4 +2016,10 @@ void MainWindow::on_actionSound_Settings_triggered()
 void MainWindow::on_actionExit_triggered()
 {
     this->close();
+}
+
+void MainWindow::on_actionAbout_triggered()
+{
+    Aboutwid about;
+    about.exec();
 }

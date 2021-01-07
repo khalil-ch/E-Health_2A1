@@ -20,6 +20,8 @@ public:
 private slots:
     void on_ConfirmerModEq_clicked();
 
+    void on_AnnulerModEq_clicked();
+
 private:
     Ui::WidMod2 *ui;
     QString ideqtmp;

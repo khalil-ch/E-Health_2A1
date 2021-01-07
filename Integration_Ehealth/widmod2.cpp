@@ -38,3 +38,8 @@ void WidMod2::on_ConfirmerModEq_clicked()
                             "click cancel to exit"),QMessageBox::Cancel);
     }
 }
+
+void WidMod2::on_AnnulerModEq_clicked()
+{
+    this->close();
+}

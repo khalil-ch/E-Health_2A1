@@ -18,6 +18,8 @@ public:
 private slots:
     void on_AddEqConfirm_clicked();
 
+    void on_AddEqCancel_clicked();
+
 private:
     Ui::WidAdd2 *ui;
 };

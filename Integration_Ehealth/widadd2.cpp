@@ -35,3 +35,8 @@ void WidAdd2::on_AddEqConfirm_clicked()
     QMessageBox::information(nullptr,QObject::tr("database error"),QObject::tr("connection unsuccessful\n""click cancel"),QMessageBox::Cancel);
     }
 }
+
+void WidAdd2::on_AddEqCancel_clicked()
+{
+    this->close();
+}

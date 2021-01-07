@@ -39,3 +39,8 @@ void AddW::on_ConfirmerAddRq_clicked()
     QMessageBox::information(nullptr,QObject::tr("database error"),QObject::tr("connection unsuccessful\n""click cancel"),QMessageBox::Cancel);
     }
 }
+
+void AddW::on_RetouraAddRq_clicked()
+{
+    this->close();
+}

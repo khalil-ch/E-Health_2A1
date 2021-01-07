@@ -4,9 +4,6 @@
 #include <QDebug>
 equipement::equipement()
  {
-
-
-
 }
 
 equipement::equipement(QString num,QString nom,QString type,QString modele,QString cond, QString desc)

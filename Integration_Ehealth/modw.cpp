@@ -40,3 +40,8 @@ void ModW::on_ConfirmModif_clicked()
                             "click cancel to exit"),QMessageBox::Cancel);
     }
 }
+
+void ModW::on_CancelModif_clicked()
+{
+    this->close();
+}

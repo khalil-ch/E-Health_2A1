@@ -15,6 +15,7 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    aboutwid.cpp \
     addw.cpp \
     arduino.cpp \
     chambre.cpp \
@@ -43,6 +44,7 @@ SOURCES += \
     widmod2.cpp
 
 HEADERS += \
+    aboutwid.h \
     addw.h \
     arduino.h \
     chambre.h \
@@ -70,6 +72,7 @@ HEADERS += \
     widmod2.h
 
 FORMS += \
+    aboutwid.ui \
     addw.ui \
     changetheme.ui \
     dsikstat.ui \
